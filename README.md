@@ -1,7 +1,9 @@
 # EasyDonateSDK
 An unoffical community SDK for EasyDonate platform API written on Java.
 
-[![](https://jitpack.io/v/SoKnight/EasyDonateSDK.svg)](https://jitpack.io/#SoKnight/EasyDonateSDK)
+Useful links:
+- [EasyDonate API documentation (RU)](https://api.easydonate.ru/)
+- [**[ ! ]** API request requirements (RU)](https://api.easydonate.ru/request-requirements)
 
 ## Introduction
 You can see how this library works below :)
@@ -47,6 +49,8 @@ public class Example {
 If you like that, you can use my library in your project, go next.
 
 ## Using as Maven dependency
+[![](https://jitpack.io/v/SoKnight/EasyDonateSDK.svg)](https://jitpack.io/#SoKnight/EasyDonateSDK)
+
 Sorry, I don't use Gradle currently, so a guide for Gradle isn't posted here.
 
 Firstly you should to add the Jitpack repository if you has no it yet.
@@ -61,7 +65,7 @@ Firstly you should to add the Jitpack repository if you has no it yet.
 ```
 Further you can add the Maven dependency to your project.
 
-You should replace `VERSION` to latest available version, you can see that on the badge in top of README.
+You should replace `VERSION` to latest available version, you can see that on the badge above.
 ```xml
     <!-- EasyDonate SDK -->
     <dependency>
