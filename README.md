@@ -67,10 +67,12 @@ Further you can add the Maven dependency to your project.
 
 You should replace `VERSION` to latest available version, you can see that on the badge above.
 ```xml
-    <!-- EasyDonate SDK -->
-    <dependency>
-        <groupId>com.github.SoKnight</groupId>
-        <artifactId>EasyDonateSDK</artifactId>
-        <version>VERSION</version>
-    </dependency>
+    <dependencies>
+        <!-- EasyDonate SDK -->
+        <dependency>
+            <groupId>com.github.SoKnight</groupId>
+            <artifactId>EasyDonateSDK</artifactId>
+            <version>VERSION</version>
+        </dependency>
+    </dependencies>
 ```
