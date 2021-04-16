@@ -2,8 +2,9 @@
 An unoffical community SDK for EasyDonate platform API written on Java.
 
 Useful links:
-- [EasyDonate API documentation (RU)](https://api.easydonate.ru/)
 - [**[ ! ]** API request requirements (RU)](https://api.easydonate.ru/request-requirements)
+- [EasyDonate API documentation (RU)](https://api.easydonate.ru/)
+- [SDK thread on the EasyDonate forum (RU)](https://forum.easydonate.ru/d/65-neofitsialnoe-easydonate-sdk-dlya-java-proektov)
 
 ## Introduction
 You can see how this library works below :)
