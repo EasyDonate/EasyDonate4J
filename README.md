@@ -10,7 +10,7 @@ Supported API versions:
 ## Before you start
 Firstly, you should to read about API restrictions related to requests frequency
 - [**[ ! ]** API request requirements (RU)](https://api.easydonate.ru/request-requirements)
-- [SDK wiki hosted on GitHub](https://github.com/SoKnight/EasyDonateSDK/wiki)
+- [SDK wiki hosted on GitHub (RU)](https://github.com/SoKnight/EasyDonateSDK/wiki)
 - [SDK thread on the EasyDonate forum (RU)](https://forum.easydonate.ru/d/65-neofitsialnoe-easydonate-sdk-dlya-java-proektov)
 
 ## How it works?
