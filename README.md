@@ -1,6 +1,8 @@
 # EasyDonateSDK
 An unoffical community SDK for EasyDonate platform API written on Java.
 
+[Project documentation (RU)](https://github.com/SoKnight/EasyDonateSDK/wiki)
+
 Supported API versions:
 - EasyDonate API v1 [Documentation (RU)](https://api.easydonate.ru/)
 - EasyDonate API v2 [Documentation (RU)](https://api.easydonate.ru/v/v2)
@@ -8,9 +10,10 @@ Supported API versions:
 ## Before you start
 Firstly, you should to read about API restrictions related to requests frequency
 - [**[ ! ]** API request requirements (RU)](https://api.easydonate.ru/request-requirements)
+- [SDK wiki hosted on GitHub](https://github.com/SoKnight/EasyDonateSDK/wiki)
 - [SDK thread on the EasyDonate forum (RU)](https://forum.easydonate.ru/d/65-neofitsialnoe-easydonate-sdk-dlya-java-proektov)
 
-## Introduction
+## How it works?
 You can see how this library works below :)
 ```java
 import ru.soknight.easydonate.sdk.v2.EasyDonateSDK;
@@ -65,33 +68,4 @@ public class Example {
     }
 }
 ```
-If you like that, you can use my library in your project, go next.
-
-## Using as Maven dependency
-[![](https://jitpack.io/v/SoKnight/EasyDonateSDK.svg)](https://jitpack.io/#SoKnight/EasyDonateSDK)
-
-Sorry, I don't use Gradle currently, so a guide for Gradle isn't posted here.
-
-Firstly you should to add the Jitpack repository if you has no it yet.
-```xml
-    <repositories>
-        <!-- JitPack repository -->
-        <repository>
-            <id>jitpack.io</id>
-            <url>https://jitpack.io</url>
-        </repository>
-    </repositories>
-```
-Further you can add the Maven dependency to your project.
-
-You should replace `VERSION` to latest available version, you can see that on the badge above.
-```xml
-    <dependencies>
-        <!-- EasyDonate SDK -->
-        <dependency>
-            <groupId>com.github.SoKnight</groupId>
-            <artifactId>EasyDonateSDK</artifactId>
-            <version>VERSION</version>
-        </dependency>
-    </dependencies>
-```
+If you like that, you can use my library in your project.
