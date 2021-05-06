@@ -68,4 +68,4 @@ public class Example {
     }
 }
 ```
-If you like that, you can use my library in your project.
+If you like that, you can use my library in your project =)
