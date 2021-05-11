@@ -1,5 +1,5 @@
 # EasyDonateSDK
-An unoffical community SDK for EasyDonate platform API written on Java.
+An unoffical community SDK for [EasyDonate](https://easydonate.ru/) platform API written on Java.
 
 [Project documentation (RU)](https://github.com/SoKnight/EasyDonateSDK/wiki)
 
