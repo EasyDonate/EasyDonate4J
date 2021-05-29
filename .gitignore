@@ -77,6 +77,9 @@ local.properties
 # All folder
 .idea/
 
+# Intellij IDEA projects
+*.iml
+
 # User-specific stuff
 .idea/**/workspace.xml
 .idea/**/tasks.xml
