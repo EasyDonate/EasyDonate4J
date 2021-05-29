@@ -18,24 +18,26 @@
 Сначала необходимо подключить репозиторий JitPack, если он ещё не подключён в вашем проекте:
 ```xml
     <repositories>
-        <repository>
-            <id>jitpack.io</id>
-            <url>https://jitpack.io</url>
-        </repository>
-    </repositories>
+  <repository>
+    <id>jitpack.io</id>
+    <url>https://jitpack.io</url>
+  </repository>
+</repositories>
 ```
 Затем добавьте зависимость:
 ```xml
     <dependencies>
-        <dependency>
-            <groupId>com.github.SoKnight</groupId>
-            <artifactId>EasyDonateSDK</artifactId>
-            <version>VERSION</version>
-        </dependency>
-    </dependencies>
+  <dependency>
+    <groupId>com.github.SoKnight.EasyDonateSDK</groupId>
+    <artifactId>api-v2</artifactId>
+    <version>VERSION</version>
+  </dependency>
+</dependencies>
 ```
-**ВАЖНО!** Не забудьте заменить `VERSION` на актуальную версию библиотеки: 
+**ВАЖНО!** Не забудьте заменить `VERSION` на актуальную версию библиотеки:
 [![](https://jitpack.io/v/SoKnight/EasyDonateSDK.svg)](https://jitpack.io/#SoKnight/EasyDonateSDK)
+
+Вы также можете указать `api-vX` в `artifactId`, если хотите работать с API другой версии (X) из списка поддерживаемых.
 
 ## Import SDK with Gradle
 Здесь, как и в случае с Maven, вам нужно иметь подключённый репозиторий JitPack в вашем проекте:
@@ -47,11 +49,13 @@
 А также добавьте зависимость:
 ```gradle
     dependencies {
-        implementation 'com.github.SoKnight:EasyDonateSDK:VERSION'
+        implementation 'com.github.SoKnight.EasyDonateSDK:api-v1:VERSION'
     }
 ```
-**ВАЖНО!** Не забудьте заменить `VERSION` на актуальную версию библиотеки: 
+**ВАЖНО!** Не забудьте заменить `VERSION` на актуальную версию библиотеки:
 [![](https://jitpack.io/v/SoKnight/EasyDonateSDK.svg)](https://jitpack.io/#SoKnight/EasyDonateSDK)
+
+Вы также можете заменить `api-v2` на любую другую, хотите работать с API другой версии из списка поддерживаемых.
 
 # Import into your IDE
 Если же вы не имеете опыта работы с инструментами сборки выше, или среди них нет вашего, или же по какой-то иной причине вы не можете воспользоваться предложенными выше инструкциями, то вы можете вручную добавить данную библиотеку в ваш проект.
@@ -71,4 +75,3 @@
 5. В появившемся окне **Choose Modules** также нажмите **ОК**. [Показать](https://raw.githubusercontent.com/SoKnight/EasyDonateSDK/master/wiki/images/intellij-step-5.png)
 6. В окне структуры проекта нажмите **Apply** -> **ОК**. [Показать](https://raw.githubusercontent.com/SoKnight/EasyDonateSDK/master/wiki/images/intellij-step-6.png)
 7. Убедитесь, что библиотека подключена. [Показать](https://raw.githubusercontent.com/SoKnight/EasyDonateSDK/master/wiki/images/intellij-step-7.png)
-
