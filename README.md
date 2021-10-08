@@ -3,7 +3,15 @@ An unoffical community SDK for [EasyDonate](https://easydonate.ru/) platform API
 
 [Project documentation (RU)](https://github.com/SoKnight/EasyDonateSDK/wiki)
 
-Known API versions:
+## Features & TODO
+- Fully supported API v2
+- **[WIP]** Support for API v3
+- **[WIP]** Support for platform plugins (introduced with API v3)
+- **[WIP]** Callback API request receiver implementations
+- **[WIP]** Callback API request handler implementations
+- **[WIP]** Callback API request signature verifier
+
+### Known API versions:
 - EasyDonate API v1 **[Deprecated]**
 - EasyDonate API v2 [Documentation (RU)](https://api.easydonate.ru/v/v2)
 - EasyDonate API v3 [Documentation (RU)](https://api.easydonate.ru/v/v3)
