@@ -3,9 +3,10 @@ An unoffical community SDK for [EasyDonate](https://easydonate.ru/) platform API
 
 [Project documentation (RU)](https://github.com/SoKnight/EasyDonateSDK/wiki)
 
-Supported API versions:
-- EasyDonate API v1 [Documentation (RU)](https://api.easydonate.ru/)
+Known API versions:
+- EasyDonate API v1 **[Deprecated]**
 - EasyDonate API v2 [Documentation (RU)](https://api.easydonate.ru/v/v2)
+- EasyDonate API v3 [Documentation (RU)](https://api.easydonate.ru/v/v3)
 
 ## Before you start
 Firstly, you should to read about API restrictions related to requests frequency
