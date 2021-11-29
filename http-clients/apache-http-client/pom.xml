@@ -5,18 +5,18 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <artifactId>parent</artifactId>
-        <groupId>ru.soknight.easydonate-sdk</groupId>
-        <version>2.0.0</version>
+        <groupId>ru.easydonate.easydonate4j</groupId>
+        <version>2.0.0-SNAPSHOT</version>
         <relativePath>../../pom.xml</relativePath>
     </parent>
 
     <artifactId>apache-http-client</artifactId>
-    <name>EasyDonate Java SDK - Http Client - Apache</name>
+    <name>EasyDonate4J - Http Client - Apache</name>
 
     <dependencies>
         <!-- Core module -->
         <dependency>
-            <groupId>ru.soknight.easydonate-sdk</groupId>
+            <groupId>ru.easydonate.easydonate4j</groupId>
             <artifactId>core</artifactId>
         </dependency>
 
