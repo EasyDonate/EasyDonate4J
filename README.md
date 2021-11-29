@@ -4,14 +4,13 @@ An unoffical community SDK for [EasyDonate](https://easydonate.ru/) platform API
 [Project documentation (RU)](https://github.com/SoKnight/EasyDonateSDK/wiki)
 
 ## Features & TODO
-- Fully supported API v2
-- **[WIP]** Support for API v3
-- **[WIP]** Support for platform plugins (introduced with API v3)
+- Full support for API v3
+- Support for platform plugins (introduced with API v3)
+- HTTP client implementations (JDK Built-In, Apache HTTP Client, OkHttp)
+- JSON serialization provider implementations (Jackson, GSON)
 - **[WIP]** Callback API request receiver implementations
 - **[WIP]** Callback API request handler
 - **[WIP]** Callback API request signature verifier
-- **[WIP]** HTTP client implementations (JDK tools, Apache HTTP Client, OkHttp, Retrofit 2)
-- **[WIP]** JSON (de-)serialization provider implementations (Jackson, GSON etc.)
 
 ### Known API versions:
 - EasyDonate API v1 **[Deprecated]**
