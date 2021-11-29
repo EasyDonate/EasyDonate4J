@@ -1,18 +1,32 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
     <groupId>ru.soknight.easydonate-sdk</groupId>
     <artifactId>parent</artifactId>
-    <version>1.2.0</version>
+    <version>2.0.0</version>
     <packaging>pom</packaging>
 
     <modules>
-        <module>api-v1</module>
-        <module>api-v2</module>
+        <!-- API versions implementations -->
+        <module>api-v3</module>
+
+        <!-- Core module providing any other implementations -->
+        <module>core</module>
+
+        <!-- JSON serialization providers -->
+        <module>json-providers/gson-json-provider</module>
+        <module>json-providers/jackson-json-provider</module>
+
+        <!-- HTTP client implementations -->
+        <module>http-clients/apache-http-client</module>
+        <module>http-clients/okhttp3-http-client</module>
+        <module>http-clients/jdk-legacy-http-client</module>
+        <module>http-clients/jdk-modern-http-client</module>
     </modules>
 
     <name>EasyDonate Java SDK - Parent</name>
-    <description>An unofficial SDK for EasyDonate payments system written on Java</description>
-    <url>https://vk.me/soknight</url>
+    <description>An official SDK for EasyDonate payments system written on Java</description>
+    <url>https://easydonate.ru/</url>
     
     <properties>
         <!-- Building -->
@@ -21,12 +35,16 @@
         <maven.compiler.target>8</maven.compiler.target>
 
         <!-- Core libs versions -->
+        <apache.http.client.version>5.1</apache.http.client.version>
+        <okhttp3.version>4.9.0</okhttp3.version>
         <retrofit.version>2.9.0</retrofit.version>
+        <gson.version>2.8.9</gson.version>
         <jackson.version>2.12.0</jackson.version>
 
         <!-- Additional libs versions -->
         <commons.lang.version>3.11</commons.lang.version>
-        <lombok.version>1.18.20</lombok.version>
+        <jetbrains.annotations.version>22.0.0</jetbrains.annotations.version>
+        <lombok.version>1.18.22</lombok.version>
 
         <!-- Maven plugins -->
         <compiler.maven.plugin.version>3.8.1</compiler.maven.plugin.version>
@@ -37,11 +55,88 @@
 
     <dependencyManagement>
         <dependencies>
-            <!-- Retrofit -->
+            <!-- Core module -->
+            <dependency>
+                <groupId>ru.soknight.easydonate-sdk</groupId>
+                <artifactId>core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- API Implementation v3 -->
+            <dependency>
+                <groupId>ru.soknight.easydonate-sdk</groupId>
+                <artifactId>api-v3</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- Apache HTTP Client Implementation -->
+            <dependency>
+                <groupId>ru.soknight.easydonate-sdk</groupId>
+                <artifactId>apache-http-client</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- JDK Legacy HTTP Client Implementation -->
+            <dependency>
+                <groupId>ru.soknight.easydonate-sdk</groupId>
+                <artifactId>jdk-legacy-http-client</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- JDK Modern HTTP Client Implementation -->
+            <dependency>
+                <groupId>ru.soknight.easydonate-sdk</groupId>
+                <artifactId>jdk-modern-http-client</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- OkHttp3 HTTP Client Implementation -->
+            <dependency>
+                <groupId>ru.soknight.easydonate-sdk</groupId>
+                <artifactId>okhttp3-http-client</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- GSON JSON Serialization Provider -->
+            <dependency>
+                <groupId>ru.soknight.easydonate-sdk</groupId>
+                <artifactId>gson-json-provider</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- Jackson JSON Serialization Provider -->
+            <dependency>
+                <groupId>ru.soknight.easydonate-sdk</groupId>
+                <artifactId>jackson-json-provider</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- Apache HTTP Client -->
+            <dependency>
+                <groupId>org.apache.httpcomponents.client5</groupId>
+                <artifactId>httpclient5</artifactId>
+                <version>${apache.http.client.version}</version>
+            </dependency>
+
+            <!-- OkHttp 3 -->
+            <dependency>
+                <groupId>com.squareup.okhttp3</groupId>
+                <artifactId>okhttp</artifactId>
+                <version>${okhttp3.version}</version>
+            </dependency>
+
+            <!-- Retrofit 2 -->
             <dependency>
                 <groupId>com.squareup.retrofit2</groupId>
                 <artifactId>retrofit</artifactId>
                 <version>${retrofit.version}</version>
+            </dependency>
+
+            <!-- Gson -->
+            <dependency>
+                <groupId>com.google.code.gson</groupId>
+                <artifactId>gson</artifactId>
+                <version>${gson.version}</version>
             </dependency>
 
             <!-- Jackson Core + Databind + Annotations -->
@@ -66,6 +161,14 @@
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
                 <version>${commons.lang.version}</version>
+            </dependency>
+
+            <!-- JetBrains Annonations -->
+            <dependency>
+                <groupId>org.jetbrains</groupId>
+                <artifactId>annotations</artifactId>
+                <version>${jetbrains.annotations.version}</version>
+                <scope>compile</scope>
             </dependency>
 
             <!-- Lombok -->
@@ -115,7 +218,7 @@
                     <version>${shade.maven.plugin.version}</version>
                     <configuration>
                         <createDependencyReducedPom>false</createDependencyReducedPom>
-                        <shadedArtifactAttached>true</shadedArtifactAttached>
+                        <shadedArtifactAttached>false</shadedArtifactAttached>
                         <filters>
                             <filter>
                                 <artifact>*:*</artifact>
