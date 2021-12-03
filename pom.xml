@@ -22,17 +22,19 @@
         <module>http-clients/okhttp3-http-client</module>
         <module>http-clients/jdk-legacy-http-client</module>
         <module>http-clients/jdk-modern-http-client</module>
+
+        <!-- API testing modules -->
+        <module>testing/api-v3-testing</module>
     </modules>
 
     <name>EasyDonate4J - Parent</name>
     <description>An official SDK for the EasyDonate payments system written on Java</description>
     <url>https://easydonate.ru/</url>
-    
+
     <properties>
         <!-- Building -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
+        <java.version>8</java.version>
 
         <!-- Core libs versions -->
         <apache.http.client.version>5.1</apache.http.client.version>
@@ -45,11 +47,16 @@
         <jetbrains.annotations.version>22.0.0</jetbrains.annotations.version>
         <lombok.version>1.18.22</lombok.version>
 
+        <!-- Testing libs versions -->
+        <junit.jupiter.version>5.8.2</junit.jupiter.version>
+        <junit.platform.version>1.8.2</junit.platform.version>
+
         <!-- Maven plugins -->
         <compiler.maven.plugin.version>3.8.1</compiler.maven.plugin.version>
         <jar.maven.plugin.version>3.2.0</jar.maven.plugin.version>
         <source.maven.plugin.version>3.2.1</source.maven.plugin.version>
         <shade.maven.plugin.version>3.2.4</shade.maven.plugin.version>
+        <maven.surefire.plugin.version>3.0.0-M5</maven.surefire.plugin.version>
     </properties>
 
     <dependencyManagement>
@@ -59,6 +66,7 @@
                 <groupId>ru.easydonate.easydonate4j</groupId>
                 <artifactId>core</artifactId>
                 <version>${project.version}</version>
+                <scope>compile</scope>
             </dependency>
 
             <!-- API Implementation v3 -->
@@ -66,6 +74,7 @@
                 <groupId>ru.easydonate.easydonate4j</groupId>
                 <artifactId>api-v3</artifactId>
                 <version>${project.version}</version>
+                <scope>compile</scope>
             </dependency>
 
             <!-- Apache HTTP Client Implementation -->
@@ -73,6 +82,7 @@
                 <groupId>ru.easydonate.easydonate4j</groupId>
                 <artifactId>apache-http-client</artifactId>
                 <version>${project.version}</version>
+                <scope>compile</scope>
             </dependency>
 
             <!-- JDK Legacy HTTP Client Implementation -->
@@ -80,6 +90,7 @@
                 <groupId>ru.easydonate.easydonate4j</groupId>
                 <artifactId>jdk-legacy-http-client</artifactId>
                 <version>${project.version}</version>
+                <scope>compile</scope>
             </dependency>
 
             <!-- JDK Modern HTTP Client Implementation -->
@@ -87,6 +98,7 @@
                 <groupId>ru.easydonate.easydonate4j</groupId>
                 <artifactId>jdk-modern-http-client</artifactId>
                 <version>${project.version}</version>
+                <scope>compile</scope>
             </dependency>
 
             <!-- OkHttp3 HTTP Client Implementation -->
@@ -94,6 +106,7 @@
                 <groupId>ru.easydonate.easydonate4j</groupId>
                 <artifactId>okhttp3-http-client</artifactId>
                 <version>${project.version}</version>
+                <scope>compile</scope>
             </dependency>
 
             <!-- GSON JSON Serialization Provider -->
@@ -101,6 +114,7 @@
                 <groupId>ru.easydonate.easydonate4j</groupId>
                 <artifactId>gson-json-provider</artifactId>
                 <version>${project.version}</version>
+                <scope>compile</scope>
             </dependency>
 
             <!-- Jackson JSON Serialization Provider -->
@@ -108,6 +122,7 @@
                 <groupId>ru.easydonate.easydonate4j</groupId>
                 <artifactId>jackson-json-provider</artifactId>
                 <version>${project.version}</version>
+                <scope>compile</scope>
             </dependency>
 
             <!-- Apache HTTP Client -->
@@ -115,6 +130,7 @@
                 <groupId>org.apache.httpcomponents.client5</groupId>
                 <artifactId>httpclient5</artifactId>
                 <version>${apache.http.client.version}</version>
+                <scope>compile</scope>
             </dependency>
 
             <!-- OkHttp 3 -->
@@ -122,6 +138,7 @@
                 <groupId>com.squareup.okhttp3</groupId>
                 <artifactId>okhttp</artifactId>
                 <version>${okhttp3.version}</version>
+                <scope>compile</scope>
             </dependency>
 
             <!-- Gson -->
@@ -129,6 +146,7 @@
                 <groupId>com.google.code.gson</groupId>
                 <artifactId>gson</artifactId>
                 <version>${gson.version}</version>
+                <scope>compile</scope>
             </dependency>
 
             <!-- Jackson Core + Databind + Annotations -->
@@ -136,16 +154,19 @@
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-core</artifactId>
                 <version>${jackson.version}</version>
+                <scope>compile</scope>
             </dependency>
             <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-databind</artifactId>
                 <version>${jackson.version}</version>
+                <scope>compile</scope>
             </dependency>
             <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-annotations</artifactId>
                 <version>${jackson.version}</version>
+                <scope>compile</scope>
             </dependency>
 
             <!-- Apache Commons Land 3 -->
@@ -153,6 +174,7 @@
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
                 <version>${commons.lang.version}</version>
+                <scope>compile</scope>
             </dependency>
 
             <!-- JetBrains Annonations -->
@@ -170,6 +192,28 @@
                 <version>${lombok.version}</version>
                 <scope>provided</scope>
             </dependency>
+
+            <!-- JUnit Jupiter -->
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter</artifactId>
+                <version>${junit.jupiter.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <!-- JUnit Platform -->
+            <dependency>
+                <groupId>org.junit.platform</groupId>
+                <artifactId>junit-platform-suite</artifactId>
+                <version>${junit.platform.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.platform</groupId>
+                <artifactId>junit-platform-suite-engine</artifactId>
+                <version>${junit.platform.version}</version>
+                <scope>test</scope>
+            </dependency>
         </dependencies>
     </dependencyManagement>
     
@@ -184,6 +228,8 @@
                     <configuration>
                         <compilerArgument>-Xlint:deprecation</compilerArgument>
                         <compilerArgument>-Xlint:unchecked</compilerArgument>
+                        <release>${java.version}</release>
+                        <target>${java.version}</target>
                     </configuration>
                 </plugin>
 
@@ -216,10 +262,15 @@
                                 <artifact>*:*</artifact>
                                 <excludes>
                                     <exclude>module-info.class</exclude>
+                                    <exclude>META-INF/maven/</exclude>
+                                    <exclude>META-INF/versions/</exclude>
+                                    <exclude>META-INF/proguard/</exclude>
+                                    <exclude>META-INF/services/</exclude>
                                     <exclude>META-INF/LICENSE</exclude>
                                     <exclude>META-INF/LICENSE.txt</exclude>
                                     <exclude>META-INF/NOTICE</exclude>
                                     <exclude>META-INF/NOTICE.txt</exclude>
+                                    <exclude>META-INF/DEPENDENCIES</exclude>
                                     <exclude>META-INF/*.MF</exclude>
                                     <exclude>META-INF/*.SF</exclude>
                                     <exclude>META-INF/*.DSA</exclude>
@@ -227,28 +278,6 @@
                                 </excludes>
                             </filter>
                         </filters>
-                        <relocations>
-                            <relocation>
-                                <pattern>com.fasterxml.jackson</pattern>
-                                <shadedPattern>ru.soknight.easydonate.sdk.lib.jackson</shadedPattern>
-                            </relocation>
-                            <relocation>
-                                <pattern>retrofit2</pattern>
-                                <shadedPattern>ru.soknight.easydonate.sdk.lib.retrofit</shadedPattern>
-                            </relocation>
-                            <relocation>
-                                <pattern>okhttp3</pattern>
-                                <shadedPattern>ru.soknight.easydonate.sdk.lib.okhttp</shadedPattern>
-                            </relocation>
-                            <relocation>
-                                <pattern>okio</pattern>
-                                <shadedPattern>ru.soknight.easydonate.sdk.lib.okio</shadedPattern>
-                            </relocation>
-                            <relocation>
-                                <pattern>org.apache.commons.lang</pattern>
-                                <shadedPattern>ru.soknight.easydonate.sdk.lib.apache.commons.lang</shadedPattern>
-                            </relocation>
-                        </relocations>
                     </configuration>
                     <executions>
                         <execution>
@@ -258,6 +287,34 @@
                             </goals>
                         </execution>
                     </executions>
+                </plugin>
+
+                <!-- Maven surefire plugin -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>${maven.surefire.plugin.version}</version>
+                    <configuration>
+                        <statelessTestsetReporter implementation="org.apache.maven.plugin.surefire.extensions.junit5.JUnit5Xml30StatelessReporter">
+                            <disable>false</disable>
+                            <version>3.0</version>
+                            <usePhrasedFileName>false</usePhrasedFileName>
+                            <usePhrasedTestSuiteClassName>true</usePhrasedTestSuiteClassName>
+                            <usePhrasedTestCaseClassName>true</usePhrasedTestCaseClassName>
+                            <usePhrasedTestCaseMethodName>true</usePhrasedTestCaseMethodName>
+                        </statelessTestsetReporter>
+                        <consoleOutputReporter implementation="org.apache.maven.plugin.surefire.extensions.junit5.JUnit5ConsoleOutputReporter">
+                            <disable>false</disable>
+                            <encoding>UTF-8</encoding>
+                            <usePhrasedFileName>false</usePhrasedFileName>
+                        </consoleOutputReporter>
+                        <statelessTestsetInfoReporter implementation="org.apache.maven.plugin.surefire.extensions.junit5.JUnit5StatelessTestsetInfoReporter">
+                            <disable>false</disable>
+                            <usePhrasedFileName>false</usePhrasedFileName>
+                            <usePhrasedClassNameInRunning>true</usePhrasedClassNameInRunning>
+                            <usePhrasedClassNameInTestCaseSummary>true</usePhrasedClassNameInTestCaseSummary>
+                        </statelessTestsetInfoReporter>
+                    </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>

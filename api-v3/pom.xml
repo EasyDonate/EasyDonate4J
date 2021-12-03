@@ -13,6 +13,10 @@
     <artifactId>api-v3</artifactId>
     <name>EasyDonate4J - API v3</name>
 
+    <properties>
+        <java.version>8</java.version>
+    </properties>
+
     <dependencies>
         <!-- EasyDonate SDK Core -->
         <dependency>

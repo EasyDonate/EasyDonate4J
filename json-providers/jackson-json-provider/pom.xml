@@ -14,6 +14,10 @@
     <artifactId>jackson-json-provider</artifactId>
     <name>EasyDonate4J - Json Provider - Jackson</name>
 
+    <properties>
+        <java.version>8</java.version>
+    </properties>
+
     <dependencies>
         <!-- EasyDonate SDK Core -->
         <dependency>
@@ -54,7 +58,15 @@
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
             </plugin>
         </plugins>
     </build>

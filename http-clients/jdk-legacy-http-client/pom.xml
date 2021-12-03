@@ -12,18 +12,27 @@
     </parent>
 
     <artifactId>jdk-legacy-http-client</artifactId>
-    <name>EasyDonate4J - Http Client - JDK (legacy)</name>
+    <name>EasyDonate4J - Http Client - JDK (Legacy)</name>
+
+    <properties>
+        <java.version>8</java.version>
+    </properties>
 
     <dependencies>
         <!-- Core module -->
         <dependency>
             <groupId>ru.easydonate.easydonate4j</groupId>
             <artifactId>core</artifactId>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>

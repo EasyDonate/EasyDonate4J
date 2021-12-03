@@ -14,11 +14,16 @@
     <artifactId>apache-http-client</artifactId>
     <name>EasyDonate4J - Http Client - Apache</name>
 
+    <properties>
+        <java.version>8</java.version>
+    </properties>
+
     <dependencies>
         <!-- Core module -->
         <dependency>
             <groupId>ru.easydonate.easydonate4j</groupId>
             <artifactId>core</artifactId>
+            <scope>provided</scope>
         </dependency>
 
         <!-- Apache HTTP Client -->
@@ -38,7 +43,15 @@
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
             </plugin>
         </plugins>
     </build>
