@@ -8,7 +8,7 @@ import ru.easydonate.easydonate4j.v3.data.model.plugin.AbstractPlugin;
 import ru.easydonate.easydonate4j.v3.data.model.plugin.PluginRequestExecutor;
 import ru.easydonate.easydonate4j.v3.data.model.plugin.PluginType;
 import ru.easydonate.easydonate4j.v3.data.model.shop.payment.PaymentsList;
-import ru.easydonate.easydonate4j.v3.response.plugin.easydonate.last.payments.LastPaymentsGetPaymentsResponse;
+import ru.easydonate.easydonate4j.v3.response.plugin.easydonate.last.payments.LastPaymentsGetPaymentsListResponse;
 import ru.easydonate.easydonate4j.v3.response.plugin.easydonate.last.payments.LastPaymentsGetSettingsResponse;
 
 public final class LastPaymentsPlugin extends AbstractPlugin {
@@ -23,7 +23,7 @@ public final class LastPaymentsPlugin extends AbstractPlugin {
     }
 
     public @NotNull PaymentsList getLastPaymentsList() throws HttpRequestException, HttpResponseException {
-        return requestExecutor.executeRequest(LastPaymentsGetPaymentsResponse.class, null, null);
+        return requestExecutor.executeRequest(LastPaymentsGetPaymentsListResponse.class, null, null);
     }
 
 }

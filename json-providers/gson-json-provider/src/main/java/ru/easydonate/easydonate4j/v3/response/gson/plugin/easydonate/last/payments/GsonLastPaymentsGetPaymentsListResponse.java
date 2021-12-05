@@ -4,14 +4,14 @@ import org.jetbrains.annotations.NotNull;
 import ru.easydonate.easydonate4j.json.serialization.Implementing;
 import ru.easydonate.easydonate4j.v3.data.model.shop.payment.PaymentsList;
 import ru.easydonate.easydonate4j.v3.response.gson.GsonApiResponse;
-import ru.easydonate.easydonate4j.v3.response.plugin.easydonate.last.payments.LastPaymentsGetPaymentsResponse;
+import ru.easydonate.easydonate4j.v3.response.plugin.easydonate.last.payments.LastPaymentsGetPaymentsListResponse;
 
-@Implementing(LastPaymentsGetPaymentsResponse.class)
-public final class GsonLastPaymentsGetPaymentsResponse extends GsonApiResponse<PaymentsList> implements LastPaymentsGetPaymentsResponse {
+@Implementing(LastPaymentsGetPaymentsListResponse.class)
+public final class GsonLastPaymentsGetPaymentsListResponse extends GsonApiResponse<PaymentsList> implements LastPaymentsGetPaymentsListResponse {
 
     @Override
     public @NotNull String toString() {
-        return "GsonLastPaymentsGetPaymentsResponse{" +
+        return "GsonLastPaymentsGetPaymentsListResponse{" +
                 "success=" + success +
                 ", content=" + content +
                 '}';

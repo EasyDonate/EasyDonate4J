@@ -1,0 +1,105 @@
+{
+  "success": true,
+  "response": [
+    {
+      "id": 6154,
+      "name": "Скидка на привилегии",
+      "code": "EASYDONATE4J",
+      "sale": 13,
+      "limit": null,
+      "expires_at": "2023-01-01 12:00:00",
+      "shop_id": 15599,
+      "created_at": "2021-12-04 14:22:13",
+      "updated_at": "2021-12-04 14:22:13",
+      "products": [
+        {
+          "id": 94647,
+          "name": "VIP",
+          "price": 100,
+          "old_price": null,
+          "type": "group",
+          "number": 1,
+          "is_hidden": 0,
+          "commands": [
+            "lp user {user} parent add vip"
+          ],
+          "withdraw_commands": [
+            "lp user {user} parent remove vip"
+          ],
+          "withdraw_commands_days": 30,
+          "additional_fields": null,
+          "description": null,
+          "category_id": 12299,
+          "image": "http://cp.easydonate.ru/storage/app/media/Diamond%20Sword-min.png",
+          "first_delete": 0,
+          "shop_id": 15599,
+          "created_at": "2021-12-04 10:31:37",
+          "updated_at": "2021-12-04 21:45:32",
+          "sort_index": 0,
+          "pivot": {
+            "coupon_id": 6154,
+            "product_id": 94647
+          }
+        },
+        {
+          "id": 94648,
+          "name": "MVP",
+          "price": 200,
+          "old_price": null,
+          "type": "group",
+          "number": 1,
+          "is_hidden": 0,
+          "commands": [
+            "lp user {user} parent add mvp"
+          ],
+          "withdraw_commands": [
+            "lp user {user} parent remove mvp"
+          ],
+          "withdraw_commands_days": 30,
+          "additional_fields": null,
+          "description": null,
+          "category_id": 12299,
+          "image": "http://cp.easydonate.ru/storage/app/media/Diamond%20Sword-min.png",
+          "first_delete": 0,
+          "shop_id": 15599,
+          "created_at": "2021-12-04 10:31:50",
+          "updated_at": "2021-12-04 21:45:44",
+          "sort_index": 1,
+          "pivot": {
+            "coupon_id": 6154,
+            "product_id": 94648
+          }
+        },
+        {
+          "id": 94649,
+          "name": "DELUXE",
+          "price": 300,
+          "old_price": null,
+          "type": "group",
+          "number": 1,
+          "is_hidden": 0,
+          "commands": [
+            "lp user {user} parent add deluxe"
+          ],
+          "withdraw_commands": [
+            "lp user {user} parent remove deluxe"
+          ],
+          "withdraw_commands_days": 30,
+          "additional_fields": null,
+          "description": null,
+          "category_id": 12299,
+          "image": "http://cp.easydonate.ru/storage/app/media/Diamond%20Sword-min.png",
+          "first_delete": 0,
+          "shop_id": 15599,
+          "created_at": "2021-12-04 10:32:04",
+          "updated_at": "2021-12-04 21:45:57",
+          "sort_index": 2,
+          "pivot": {
+            "coupon_id": 6154,
+            "product_id": 94649
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "success": true,
+  "response": {
+    "enabled": true,
+    "no_cover": false,
+    "id": "199043830",
+    "width": "auto",
+    "height": "300px",
+    "color1": "#FFFFFF",
+    "color2": "#000000",
+    "color3": "#5181B8",
+    "mode": "4"
+  }
+}

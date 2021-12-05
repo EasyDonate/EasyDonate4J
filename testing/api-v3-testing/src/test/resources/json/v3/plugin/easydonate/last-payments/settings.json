@@ -1,0 +1,10 @@
+{
+  "success": true,
+  "response": {
+    "enabled": true,
+    "items": "7",
+    "limit": "12",
+    "autoplay": true,
+    "show_date": false
+  }
+}

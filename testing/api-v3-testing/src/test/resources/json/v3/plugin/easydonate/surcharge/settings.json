@@ -1,0 +1,12 @@
+{
+  "success": true,
+  "response": {
+    "enabled": true,
+    "disallow_with_promocodes": false,
+    "duration": "30",
+    "enableForGroup": true,
+    "enableForItem": false,
+    "enableForCurrency": true,
+    "enableForOther": false
+  }
+}

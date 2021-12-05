@@ -1,0 +1,174 @@
+{
+  "success": true,
+  "response": [
+    {
+      "id": 717638,
+      "ps_id": null,
+      "hash": "5e4f067781bbc72ed079e95e65f276179292cf24bcfdce16ed915ab327d37b31",
+      "customer": "SoKnight",
+      "email": null,
+      "shop_id": 15599,
+      "server_id": 12597,
+      "delivery_type": "plugin",
+      "status": 0,
+      "enrolled": 75,
+      "income": 2.25,
+      "payment_system": "test",
+      "payment_type": "test",
+      "sent_commands": [],
+      "error": "Плагин EasyPayments не установлен или настроен некорректно. Пожалуйста, обратитесь к администратору.",
+      "success_url": null,
+      "created_at": "2021-12-04 21:52:50",
+      "updated_at": "2021-12-04 21:52:50",
+      "attempts": 0,
+      "cost": 75,
+      "was_sent": 0,
+      "payload": null,
+      "rating": null,
+      "products": [
+        {
+          "id": 738423,
+          "product_id": 94647,
+          "name": "VIP",
+          "price": 100,
+          "old_price": 100,
+          "type": "group",
+          "number": 1,
+          "commands": [
+            "lp user {user} parent add vip"
+          ],
+          "additional_fields": null,
+          "description": null,
+          "payment_id": 717638,
+          "amount": 1,
+          "image": "http://cp.easydonate.ru/storage/app/media/Diamond%20Sword-min.png",
+          "first_delete": 0,
+          "sales": {
+            "massSale": {
+              "value": 25,
+              "description": "Массовая акция \"\\{Распродажа}\"",
+              "target": {
+                "id": 1252,
+                "name": "Распродажа",
+                "sale": 25,
+                "shop_id": 15599,
+                "start_at": null,
+                "expires_at": "2023-01-01 12:00:00",
+                "created_at": "2021-12-04 14:23:07",
+                "updated_at": "2021-12-04 14:23:07",
+                "pivot": {
+                  "product_id": 94647,
+                  "mass_sale_id": 1252
+                }
+              }
+            }
+          },
+          "created_at": "2021-12-04 21:52:50",
+          "updated_at": "2021-12-04 21:52:50"
+        }
+      ],
+      "server": {
+        "id": 12597,
+        "name": "Выживание",
+        "ip": "127.0.0.1",
+        "port": "25565",
+        "version": "1.18.X",
+        "is_port_hidden": 0,
+        "hide_ip": 0,
+        "is_hidden": 0,
+        "shop_id": 15599,
+        "created_at": "2021-12-04 10:30:15",
+        "updated_at": "2021-12-04 21:53:27",
+        "sort_index": 0,
+        "disable_payments": 0
+      }
+    },
+    {
+      "id": 717642,
+      "ps_id": null,
+      "hash": "86a8613ccab5279a16d0004e9815b2e75eb32f36e8e065a07432bd1e6c2a0df5",
+      "customer": "SoKnight",
+      "email": null,
+      "shop_id": 15599,
+      "server_id": 12597,
+      "delivery_type": "plugin",
+      "status": 2,
+      "enrolled": 75,
+      "income": 2.25,
+      "payment_system": "test",
+      "payment_type": "test",
+      "sent_commands": [
+        {
+          "command": "lp user SoKnight parent add vip",
+          "response": "§7[§b§lL§3§lP§7]§r §cA group named §4vip§c could not be found."
+        }
+      ],
+      "error": null,
+      "success_url": null,
+      "created_at": "2021-12-04 21:54:36",
+      "updated_at": "2021-12-04 21:55:35",
+      "attempts": 1,
+      "cost": 75,
+      "was_sent": 1,
+      "payload": null,
+      "rating": null,
+      "products": [
+        {
+          "id": 738427,
+          "product_id": 94647,
+          "name": "VIP",
+          "price": 100,
+          "old_price": 100,
+          "type": "group",
+          "number": 1,
+          "commands": [
+            "lp user {user} parent add vip"
+          ],
+          "additional_fields": null,
+          "description": null,
+          "payment_id": 717642,
+          "amount": 1,
+          "image": "http://cp.easydonate.ru/storage/app/media/Diamond%20Sword-min.png",
+          "first_delete": 0,
+          "sales": {
+            "massSale": {
+              "value": 25,
+              "description": "Массовая акция \"\\{Распродажа}\"",
+              "target": {
+                "id": 1252,
+                "name": "Распродажа",
+                "sale": 25,
+                "shop_id": 15599,
+                "start_at": null,
+                "expires_at": "2023-01-01 12:00:00",
+                "created_at": "2021-12-04 14:23:07",
+                "updated_at": "2021-12-04 14:23:07",
+                "pivot": {
+                  "product_id": 94647,
+                  "mass_sale_id": 1252
+                }
+              }
+            }
+          },
+          "created_at": "2021-12-04 21:54:36",
+          "updated_at": "2021-12-04 21:54:36"
+        }
+      ],
+      "server": {
+        "id": 12597,
+        "name": "Выживание",
+        "ip": "127.0.0.1",
+        "port": "25565",
+        "version": "1.18.X",
+        "is_port_hidden": 0,
+        "hide_ip": 0,
+        "is_hidden": 0,
+        "shop_id": 15599,
+        "created_at": "2021-12-04 10:30:15",
+        "updated_at": "2021-12-04 21:53:27",
+        "sort_index": 0,
+        "disable_payments": 0
+      }
+    }
+  ]
+}

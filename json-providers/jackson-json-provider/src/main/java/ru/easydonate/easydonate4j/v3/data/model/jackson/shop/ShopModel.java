@@ -7,6 +7,7 @@ import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import ru.easydonate.easydonate4j.json.serialization.Implementing;
 import ru.easydonate.easydonate4j.util.Wrapper;
 import ru.easydonate.easydonate4j.v3.data.model.shop.DeliveryModeType;
@@ -574,6 +575,11 @@ public class ShopModel implements Shop {
         @Override
         public @NotNull OptionalDouble getRating() {
             return Wrapper.wrapNullableDouble(shop.rating);
+        }
+
+        @Override
+        public @Nullable Double getRatingRaw() {
+            return shop.rating;
         }
 
     }

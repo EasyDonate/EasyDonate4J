@@ -1,0 +1,189 @@
+{
+  "success": true,
+  "response": [
+    {
+      "id": 1252,
+      "name": "Распродажа",
+      "sale": 25,
+      "shop_id": 15599,
+      "start_at": null,
+      "expires_at": "2023-01-01 12:00:00",
+      "created_at": "2021-12-04 14:23:07",
+      "updated_at": "2021-12-04 14:23:07",
+      "products": [
+        {
+          "id": 94647,
+          "name": "VIP",
+          "price": 100,
+          "old_price": null,
+          "type": "group",
+          "number": 1,
+          "is_hidden": 0,
+          "commands": [
+            "lp user {user} parent add vip"
+          ],
+          "withdraw_commands": [
+            "lp user {user} parent remove vip"
+          ],
+          "withdraw_commands_days": 30,
+          "additional_fields": null,
+          "description": null,
+          "category_id": 12299,
+          "image": "http://cp.easydonate.ru/storage/app/media/Diamond%20Sword-min.png",
+          "first_delete": 0,
+          "shop_id": 15599,
+          "created_at": "2021-12-04 10:31:37",
+          "updated_at": "2021-12-04 21:45:32",
+          "sort_index": 0,
+          "pivot": {
+            "mass_sale_id": 1252,
+            "product_id": 94647
+          }
+        },
+        {
+          "id": 94648,
+          "name": "MVP",
+          "price": 200,
+          "old_price": null,
+          "type": "group",
+          "number": 1,
+          "is_hidden": 0,
+          "commands": [
+            "lp user {user} parent add mvp"
+          ],
+          "withdraw_commands": [
+            "lp user {user} parent remove mvp"
+          ],
+          "withdraw_commands_days": 30,
+          "additional_fields": null,
+          "description": null,
+          "category_id": 12299,
+          "image": "http://cp.easydonate.ru/storage/app/media/Diamond%20Sword-min.png",
+          "first_delete": 0,
+          "shop_id": 15599,
+          "created_at": "2021-12-04 10:31:50",
+          "updated_at": "2021-12-04 21:45:44",
+          "sort_index": 1,
+          "pivot": {
+            "mass_sale_id": 1252,
+            "product_id": 94648
+          }
+        },
+        {
+          "id": 94649,
+          "name": "DELUXE",
+          "price": 300,
+          "old_price": null,
+          "type": "group",
+          "number": 1,
+          "is_hidden": 0,
+          "commands": [
+            "lp user {user} parent add deluxe"
+          ],
+          "withdraw_commands": [
+            "lp user {user} parent remove deluxe"
+          ],
+          "withdraw_commands_days": 30,
+          "additional_fields": null,
+          "description": null,
+          "category_id": 12299,
+          "image": "http://cp.easydonate.ru/storage/app/media/Diamond%20Sword-min.png",
+          "first_delete": 0,
+          "shop_id": 15599,
+          "created_at": "2021-12-04 10:32:04",
+          "updated_at": "2021-12-04 21:45:57",
+          "sort_index": 2,
+          "pivot": {
+            "mass_sale_id": 1252,
+            "product_id": 94649
+          }
+        },
+        {
+          "id": 94651,
+          "name": "Все материалы",
+          "price": 150,
+          "old_price": null,
+          "type": "other",
+          "number": 1,
+          "is_hidden": 0,
+          "commands": [
+            "creative giveaccess {user} full"
+          ],
+          "withdraw_commands": null,
+          "withdraw_commands_days": null,
+          "additional_fields": null,
+          "description": "Даёт Вам доступ ко всем доступным материалам в игре, которые Вы можете применить при строительстве!",
+          "category_id": 12300,
+          "image": "http://cp.easydonate.ru/storage/app/media/Diamond%20Sword-min.png",
+          "first_delete": 0,
+          "shop_id": 15599,
+          "created_at": "2021-12-04 10:35:50",
+          "updated_at": "2021-12-04 10:36:02",
+          "sort_index": 3,
+          "pivot": {
+            "mass_sale_id": 1252,
+            "product_id": 94651
+          }
+        },
+        {
+          "id": 94653,
+          "name": "Кейс с валютой",
+          "price": 175,
+          "old_price": 200,
+          "type": "case",
+          "number": 1,
+          "is_hidden": 0,
+          "commands": [
+            "peco add {user} coins 100 (50%)",
+            "peco add {user} coins 200 (30%)",
+            "peco add {user} coins 500 (12%)",
+            "peco add {user} coins 1000 (7%)",
+            "peco add {user} coins 2000 (1%)"
+          ],
+          "withdraw_commands": null,
+          "withdraw_commands_days": null,
+          "additional_fields": null,
+          "description": "Даёт Вам доступ ко всем доступным материалам в игре, которые Вы можете применить при строительстве!",
+          "category_id": 12301,
+          "image": "https://cp.easydonate.ru/storage/app/uploads/public/61a/b1b/9e1/61ab1b9e14b6e032436028.png",
+          "first_delete": 0,
+          "shop_id": 15599,
+          "created_at": "2021-12-04 10:37:01",
+          "updated_at": "2021-12-04 10:41:18",
+          "sort_index": 4,
+          "pivot": {
+            "mass_sale_id": 1252,
+            "product_id": 94653
+          }
+        },
+        {
+          "id": 94654,
+          "name": "Алмаз",
+          "price": 7.49,
+          "old_price": null,
+          "type": "item",
+          "number": 1,
+          "is_hidden": 0,
+          "commands": [
+            "give {user} minecraft:diamond {amount}"
+          ],
+          "withdraw_commands": null,
+          "withdraw_commands_days": null,
+          "additional_fields": null,
+          "description": "Даёт Вам доступ ко всем доступным материалам в игре, которые Вы можете применить при строительстве!",
+          "category_id": 12302,
+          "image": "http://cp.easydonate.ru/storage/app/media/Diamond%20Sword-min.png",
+          "first_delete": 0,
+          "shop_id": 15599,
+          "created_at": "2021-12-04 10:42:41",
+          "updated_at": "2021-12-04 10:42:55",
+          "sort_index": 5,
+          "pivot": {
+            "mass_sale_id": 1252,
+            "product_id": 94654
+          }
+        }
+      ]
+    }
+  ]
+}

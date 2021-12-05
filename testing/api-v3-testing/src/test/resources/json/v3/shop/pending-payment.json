@@ -1,0 +1,74 @@
+{
+  "success": true,
+  "response": {
+    "url": "<URL hidden>",
+    "payment": {
+      "id": 717658,
+      "ps_id": null,
+      "hash": "559f23d3329b93d239ad789bcfc1629757cf55f437210708b05101c3c2df96b9",
+      "customer": "SoKnight",
+      "email": "easydonate4j@easydonate.ru",
+      "shop_id": 15599,
+      "server_id": 12597,
+      "delivery_type": "rcon",
+      "status": 0,
+      "enrolled": 87,
+      "payment_system": null,
+      "payment_type": null,
+      "sent_commands": null,
+      "error": null,
+      "success_url": "https://github.com/SoKnight/EasyDonate4J",
+      "created_at": "2021-12-04 22:01:50",
+      "updated_at": "2021-12-04 22:01:50",
+      "attempts": 0,
+      "cost": 87,
+      "was_sent": 0,
+      "payload": null,
+      "rating": null,
+      "server": {
+        "id": 12597,
+        "name": "Выживание",
+        "ip": "127.0.0.1",
+        "port": "25565",
+        "version": "1.18.X",
+        "is_port_hidden": 0,
+        "hide_ip": 0,
+        "is_hidden": 0,
+        "shop_id": 15599,
+        "created_at": "2021-12-04 10:30:15",
+        "updated_at": "2021-12-04 21:53:27",
+        "sort_index": 0,
+        "disable_payments": 0
+      },
+      "products": [
+        {
+          "id": 738443,
+          "product_id": 94647,
+          "name": "VIP",
+          "price": 100,
+          "old_price": null,
+          "type": "group",
+          "number": 1,
+          "commands": [
+            "lp user {user} parent add vip"
+          ],
+          "additional_fields": null,
+          "description": null,
+          "payment_id": 717658,
+          "amount": 1,
+          "image": "http://cp.easydonate.ru/storage/app/media/Diamond%20Sword-min.png",
+          "first_delete": 0,
+          "sales": {
+            "coupon": {
+              "value": 13,
+              "description": "Купон",
+              "name": "EASYDONATE4J"
+            }
+          },
+          "created_at": "2021-12-04 22:01:50",
+          "updated_at": "2021-12-04 22:01:50"
+        }
+      ]
+    }
+  }
+}

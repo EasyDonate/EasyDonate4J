@@ -1,0 +1,12 @@
+{
+  "success": true,
+  "response": {
+    "enabled": true,
+    "id": "199043830",
+    "expandTimeout": "60",
+    "disableExpandChatSound": false,
+    "disableNewMessagesSound": false,
+    "disableButtonTooltip": false,
+    "tooltipButtonText": "Есть вопрос?"
+  }
+}

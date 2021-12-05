@@ -1,0 +1,10 @@
+{
+  "success": true,
+  "response": {
+    "enabled": true,
+    "message": "Самое время изучить документацию EasyDonate4J, чтобы написать своё первое приложение с его использованием!",
+    "buttonCaption": "Изучить",
+    "position": "bottom",
+    "buttonUrl": "https://github.com/SoKnight/EasyDonate4J"
+  }
+}

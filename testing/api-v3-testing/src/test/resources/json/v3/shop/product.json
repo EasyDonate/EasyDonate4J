@@ -1,0 +1,68 @@
+{
+  "success": true,
+  "response": {
+    "id": 94647,
+    "name": "VIP",
+    "price": 100,
+    "old_price": null,
+    "type": "group",
+    "number": 1,
+    "is_hidden": 0,
+    "commands": [
+      "lp user {user} parent add vip"
+    ],
+    "withdraw_commands": [
+      "lp user {user} parent remove vip"
+    ],
+    "withdraw_commands_days": 30,
+    "additional_fields": null,
+    "description": null,
+    "category_id": 12299,
+    "image": "http://cp.easydonate.ru/storage/app/media/Diamond%20Sword-min.png",
+    "first_delete": 0,
+    "shop_id": 15599,
+    "created_at": "2021-12-04 10:31:37",
+    "updated_at": "2021-12-04 21:45:32",
+    "sort_index": 0,
+    "servers": [
+      {
+        "id": 12597,
+        "name": "Выживание",
+        "ip": "127.0.0.1",
+        "port": "25565",
+        "version": "1.18.X",
+        "is_port_hidden": 0,
+        "hide_ip": 0,
+        "is_hidden": 0,
+        "shop_id": 15599,
+        "created_at": "2021-12-04 10:30:15",
+        "updated_at": "2021-12-04 10:30:15",
+        "sort_index": null,
+        "disable_payments": 0,
+        "pivot": {
+          "product_id": 94647,
+          "server_id": 12597
+        }
+      },
+      {
+        "id": 12598,
+        "name": "Креатив",
+        "ip": "127.0.0.1",
+        "port": "25565",
+        "version": "1.18.X",
+        "is_port_hidden": 0,
+        "hide_ip": 0,
+        "is_hidden": 0,
+        "shop_id": 15599,
+        "created_at": "2021-12-04 10:30:35",
+        "updated_at": "2021-12-04 10:30:35",
+        "sort_index": null,
+        "disable_payments": 0,
+        "pivot": {
+          "product_id": 94647,
+          "server_id": 12598
+        }
+      }
+    ]
+  }
+}

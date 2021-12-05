@@ -1,0 +1,10 @@
+{
+  "success": true,
+  "response": {
+    "enabled": true,
+    "channelId": "739630246642319360",
+    "width": "100%",
+    "height": "300px",
+    "theme": "dark"
+  }
+}

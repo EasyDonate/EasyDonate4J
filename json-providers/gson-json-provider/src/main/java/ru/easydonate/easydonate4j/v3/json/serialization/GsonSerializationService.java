@@ -45,7 +45,7 @@ import ru.easydonate.easydonate4j.v3.response.gson.GsonErrorResponse;
 import ru.easydonate.easydonate4j.v3.response.gson.plugin.discord.widget.GsonDiscordWidgetGetEmbedResponse;
 import ru.easydonate.easydonate4j.v3.response.gson.plugin.discord.widget.GsonDiscordWidgetGetSettingsResponse;
 import ru.easydonate.easydonate4j.v3.response.gson.plugin.easydonate.custom.messages.GsonCustomMessagesGetSettingsResponse;
-import ru.easydonate.easydonate4j.v3.response.gson.plugin.easydonate.last.payments.GsonLastPaymentsGetPaymentsResponse;
+import ru.easydonate.easydonate4j.v3.response.gson.plugin.easydonate.last.payments.GsonLastPaymentsGetPaymentsListResponse;
 import ru.easydonate.easydonate4j.v3.response.gson.plugin.easydonate.last.payments.GsonLastPaymentsGetSettingsResponse;
 import ru.easydonate.easydonate4j.v3.response.gson.plugin.easydonate.surcharge.GsonSurchargeGetDiscountResponse;
 import ru.easydonate.easydonate4j.v3.response.gson.plugin.easydonate.surcharge.GsonSurchargeGetDiscountsListResponse;
@@ -208,7 +208,7 @@ public final class GsonSerializationService extends AbstractJsonSerializationSer
 
         // --- last payments plugin
         registerImplementationAlias(GsonLastPaymentsGetSettingsResponse.class);
-        registerImplementationAlias(GsonLastPaymentsGetPaymentsResponse.class);
+        registerImplementationAlias(GsonLastPaymentsGetPaymentsListResponse.class);
 
         // --- custom messages plugin
         registerImplementationAlias(GsonCustomMessagesGetSettingsResponse.class);

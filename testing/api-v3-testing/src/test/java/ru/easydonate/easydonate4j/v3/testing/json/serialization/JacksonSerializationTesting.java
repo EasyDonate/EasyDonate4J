@@ -5,7 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import ru.easydonate.easydonate4j.v3.json.serialization.JacksonSerializationService;
 
 @DisplayName("Jackson Serialization Service Testing")
-public class JacksonSerializationTesting extends JsonSerializationTestingModule {
+public class JacksonSerializationTesting extends SimpleJsonSerializationTestingModule {
 
     @BeforeAll
     public static void init() {

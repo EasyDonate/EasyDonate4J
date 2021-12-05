@@ -1,0 +1,92 @@
+{
+  "success": true,
+  "response": [
+    {
+      "id": 720776,
+      "ps_id": "335555526",
+      "hash": "7d8e430197b79d99d72d7bf7756d1e59b38c9ac37ae85f77f3e6eda762064f5e",
+      "customer": "SoKnight",
+      "email": null,
+      "shop_id": 15599,
+      "server_id": 12597,
+      "delivery_type": "plugin",
+      "status": 2,
+      "enrolled": 1.1175,
+      "income": 0.0502875,
+      "payment_system": "PayMaster",
+      "payment_type": "yoomoney",
+      "sent_commands": [
+        {
+          "command": "give SoKnight minecraft:diamond 1",
+          "response": "No player was found"
+        }
+      ],
+      "error": null,
+      "success_url": null,
+      "created_at": "2021-12-05 22:17:21",
+      "updated_at": "2021-12-05 22:21:11",
+      "attempts": 1,
+      "cost": 1.1175,
+      "was_sent": 1,
+      "payload": null,
+      "rating": null,
+      "products": [
+        {
+          "id": 741628,
+          "product_id": 94654,
+          "name": "Алмаз",
+          "price": 1.49,
+          "old_price": 1.49,
+          "type": "item",
+          "number": 1,
+          "commands": [
+            "give {user} minecraft:diamond {amount}"
+          ],
+          "additional_fields": null,
+          "description": "Даёт Вам доступ ко всем доступным материалам в игре, которые Вы можете применить при строительстве!",
+          "payment_id": 720776,
+          "amount": 1,
+          "image": "http://cp.easydonate.ru/storage/app/media/Diamond%20Sword-min.png",
+          "first_delete": 0,
+          "sales": {
+            "massSale": {
+              "value": 0.3725,
+              "description": "Массовая акция \"\\{Распродажа}\"",
+              "target": {
+                "id": 1252,
+                "name": "Распродажа",
+                "sale": 25,
+                "shop_id": 15599,
+                "start_at": null,
+                "expires_at": "2023-01-01 12:00:00",
+                "created_at": "2021-12-04 14:23:07",
+                "updated_at": "2021-12-04 14:23:07",
+                "pivot": {
+                  "product_id": 94654,
+                  "mass_sale_id": 1252
+                }
+              }
+            }
+          },
+          "created_at": "2021-12-05 22:17:21",
+          "updated_at": "2021-12-05 22:17:21"
+        }
+      ],
+      "server": {
+        "id": 12597,
+        "name": "Выживание",
+        "ip": "127.0.0.1",
+        "port": "25565",
+        "version": "1.18.X",
+        "is_port_hidden": 0,
+        "hide_ip": 0,
+        "is_hidden": 0,
+        "shop_id": 15599,
+        "created_at": "2021-12-04 10:30:15",
+        "updated_at": "2021-12-04 21:53:27",
+        "sort_index": 0,
+        "disable_payments": 0
+      }
+    }
+  ]
+}

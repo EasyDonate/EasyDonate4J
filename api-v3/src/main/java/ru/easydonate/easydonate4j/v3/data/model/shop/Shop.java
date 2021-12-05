@@ -15,6 +15,7 @@ import java.util.OptionalDouble;
  * The object that represents a shop and contains all data about it.
  * @author soknight
  */
+@SuppressWarnings("DeprecatedIsStillUsed")
 public interface Shop extends PrettyPrintable {
 
     /**
@@ -449,6 +450,13 @@ public interface Shop extends PrettyPrintable {
          * @return The shop rating.
          */
         @NotNull OptionalDouble getRating();
+
+        /**
+         * Get the shop rating as raw nullable Double object. <br>
+         * Used by internal unit tests.
+         * @return The raw shop rating as Double object.
+         */
+        @Nullable Double getRatingRaw();
 
     }
 

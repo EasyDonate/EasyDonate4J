@@ -40,7 +40,7 @@ import ru.easydonate.easydonate4j.v3.response.jackson.JacksonErrorResponse;
 import ru.easydonate.easydonate4j.v3.response.jackson.plugin.discord.widget.JacksonDiscordWidgetGetEmbedResponse;
 import ru.easydonate.easydonate4j.v3.response.jackson.plugin.discord.widget.JacksonDiscordWidgetGetSettingsResponse;
 import ru.easydonate.easydonate4j.v3.response.jackson.plugin.easydonate.custom.messages.JacksonCustomMessagesGetSettingsResponse;
-import ru.easydonate.easydonate4j.v3.response.jackson.plugin.easydonate.last.payments.JacksonLastPaymentsGetPaymentsResponse;
+import ru.easydonate.easydonate4j.v3.response.jackson.plugin.easydonate.last.payments.JacksonLastPaymentsGetPaymentsListResponse;
 import ru.easydonate.easydonate4j.v3.response.jackson.plugin.easydonate.last.payments.JacksonLastPaymentsGetSettingsResponse;
 import ru.easydonate.easydonate4j.v3.response.jackson.plugin.easydonate.surcharge.JacksonSurchargeGetDiscountResponse;
 import ru.easydonate.easydonate4j.v3.response.jackson.plugin.easydonate.surcharge.JacksonSurchargeGetDiscountsListResponse;
@@ -185,7 +185,7 @@ public final class JacksonSerializationService extends AbstractJsonSerialization
 
         // --- last payments plugin
         registerImplementationAlias(JacksonLastPaymentsGetSettingsResponse.class);
-        registerImplementationAlias(JacksonLastPaymentsGetPaymentsResponse.class);
+        registerImplementationAlias(JacksonLastPaymentsGetPaymentsListResponse.class);
 
         // --- custom messages plugin
         registerImplementationAlias(JacksonCustomMessagesGetSettingsResponse.class);
