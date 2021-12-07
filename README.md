@@ -1,81 +1,33 @@
 # EasyDonate4J
-An offical SDK for the [EasyDonate](https://easydonate.ru/) platform API written on Java.
+The offical SDK for the [EasyDonate](https://easydonate.ru/) platform API written on Java.<br>
+Better than old revision: **feature-rich** & **modular** & **stable**!
 
-[Project documentation (RU)](https://github.com/SoKnight/EasyDonateSDK/wiki)
+[Project Documentation (RU)](https://github.com/SoKnight/EasyDonateSDK/wiki)
 
 ## Features & TODO
+- M - its the Modularity
 - Full support for API v3
 - Support for platform plugins (introduced with API v3)
 - HTTP client implementations (JDK Built-In, Apache HTTP Client, OkHttp)
 - JSON serialization provider implementations (Jackson, GSON)
-- **[WIP]** Callback API request receiver implementations
-- **[WIP]** Callback API request handler
+- Over 100+ JUnit Tests for better SDK stability
+- **[WIP]** Event Oriented Notifications API
+- **[WIP]** LongPoll API client
 - **[WIP]** Callback API request signature verifier
+- **[WIP]** Callback API request handler
 
 ### Known API versions:
-- EasyDonate API v1 **[Deprecated]**
-- EasyDonate API v2 [Documentation (RU)](https://api.easydonate.ru/v/v2)
-- EasyDonate API v3 [Documentation (RU)](https://api.easydonate.ru/v/v3)
+| API Version | Supported? | Documentation |
+|:---:|:---:|:---:|
+| v1 | **No** | **Deprecated** |
+| v2 | **No** | **[Russian](https://api.easydonate.ru/v/v2)** |
+| v3 | **Yes** | **[Russian](https://api.easydonate.ru/v/v3)** |
 
 ## Before you start
-Firstly, you should to read about API restrictions related to requests frequency
+You should to read about any API restrictions before you start:
 - [**[ ! ]** API request requirements (RU)](https://api.easydonate.ru/request-requirements)
-- [SDK wiki hosted on GitHub (RU)](https://github.com/SoKnight/EasyDonateSDK/wiki)
-- [SDK thread on the EasyDonate forum (RU)](https://forum.easydonate.ru/d/65-neofitsialnoe-easydonate-sdk-dlya-java-proektov)
+- [Project's WiKi hosted on GitHub (RU)](https://github.com/SoKnight/EasyDonate4J/wiki)
+- [Project's thread on the EasyDonate Forum (RU)](https://forum.easydonate.ru/d/65-neofitsialnoe-easydonate-sdk-dlya-java-proektov)
 
-## How it works?
-You can see how this library works below :)
-```java
-import ru.soknight.easydonate.sdk.v2.EasyDonateSDK;
-import ru.soknight.easydonate.sdk.v2.data.model.CreatedPaymentBundle;
-import ru.soknight.easydonate.sdk.v2.data.model.CreatedPaymentModel;
-import ru.soknight.easydonate.sdk.v2.exception.BadResponseException;
-import ru.soknight.easydonate.sdk.v2.exception.ErrorResponseException;
-import ru.soknight.easydonate.sdk.v2.exception.FailedRequestException;
-import ru.soknight.easydonate.sdk.v2.payment.PaymentCreator;
-import ru.soknight.easydonate.sdk.v2.payment.PreparedPaymentData;
-
-public class Example {
-
-    public static void main(String[] args) {
-        
-        // insert here your shop access key
-        String accessKey = "<put your access key here>";
-        
-        // now you can create new sdk instance using your key
-        EasyDonateSDK sdk = EasyDonateSDK.create(accessKey);
-        
-        // determine a customer, a server and an ID of our product
-        String customer = "SoKnight";
-        int serverId = 228;
-        int productId = 1488;
-        
-        try {
-            // now we must create the payment data object for #createPayment method from SDK
-            PreparedPaymentData paymentData = PaymentCreator.newCreator()
-                    .setCustomer(customer)
-                    .setServerId(serverId)
-                    .addProduct(productId, 1) // 1 is amount
-                    .create();
-            
-            // now let's create a new payment
-            CreatedPaymentBundle createdPayment = sdk.createPayment(paymentData);
-            
-            // extract the response payment data
-            String url = createdPayment.getUrl();
-            CreatedPaymentModel payment = createdPayment.getPayment();
-            
-            // and... let's use that... and print the URL to console
-            System.out.printf("Hello, dear %s!\n", payment.getCustomer());
-            System.out.printf("Go to this link to finish purchase: %s\n", url);
-        } catch (BadResponseException ex) {
-            // any API error or invalid response has been received
-        } catch (ErrorResponseException ex) {
-            // an HTTP error has been occured
-        } catch (FailedRequestException ex) {
-            // internal fails with request preparation and sending
-        }
-    }
-}
-```
-If you like that, you can use my library in your project =)
+## License
+This project is open-source and licensed under the [MIT license](https://github.com/SoKnight/EasyDonate4J/blob/master/LICENSE).
