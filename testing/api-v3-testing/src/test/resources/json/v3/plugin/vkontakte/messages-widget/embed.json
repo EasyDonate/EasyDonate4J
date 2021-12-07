@@ -1,4 +1,4 @@
 {
   "success": true,
-  "response": "<script src=\"https://vk.com/js/api/openapi.js?168\"></script> <div id=\"vk_community_messages\"></div> <script type=\"text/javascript\"> VK.Widgets.CommunityMessages( \"vk_community_messages\", 199043830, { expandTimeout: \"60000\", tooltipButtonText: \"\"Есть вопрос?\"\" } ); </script>"
+  "response": "&lt;script src=&quot;https://vk.com/js/api/openapi.js?168&quot;&gt;&lt;/script&gt; &lt;div id=&quot;vk_community_messages&quot;&gt;&lt;/div&gt; &lt;script type=&quot;text/javascript&quot;&gt; VK.Widgets.CommunityMessages( &quot;vk_community_messages&quot;, 209402600, { disableExpandChatSound: &quot;1&quot;, tooltipButtonText: &quot;Есть вопрос?&quot; } ); &lt;/script&gt;"
 }

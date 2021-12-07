@@ -54,7 +54,6 @@ public class JDKModernHttpClient extends AbstractHttpClient {
     private @NotNull HttpResponse parseResponse(@NotNull java.net.http.HttpResponse<String> httpResponse) {
         int responseCode = httpResponse.statusCode();
         String content = httpResponse.body();
-        System.out.println("Headers: " + httpResponse.headers().map());
         return new EasyHttpResponse(responseCode, "<not provided>", content);
     }
 

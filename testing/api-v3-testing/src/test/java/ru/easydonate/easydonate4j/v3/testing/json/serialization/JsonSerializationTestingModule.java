@@ -7,7 +7,6 @@ import ru.easydonate.easydonate4j.exception.JsonSerializationException;
 import ru.easydonate.easydonate4j.module.ModuleRegistrator;
 import ru.easydonate.easydonate4j.v3.data.model.plugin.PluginType;
 import ru.easydonate.easydonate4j.v3.testing.TestingModule;
-import ru.easydonate.easydonate4j.v3.testing.ordering.TestClassesOrder;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -15,7 +14,6 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.stream.Collectors;
 
-@TestClassesOrder(2)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @TestClassOrder(ClassOrderer.OrderAnnotation.class)
 public abstract class JsonSerializationTestingModule extends TestingModule {

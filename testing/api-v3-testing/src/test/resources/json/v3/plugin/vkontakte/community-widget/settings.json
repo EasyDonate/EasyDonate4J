@@ -2,13 +2,13 @@
   "success": true,
   "response": {
     "enabled": true,
-    "no_cover": false,
-    "id": "199043830",
+    "no_cover": true,
+    "id": "209402600",
     "width": "auto",
-    "height": "300px",
+    "height": "297px",
     "color1": "#FFFFFF",
     "color2": "#000000",
     "color3": "#5181B8",
-    "mode": "4"
+    "mode": "1"
   }
 }

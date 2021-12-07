@@ -1,4 +1,4 @@
 {
   "success": true,
-  "response": "<script type=\"text/javascript\" src=\"https\"://vk.com/js/api/openapi.js?168\"></script> <div id=\"vk_groups\"></div> <script type=\"text/javascript\"> VK.Widgets.Group( \"vk_groups\", { mode: 4, width: \"auto\", height: \"300px\", color1: '#FFFFFF', color2: '#000000', color3: '#5181B8' }, 70560952 ); </script>"
+  "response": "&lt;script type=&quot;text/javascript&quot; src=&quot;https://vk.com/js/api/openapi.js?168&quot;&gt;&lt;/script&gt; &lt;div id=&quot;vk_groups&quot;&gt;&lt;/div&gt; &lt;script type=&quot;text/javascript&quot;&gt; VK.Widgets.Group( &quot;vk_groups&quot;, { mode: 1, no_cover: 1, width: &quot;auto&quot;, height: &quot;297px&quot;, color1: '#FFFFFF', color2: '#000000', color3: '#5181B8' }, 209402600 ); &lt;/script&gt;"
 }

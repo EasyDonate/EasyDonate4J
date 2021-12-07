@@ -1,9 +1,6 @@
 package ru.easydonate.easydonate4j.v3.testing.json.serialization;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import ru.easydonate.easydonate4j.v3.data.model.plugin.PluginType;
 import ru.easydonate.easydonate4j.v3.response.plugin.discord.widget.DiscordWidgetGetEmbedResponse;
 import ru.easydonate.easydonate4j.v3.response.plugin.discord.widget.DiscordWidgetGetSettingsResponse;
@@ -27,6 +24,7 @@ public abstract class SimpleJsonSerializationTestingModule extends JsonSerializa
     @Nested
     @Order(1)
     @DisplayName("Parsing shop response models")
+    @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
     class ShopModelsParsing {
 
         @Test
@@ -109,6 +107,7 @@ public abstract class SimpleJsonSerializationTestingModule extends JsonSerializa
         @Nested
         @Order(1)
         @DisplayName("Surcharge (EasyDonate)")
+        @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
         class EasyDonateSurchargeModelsParsing {
 
             @Test
@@ -137,6 +136,7 @@ public abstract class SimpleJsonSerializationTestingModule extends JsonSerializa
         @Nested
         @Order(2)
         @DisplayName("Last Payments (EasyDonate)")
+        @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
         class EasyDonateLastPaymentsModelsParsing {
 
             @Test
@@ -158,6 +158,7 @@ public abstract class SimpleJsonSerializationTestingModule extends JsonSerializa
         @Nested
         @Order(3)
         @DisplayName("Custom Messages (EasyDonate)")
+        @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
         class EasyDonateCustomMessagesModelsParsing {
 
             @Test
@@ -172,6 +173,7 @@ public abstract class SimpleJsonSerializationTestingModule extends JsonSerializa
         @Nested
         @Order(4)
         @DisplayName("Discord Widget (Discord)")
+        @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
         class DiscordWidgetModelsParsing {
 
             @Test
@@ -193,6 +195,7 @@ public abstract class SimpleJsonSerializationTestingModule extends JsonSerializa
         @Nested
         @Order(5)
         @DisplayName("VK News (VKontakte)")
+        @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
         class VKontakteNewsModelsParsing {
 
             @Test
@@ -207,6 +210,7 @@ public abstract class SimpleJsonSerializationTestingModule extends JsonSerializa
         @Nested
         @Order(6)
         @DisplayName("VK Community Widget (VKontakte)")
+        @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
         class VKontakteCommunityWidgetModelsParsing {
 
             @Test
@@ -228,6 +232,7 @@ public abstract class SimpleJsonSerializationTestingModule extends JsonSerializa
         @Nested
         @Order(7)
         @DisplayName("VK Messages Widget (VKontakte)")
+        @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
         class VKontakteMessagesWidgetModelsParsing {
 
             @Test
@@ -249,6 +254,7 @@ public abstract class SimpleJsonSerializationTestingModule extends JsonSerializa
         @Nested
         @Order(8)
         @DisplayName("Yandex Metrika (Yandex)")
+        @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
         class YandexMetrikaModelsParsing {
 
             @Test
