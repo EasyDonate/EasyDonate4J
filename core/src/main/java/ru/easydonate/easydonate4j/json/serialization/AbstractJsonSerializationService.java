@@ -29,6 +29,7 @@ public abstract class AbstractJsonSerializationService implements JsonSerializat
     }
 
     @SuppressWarnings("unchecked")
+    @Override
     public <T> void registerImplementationAlias(@NotNull Class<? extends T> implementationType) {
         Implementing implementing = implementationType.getAnnotation(Implementing.class);
         if(implementing == null)

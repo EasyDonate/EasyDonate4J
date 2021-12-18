@@ -12,6 +12,8 @@ public interface JsonSerializationService {
 
     <T> void registerImplementationAlias(@NotNull Class<T> interfaceType, @NotNull Class<? extends T> implementationType);
 
+    <T> void registerImplementationAlias(@NotNull Class<? extends T> implementationType);
+
     @Nullable String serialize(@Nullable Object object) throws JsonSerializationException;
 
     @Nullable <T> T deserialize(@NotNull Class<T> type, @Nullable String rawJson) throws JsonSerializationException;

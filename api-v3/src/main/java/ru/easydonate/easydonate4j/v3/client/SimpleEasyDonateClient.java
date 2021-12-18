@@ -48,7 +48,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.concurrent.TimeUnit;
 
 @Getter
-final class SimpleEasyDonateClient implements EasyDonateClient {
+public final class SimpleEasyDonateClient implements EasyDonateClient {
 
     private static final String API_ENDPOINT = "https://easydonate.ru/api/v3/%s";
     private static final String PLUGIN_API_ENDPOINT = "https://easydonate.ru/api/v3/plugin/%s/%s";
@@ -169,7 +169,7 @@ final class SimpleEasyDonateClient implements EasyDonateClient {
         return requestGetAndParseJson(CreatePaymentResponse.class, "shop/payment/create", paymentBuilder.toQueryParams());
     }
 
-    private <T> @NotNull T executePluginRequest(
+    public <T> @NotNull T executePluginRequest(
             @NotNull Class<? extends ApiResponse<T>> responseType,
             @NotNull Headers headers,
             @NotNull QueryParams queryParams
@@ -189,7 +189,7 @@ final class SimpleEasyDonateClient implements EasyDonateClient {
         return requestGetAndParseJson(responseType, url, headers, queryParams);
     }
 
-    private <T> @NotNull T requestGetAndParseJson(
+    public <T> @NotNull T requestGetAndParseJson(
             @NotNull Class<? extends ApiResponse<T>> responseObjectType,
             @NotNull String path,
             @Nullable Object... pathArgs
@@ -197,7 +197,7 @@ final class SimpleEasyDonateClient implements EasyDonateClient {
         return requestGetAndParseJson(responseObjectType, path, defaultHeaders, QueryParams.EMPTY, pathArgs);
     }
 
-    private <T> @NotNull T requestGetAndParseJson(
+    public <T> @NotNull T requestGetAndParseJson(
             @NotNull Class<? extends ApiResponse<T>> responseObjectType,
             @NotNull String path,
             @NotNull QueryParams queryParams,
@@ -206,7 +206,7 @@ final class SimpleEasyDonateClient implements EasyDonateClient {
         return requestGetAndParseJson(responseObjectType, path, defaultHeaders, queryParams, pathArgs);
     }
 
-    private <T> @NotNull T requestGetAndParseJson(
+    public <T> @NotNull T requestGetAndParseJson(
             @NotNull Class<? extends ApiResponse<T>> responseObjectType,
             @NotNull String path,
             @NotNull Headers headers,
@@ -215,7 +215,7 @@ final class SimpleEasyDonateClient implements EasyDonateClient {
         return requestGetAndParseJson(responseObjectType, path, headers, QueryParams.EMPTY, pathArgs);
     }
 
-    private <T> @NotNull T requestGetAndParseJson(
+    public <T> @NotNull T requestGetAndParseJson(
             @NotNull Class<? extends ApiResponse<T>> responseObjectType,
             @NotNull String path,
             @NotNull Headers headers,
@@ -226,7 +226,7 @@ final class SimpleEasyDonateClient implements EasyDonateClient {
         return requestGetAndParseJson(responseObjectType, url, headers, queryParams);
     }
 
-    private <T> @NotNull T requestGetAndParseJson(
+    public <T> @NotNull T requestGetAndParseJson(
             @NotNull Class<? extends ApiResponse<T>> responseObjectType,
             @NotNull String url,
             @NotNull Headers headers,
@@ -256,11 +256,11 @@ final class SimpleEasyDonateClient implements EasyDonateClient {
         }
     }
 
-    private @NotNull String getApiEndpointBasedUrl(@NotNull String path, @Nullable Object... args) {
+    public @NotNull String getApiEndpointBasedUrl(@NotNull String path, @Nullable Object... args) {
         return String.format(API_ENDPOINT, String.format(path, args));
     }
 
-    private @NotNull String getPluginApiEndpointBasedUrl(@NotNull PluginType pluginType, @NotNull String apiMethod) {
+    public @NotNull String getPluginApiEndpointBasedUrl(@NotNull PluginType pluginType, @NotNull String apiMethod) {
         return String.format(PLUGIN_API_ENDPOINT, pluginType.getApiName(), apiMethod);
     }
 
@@ -323,7 +323,7 @@ final class SimpleEasyDonateClient implements EasyDonateClient {
     }
 
     @Getter
-    private static final class SimplePluginManager implements PluginManager {
+    public static final class SimplePluginManager implements PluginManager {
 
         private final SimpleEasyDonateClient client;
 
@@ -371,27 +371,27 @@ final class SimpleEasyDonateClient implements EasyDonateClient {
             return new YandexMetrikaPlugin(client, this::executePluginRequestSafely);
         }
 
-        private <T> @NotNull T executePluginRequest(
+        public <T> @NotNull T executePluginRequest(
                 @NotNull Class<? extends ApiResponse<T>> responseType
         ) throws HttpRequestException, HttpResponseException {
             return executePluginRequest(responseType, client.defaultHeaders, QueryParams.EMPTY);
         }
 
-        private <T> @NotNull T executePluginRequest(
+        public <T> @NotNull T executePluginRequest(
                 @NotNull Class<? extends ApiResponse<T>> responseType,
                 @NotNull Headers headers
         ) throws HttpRequestException, HttpResponseException {
             return executePluginRequest(responseType, headers, QueryParams.EMPTY);
         }
 
-        private <T> @NotNull T executePluginRequest(
+        public <T> @NotNull T executePluginRequest(
                 @NotNull Class<? extends ApiResponse<T>> responseType,
                 @NotNull QueryParams queryParams
         ) throws HttpRequestException, HttpResponseException {
             return executePluginRequest(responseType, client.defaultHeaders, queryParams);
         }
 
-        private <T> @NotNull T executePluginRequest(
+        public <T> @NotNull T executePluginRequest(
                 @NotNull Class<? extends ApiResponse<T>> responseType,
                 @NotNull Headers headers,
                 @NotNull QueryParams queryParams
@@ -399,7 +399,7 @@ final class SimpleEasyDonateClient implements EasyDonateClient {
             return client.executePluginRequest(responseType, headers, queryParams);
         }
 
-        private <T> @NotNull T executePluginRequestSafely(
+        public <T> @NotNull T executePluginRequestSafely(
                 @NotNull Class<? extends ApiResponse<T>> responseType,
                 @Nullable Headers headers,
                 @Nullable QueryParams queryParams
