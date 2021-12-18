@@ -2,7 +2,7 @@
 The offical SDK for the [EasyDonate](https://easydonate.ru/) platform API written on Java.<br>
 Better than old revision: **feature-rich** & **modular** & **stable**!
 
-[Project Documentation (RU)](https://github.com/SoKnight/EasyDonateSDK/wiki)
+[Project Documentation (RU)](https://github.com/SoKnight/EasyDonate4J/wiki)
 
 ## Features & TODO
 - M - its the Modularity
