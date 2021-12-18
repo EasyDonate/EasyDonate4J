@@ -1,6 +1,5 @@
 package ru.easydonate.easydonate4j.v3.data.model.jackson.plugin.yandex.metrika;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
@@ -11,7 +10,6 @@ import java.util.Objects;
 
 @Getter
 @Implementing(YandexMetrikaPluginSettings.class)
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class YandexMetrikaPluginSettingsModel implements YandexMetrikaPluginSettings {
 
     @JsonProperty("enabled")

@@ -461,7 +461,7 @@ public interface Shop extends PrettyPrintable {
     }
 
     /**
-     * The enum that represents all possible & actual particles types.
+     * The enum that represents all possible and actual particles types.
      */
     @Getter
     @AllArgsConstructor(access = AccessLevel.PRIVATE)

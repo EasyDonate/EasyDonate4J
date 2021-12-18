@@ -1,7 +1,6 @@
 package ru.easydonate.easydonate4j.v3.data.model.jackson.plugin.easydonate.surcharge;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
@@ -15,7 +14,6 @@ import java.util.OptionalInt;
 
 @Getter
 @Implementing(SurchargePluginSettings.class)
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class SurchargePluginSettingsModel implements SurchargePluginSettings {
 
     @JsonProperty("enabled")

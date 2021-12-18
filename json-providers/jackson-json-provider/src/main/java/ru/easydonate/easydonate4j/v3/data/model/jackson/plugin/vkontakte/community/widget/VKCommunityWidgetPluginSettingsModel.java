@@ -1,7 +1,6 @@
 package ru.easydonate.easydonate4j.v3.data.model.jackson.plugin.vkontakte.community.widget;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
@@ -15,7 +14,6 @@ import java.util.OptionalInt;
 
 @Getter
 @Implementing(VKCommunityWidgetPluginSettings.class)
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class VKCommunityWidgetPluginSettingsModel implements VKCommunityWidgetPluginSettings {
 
     @JsonProperty("enabled")

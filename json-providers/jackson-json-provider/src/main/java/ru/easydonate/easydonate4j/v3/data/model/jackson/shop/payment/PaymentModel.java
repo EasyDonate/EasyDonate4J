@@ -20,7 +20,6 @@ import java.util.OptionalInt;
 
 @Getter
 @Implementing(Payment.class)
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class PaymentModel implements Payment {
 
     @JsonProperty("id")

@@ -20,7 +20,6 @@ import java.util.*;
 
 @Getter
 @Implementing(Product.class)
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class ProductModel implements Product {
 
     @JsonProperty("id")

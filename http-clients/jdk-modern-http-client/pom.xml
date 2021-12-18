@@ -5,14 +5,14 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <artifactId>parent</artifactId>
         <groupId>ru.easydonate.easydonate4j</groupId>
-        <version>2.0.0-SNAPSHOT</version>
+        <artifactId>parent</artifactId>
+        <version>2.0.0</version>
         <relativePath>../../pom.xml</relativePath>
     </parent>
 
     <artifactId>jdk-modern-http-client</artifactId>
-    <name>EasyDonate4J - Http Client - JDK (Modern)</name>
+    <name>EasyDonate4J - Http Client - JDK Modern</name>
 
     <properties>
         <java.version>11</java.version>
@@ -36,6 +36,18 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
             </plugin>
         </plugins>
     </build>

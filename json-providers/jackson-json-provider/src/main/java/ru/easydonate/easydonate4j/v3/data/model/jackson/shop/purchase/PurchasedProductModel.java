@@ -1,7 +1,6 @@
 package ru.easydonate.easydonate4j.v3.data.model.jackson.shop.purchase;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Getter;
@@ -21,7 +20,6 @@ import java.util.OptionalDouble;
 
 @Getter
 @Implementing(PurchasedProduct.class)
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class PurchasedProductModel implements PurchasedProduct {
 
     @JsonProperty("id")

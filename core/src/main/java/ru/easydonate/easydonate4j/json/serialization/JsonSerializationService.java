@@ -18,6 +18,7 @@ public interface JsonSerializationService {
 
     /**
      * Print this object to pretty JSON string.
+     * @param object The object to serialize to pretty JSON string.
      * @return The pretty JSON string.
      * @throws JsonSerializationException if any exceptions has been throwed during the json serialization.
      */

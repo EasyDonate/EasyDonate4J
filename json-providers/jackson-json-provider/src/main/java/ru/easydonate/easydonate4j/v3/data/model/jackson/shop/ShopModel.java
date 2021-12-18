@@ -20,7 +20,6 @@ import java.util.OptionalDouble;
 
 @Getter
 @Implementing(Shop.class)
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class ShopModel implements Shop {
 
     // --- general

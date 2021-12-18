@@ -5,14 +5,14 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <artifactId>parent</artifactId>
         <groupId>ru.easydonate.easydonate4j</groupId>
-        <version>2.0.0-SNAPSHOT</version>
+        <artifactId>parent</artifactId>
+        <version>2.0.0</version>
         <relativePath>../../pom.xml</relativePath>
     </parent>
 
     <artifactId>api-v3-testing</artifactId>
-    <name>EasyDonate4J - API v3 (Testing)</name>
+    <name>EasyDonate4J - API v3 Testing</name>
 
     <properties>
         <java.version>11</java.version>
@@ -94,10 +94,22 @@
                 <artifactId>maven-compiler-plugin</artifactId>
             </plugin>
             <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <configuration>
+                    <skipStaging>true</skipStaging>
+                    <skipLocalStaging>true</skipLocalStaging>
+                    <skipRemoteStaging>true</skipRemoteStaging>
+                    <skipNexusStagingDeployMojo>true</skipNexusStagingDeployMojo>
+                </configuration>
+            </plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <configuration>
                     <skipAfterFailureCount>1</skipAfterFailureCount>
+                    <forkCount>1</forkCount>
+                    <reuseForks>true</reuseForks>
                     <includes>
                         <include>**/TestingFramework.java</include>
                         <include>**/*Testing.java</include>

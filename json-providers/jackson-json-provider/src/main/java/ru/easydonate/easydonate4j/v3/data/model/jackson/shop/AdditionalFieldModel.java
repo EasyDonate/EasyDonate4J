@@ -17,7 +17,6 @@ import java.util.*;
 
 @Getter
 @Implementing(AdditionalField.class)
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class AdditionalFieldModel implements AdditionalField {
 
     @JsonProperty("name")

@@ -19,7 +19,6 @@ import java.util.*;
 
 @Getter
 @Implementing(SurchargeDiscount.class)
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class SurchargeDiscountModel implements SurchargeDiscount {
 
     @JsonProperty("id")

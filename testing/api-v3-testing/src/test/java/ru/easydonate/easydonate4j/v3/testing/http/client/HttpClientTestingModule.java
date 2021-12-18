@@ -26,7 +26,7 @@ public abstract class HttpClientTestingModule extends TestingModule {
 
     private static final ExecutorService ASYNC_EXECUTOR = Executors.newCachedThreadPool();
     private static final ScheduledExecutorService SCHEDULER = Executors.newSingleThreadScheduledExecutor();
-    private static final long REQUEST_DELAY = 200;
+    private static final long REQUEST_DELAY = 1000;
 
     protected final EasyDonateClient client;
 
@@ -49,7 +49,7 @@ public abstract class HttpClientTestingModule extends TestingModule {
 
     @SneakyThrows
     protected final <T> void makeShopRequestAndValidateNotNull(@NotNull ShopRequestSelector<T> requestSelector) {
-        T responseObject = executeAsync(() -> makeShopRequest(requestSelector)).get();
+        T responseObject = scheduleWithDelay(() -> makeShopRequest(requestSelector)).get();
         Assertions.assertNotNull(responseObject, "'responseObject' is null");
     }
 
@@ -70,7 +70,7 @@ public abstract class HttpClientTestingModule extends TestingModule {
             @NotNull PluginSelector<P> pluginSelector,
             @NotNull PluginRequestSelector<T, P> requestSelector
     ) {
-        T responseObject = executeAsync(() -> makePluginRequest(pluginSelector, requestSelector)).get();
+        T responseObject = scheduleWithDelay(() -> makePluginRequest(pluginSelector, requestSelector)).get();
         Assertions.assertNotNull(responseObject, "'responseObject' is null");
     }
 
@@ -97,10 +97,6 @@ public abstract class HttpClientTestingModule extends TestingModule {
 
     private static <T> @NotNull ScheduledFuture<T> scheduleWithDelay(@NotNull Callable<T> callable) {
         return SCHEDULER.schedule(callable, REQUEST_DELAY, TimeUnit.MILLISECONDS);
-    }
-
-    private static <T> @NotNull Future<T> executeAsync(@NotNull Callable<T> callable) {
-        return ASYNC_EXECUTOR.submit(callable);
     }
 
     @FunctionalInterface

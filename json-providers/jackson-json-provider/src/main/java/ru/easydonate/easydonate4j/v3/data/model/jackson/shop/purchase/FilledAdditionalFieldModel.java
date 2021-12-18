@@ -1,6 +1,5 @@
 package ru.easydonate.easydonate4j.v3.data.model.jackson.shop.purchase;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
@@ -17,7 +16,6 @@ import java.util.*;
 
 @Getter
 @Implementing(FilledAdditionalField.class)
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class FilledAdditionalFieldModel extends AdditionalFieldModel implements FilledAdditionalField {
 
     @JsonProperty("value")

@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 public final class JacksonSerializationModule extends SimpleModule {
 
     public JacksonSerializationModule(@NotNull JsonSerializationService jsonSerializationService) {
-        super("EasyDonate4j");
+        super("EasyDonate4J");
 
         super.addSerializer(LocalDateTime.class, new LocalDateTimeSerializer());
         super.addDeserializer(LocalDateTime.class, new LocalDateTimeDeserializer());

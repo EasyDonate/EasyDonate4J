@@ -7,7 +7,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * The enum that represents all possible & actual delivery modes.
+ * The enum that represents all possible and actual delivery modes.
  */
 @Getter
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
