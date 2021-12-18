@@ -11,8 +11,6 @@ Better than old revision: **feature-rich** & **modular** & **stable**!
 - HTTP client implementations (JDK Built-In, Apache HTTP Client, OkHttp)
 - JSON serialization provider implementations (Jackson, GSON)
 - Over 100+ JUnit Tests for better SDK stability
-- **[WIP]** Event Oriented Notifications API
-- **[WIP]** LongPoll API client
 - **[WIP]** Callback API request signature verifier
 - **[WIP]** Callback API request handler
 
