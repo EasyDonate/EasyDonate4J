@@ -6,6 +6,38 @@
     <version>2.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
+    <name>EasyDonate4J - Parent</name>
+    <description>The official SDK for the EasyDonate payments system written on Java</description>
+    <url>https://github.com/SoKnight/EasyDonate4J/</url>
+
+    <organization>
+        <name>EasyDonate</name>
+        <url>https://easydonate.ru/</url>
+    </organization>
+
+    <scm>
+        <connection>scm:git:git://github.com/SoKnight/EasyDonate4J.git</connection>
+        <developerConnection>scm:git:ssh://github.com:SoKnight/EasyDonate4J.git</developerConnection>
+        <url>http://github.com/SoKnight/EasyDonate4J/tree/master</url>
+    </scm>
+
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>https://opensource.org/licenses/MIT</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <id>soknight</id>
+            <name>SoKnight</name>
+            <url>https://soknight.me/</url>
+            <organization>EasyDonate</organization>
+            <organizationUrl>https://easydonate.ru/</organizationUrl>
+        </developer>
+    </developers>
+
     <modules>
         <!-- API versions implementations -->
         <module>api-v3</module>
@@ -26,10 +58,6 @@
         <!-- API testing modules -->
         <module>testing/api-v3-testing</module>
     </modules>
-
-    <name>EasyDonate4J - Parent</name>
-    <description>An official SDK for the EasyDonate payments system written on Java</description>
-    <url>https://easydonate.ru/</url>
 
     <properties>
         <!-- Building -->
@@ -52,12 +80,25 @@
         <junit.platform.version>1.8.2</junit.platform.version>
 
         <!-- Maven plugins -->
-        <compiler.maven.plugin.version>3.8.1</compiler.maven.plugin.version>
-        <jar.maven.plugin.version>3.2.0</jar.maven.plugin.version>
-        <source.maven.plugin.version>3.2.1</source.maven.plugin.version>
-        <shade.maven.plugin.version>3.2.4</shade.maven.plugin.version>
+        <maven.compiler.plugin.version>3.8.1</maven.compiler.plugin.version>
+        <nexus.staging.maven.plugin.version>1.6.8</nexus.staging.maven.plugin.version>
+        <maven.source.plugin.version>3.2.1</maven.source.plugin.version>
+        <maven.javadoc.plugin.version>3.3.1</maven.javadoc.plugin.version>
+        <maven.gpg.plugin.version>3.0.1</maven.gpg.plugin.version>
+        <maven.shade.plugin.version>3.2.4</maven.shade.plugin.version>
         <maven.surefire.plugin.version>3.0.0-M5</maven.surefire.plugin.version>
     </properties>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
 
     <dependencyManagement>
         <dependencies>
@@ -224,7 +265,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>${compiler.maven.plugin.version}</version>
+                    <version>${maven.compiler.plugin.version}</version>
                     <configuration>
                         <compilerArgument>-Xlint:deprecation</compilerArgument>
                         <compilerArgument>-Xlint:unchecked</compilerArgument>
@@ -233,17 +274,60 @@
                     </configuration>
                 </plugin>
 
+                <!-- Nexus staging plugin -->
+                <plugin>
+                    <groupId>org.sonatype.plugins</groupId>
+                    <artifactId>nexus-staging-maven-plugin</artifactId>
+                    <version>${nexus.staging.maven.plugin.version}</version>
+                    <extensions>true</extensions>
+                    <configuration>
+                        <serverId>ossrh</serverId>
+                        <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                        <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                    </configuration>
+                </plugin>
+
                 <!-- Maven sources plugin -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-source-plugin</artifactId>
-                    <version>${source.maven.plugin.version}</version>
+                    <version>${maven.source.plugin.version}</version>
                     <executions>
                         <execution>
                             <id>attach-sources</id>
-                            <phase>verify</phase>
+                            <goals>
+                                <goal>jar-no-fork</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+
+                <!-- Maven javadoc plugin -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>${maven.javadoc.plugin.version}</version>
+                    <executions>
+                        <execution>
+                            <id>attach-javadocs</id>
                             <goals>
                                 <goal>jar</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+
+                <!-- Maven GPG plugin -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-gpg-plugin</artifactId>
+                    <version>${maven.gpg.plugin.version}</version>
+                    <executions>
+                        <execution>
+                            <id>sign-artifacts</id>
+                            <phase>verify</phase>
+                            <goals>
+                                <goal>sign</goal>
                             </goals>
                         </execution>
                     </executions>
@@ -253,7 +337,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-shade-plugin</artifactId>
-                    <version>${shade.maven.plugin.version}</version>
+                    <version>${maven.shade.plugin.version}</version>
                     <configuration>
                         <createDependencyReducedPom>false</createDependencyReducedPom>
                         <shadedArtifactAttached>false</shadedArtifactAttached>
