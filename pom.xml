@@ -4,7 +4,7 @@
 
     <groupId>ru.easydonate.easydonate4j</groupId>
     <artifactId>parent</artifactId>
-    <version>2.0.0</version>
+    <version>2.0.1</version>
     <packaging>pom</packaging>
 
     <name>EasyDonate4J</name>
@@ -47,6 +47,9 @@
     <modules>
         <!-- API versions implementations -->
         <module>api-v3</module>
+
+        <!-- Callback API implementation -->
+        <module>callback-api</module>
 
         <!-- Core module providing any other implementations -->
         <module>core</module>
@@ -116,10 +119,18 @@
                 <scope>compile</scope>
             </dependency>
 
-            <!-- API Implementation v3 -->
+            <!-- API v3 Implementation -->
             <dependency>
                 <groupId>ru.easydonate.easydonate4j</groupId>
                 <artifactId>api-v3</artifactId>
+                <version>${project.version}</version>
+                <scope>compile</scope>
+            </dependency>
+
+            <!-- Callback API Implementation -->
+            <dependency>
+                <groupId>ru.easydonate.easydonate4j</groupId>
+                <artifactId>callback-api</artifactId>
                 <version>${project.version}</version>
                 <scope>compile</scope>
             </dependency>

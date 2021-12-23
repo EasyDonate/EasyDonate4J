@@ -1,6 +1,8 @@
 package ru.easydonate.easydonate4j.json.serialization;
 
 import org.jetbrains.annotations.NotNull;
+import ru.easydonate.easydonate4j.json.serialization.implementation.registry.JsonModelsGroup;
+import ru.easydonate.easydonate4j.json.serialization.implementation.registry.JsonModelsRegistry;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -8,9 +10,19 @@ import java.util.Map;
 public abstract class AbstractJsonSerializationService implements JsonSerializationService {
 
     protected final Map<Class<?>, Class<?>> implementationAliases;
+    protected final Map<JsonModelsGroup, JsonModelsRegistry> registeredModelsGroups;
 
     public AbstractJsonSerializationService() {
         this.implementationAliases = new LinkedHashMap<>();
+        this.registeredModelsGroups = new LinkedHashMap<>();
+    }
+
+    protected final void registerModelsGroup(@NotNull JsonModelsGroup group, @NotNull JsonModelsRegistry registry) {
+        if(registeredModelsGroups.containsKey(group))
+            return;
+
+        registeredModelsGroups.put(group, registry);
+        registry.register();
     }
 
     @SuppressWarnings("unchecked")

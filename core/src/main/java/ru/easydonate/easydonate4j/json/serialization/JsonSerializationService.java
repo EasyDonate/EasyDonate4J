@@ -3,6 +3,7 @@ package ru.easydonate.easydonate4j.json.serialization;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import ru.easydonate.easydonate4j.exception.JsonSerializationException;
+import ru.easydonate.easydonate4j.json.serialization.implementation.registry.JsonModelsGroup;
 
 public interface JsonSerializationService {
 
@@ -13,6 +14,8 @@ public interface JsonSerializationService {
     <T> void registerImplementationAlias(@NotNull Class<T> interfaceType, @NotNull Class<? extends T> implementationType);
 
     <T> void registerImplementationAlias(@NotNull Class<? extends T> implementationType);
+
+    <T> void registerImplementationAliasesGroup(@NotNull JsonModelsGroup jsonModelsGroup);
 
     @Nullable String serialize(@Nullable Object object) throws JsonSerializationException;
 

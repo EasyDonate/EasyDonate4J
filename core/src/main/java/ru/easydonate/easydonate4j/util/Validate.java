@@ -15,13 +15,18 @@ public final class Validate {
             throw new IllegalArgumentException(String.format("'%s' cannot be empty or null!", name));
     }
 
-    public static void notEmpty(Collection<?> object, String name) {
-        if(object == null || object.isEmpty())
+    public static void notEmpty(Collection<?> collection, String name) {
+        if(collection == null || collection.isEmpty())
             throw new IllegalArgumentException(String.format("'%s' cannot be empty or null!", name));
     }
 
-    public static void notEmpty(Map<?, ?> object, String name) {
-        if(object == null || object.isEmpty())
+    public static void notEmpty(Map<?, ?> map, String name) {
+        if(map == null || map.isEmpty())
+            throw new IllegalArgumentException(String.format("'%s' cannot be empty or null!", name));
+    }
+
+    public static void notEmpty(Object[] array, String name) {
+        if(array == null || array.length == 0)
             throw new IllegalArgumentException(String.format("'%s' cannot be empty or null!", name));
     }
 

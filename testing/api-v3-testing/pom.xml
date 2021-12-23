@@ -7,7 +7,7 @@
     <parent>
         <groupId>ru.easydonate.easydonate4j</groupId>
         <artifactId>parent</artifactId>
-        <version>2.0.0</version>
+        <version>2.0.1</version>
         <relativePath>../../pom.xml</relativePath>
     </parent>
 
@@ -19,10 +19,16 @@
     </properties>
 
     <dependencies>
-        <!-- API Implementation v3 -->
+        <!-- API v3 Implementation -->
         <dependency>
             <groupId>ru.easydonate.easydonate4j</groupId>
             <artifactId>api-v3</artifactId>
+        </dependency>
+
+        <!-- Callback API Implementation -->
+        <dependency>
+            <groupId>ru.easydonate.easydonate4j</groupId>
+            <artifactId>callback-api</artifactId>
         </dependency>
 
         <!-- Apache HTTP Client Implementation -->
