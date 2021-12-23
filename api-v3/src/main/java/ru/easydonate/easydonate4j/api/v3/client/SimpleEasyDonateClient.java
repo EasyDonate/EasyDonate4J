@@ -41,6 +41,7 @@ import ru.easydonate.easydonate4j.http.QueryParams;
 import ru.easydonate.easydonate4j.http.client.HttpClient;
 import ru.easydonate.easydonate4j.http.response.HttpResponse;
 import ru.easydonate.easydonate4j.json.serialization.JsonSerializationService;
+import ru.easydonate.easydonate4j.json.serialization.implementation.registry.JsonModelsGroup;
 import ru.easydonate.easydonate4j.module.ModuleRegistrator;
 import ru.easydonate.easydonate4j.util.Validate;
 
@@ -88,6 +89,10 @@ public final class SimpleEasyDonateClient implements EasyDonateClient {
                 .create();
 
         this.jsonSerialization = ModuleRegistrator.jsonSerializationService();
+        this.jsonSerialization.registerImplementationAliasesGroup(JsonModelsGroup.API_V3_SHOP_MODELS);
+        this.jsonSerialization.registerImplementationAliasesGroup(JsonModelsGroup.API_V3_SHOP_RESPONSES);
+        this.jsonSerialization.registerImplementationAliasesGroup(JsonModelsGroup.API_V3_PLUGIN_MODELS);
+        this.jsonSerialization.registerImplementationAliasesGroup(JsonModelsGroup.API_V3_PLUGIN_RESPONSES);
     }
 
     @Override

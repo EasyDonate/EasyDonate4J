@@ -5,8 +5,10 @@ import org.jetbrains.annotations.Nullable;
 import org.junit.jupiter.api.*;
 import ru.easydonate.easydonate4j.api.v3.data.model.plugin.PluginType;
 import ru.easydonate.easydonate4j.exception.JsonSerializationException;
+import ru.easydonate.easydonate4j.json.serialization.JsonSerializationService;
+import ru.easydonate.easydonate4j.json.serialization.implementation.registry.JsonModelsGroup;
 import ru.easydonate.easydonate4j.module.ModuleRegistrator;
-import ru.easydonate.easydonate4j.testing.TestingModule;
+import ru.easydonate.easydonate4j.testing.api.v3.TestingModule;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -25,7 +27,14 @@ public abstract class JsonSerializationTestingModule extends TestingModule {
     @Order(0)
     @DisplayName("Serialization service initialization")
     public void printRegisteredSerializationService() {
-        logger.info("Registered serialization service: " + ModuleRegistrator.get().getJsonSerializationService().getType());
+        JsonSerializationService jsonSerializationService = ModuleRegistrator.get().getJsonSerializationService();
+
+        jsonSerializationService.registerImplementationAliasesGroup(JsonModelsGroup.API_V3_SHOP_MODELS);
+        jsonSerializationService.registerImplementationAliasesGroup(JsonModelsGroup.API_V3_SHOP_RESPONSES);
+        jsonSerializationService.registerImplementationAliasesGroup(JsonModelsGroup.API_V3_PLUGIN_MODELS);
+        jsonSerializationService.registerImplementationAliasesGroup(JsonModelsGroup.API_V3_PLUGIN_RESPONSES);
+
+        logger.info("Registered serialization service: " + jsonSerializationService.getType());
     }
 
     protected final void parseShopModel(@NotNull String resourceName, @NotNull Class<?> modelType) {

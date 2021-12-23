@@ -13,6 +13,7 @@ import ru.easydonate.easydonate4j.callback.exception.SignatureVerificationExcept
 import ru.easydonate.easydonate4j.callback.signature.Signature;
 import ru.easydonate.easydonate4j.exception.JsonSerializationException;
 import ru.easydonate.easydonate4j.json.serialization.JsonSerializationService;
+import ru.easydonate.easydonate4j.json.serialization.implementation.registry.JsonModelsGroup;
 import ru.easydonate.easydonate4j.module.ModuleRegistrator;
 import ru.easydonate.easydonate4j.util.Validate;
 
@@ -31,9 +32,10 @@ public final class SimpleCallbackApiClient implements CallbackApiClient {
     SimpleCallbackApiClient(@NotNull String accessKey, int eventBusAsyncThreadPoolSize, boolean signatureVerificationEnabled) {
         this.accessKey = accessKey;
         this.signatureVerificationEnabled = signatureVerificationEnabled;
-
         this.eventBus = new EventBus(eventBusAsyncThreadPoolSize);
+
         this.jsonSerialization = ModuleRegistrator.jsonSerializationService();
+        this.jsonSerialization.registerImplementationAliasesGroup(JsonModelsGroup.CALLBACK_API_MODELS);
     }
 
     @Override

@@ -25,12 +25,6 @@
             <artifactId>api-v3</artifactId>
         </dependency>
 
-        <!-- Callback API Implementation -->
-        <dependency>
-            <groupId>ru.easydonate.easydonate4j</groupId>
-            <artifactId>callback-api</artifactId>
-        </dependency>
-
         <!-- Apache HTTP Client Implementation -->
         <dependency>
             <groupId>ru.easydonate.easydonate4j</groupId>

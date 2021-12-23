@@ -48,7 +48,7 @@ public interface Shop extends PrettyPrintable {
      * <br>
      * If this method returned false that this shop has been blocked.
      * <br>
-     * By default every shop will be active.
+     * By default, every shop will be active.
      * @return The check result (true/false).
      */
     boolean isActive();

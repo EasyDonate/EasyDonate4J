@@ -1,4 +1,4 @@
-package ru.easydonate.easydonate4j.testing;
+package ru.easydonate.easydonate4j.testing.api.v3;
 
 import java.util.logging.Logger;
 
