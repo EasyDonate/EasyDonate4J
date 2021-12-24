@@ -10,9 +10,9 @@ Better than old revision: **feature-rich** & **modular** & **stable**!
 - Support for platform plugins (introduced with API v3)
 - HTTP client implementations (JDK Built-In, Apache HTTP Client, OkHttp)
 - JSON serialization provider implementations (Jackson, GSON)
+- Callback API request signature verifier
+- Callback API request event listening system
 - Over 100+ JUnit Tests for better SDK stability
-- **[WIP]** Callback API request signature verifier
-- **[WIP]** Callback API request handler
 
 ### Known API versions:
 | API Version | Supported? | Documentation |
