@@ -1,25 +1,23 @@
-# Created by https://www.toptal.com/developers/gitignore/api/java,linux,maven,eclipse,intellij
-# Edit at https://www.toptal.com/developers/gitignore?templates=java,linux,maven,eclipse,intellij
+### Current project ###
+testing/**/keys/
 
 ### Intellij IDEA ###
 
-# All IDEA folder
+# .idea directory
 .idea/
 
-# Intellij IDEA projects
+# IDEA project configurations
 *.iml
 
-# Intellij compiler output
-out/
-
 ### Java ###
-# Compiled class file
+
+# compiled class file
 *.class
 
-# Log file
+# log file
 *.log
 
-# Package Files #
+# package files #
 *.jar
 *.war
 *.nar
@@ -34,21 +32,19 @@ hs_err_pid*
 ### Linux ###
 *~
 
+# ignore bash scripts
+*.sh
+
 # temporary files which can be created if a process still has a handle open of a deleted file
 .fuse_hidden*
 
 # Linux trash folder which might appear on any partition or disk
 .Trash-*
 
-# Bash scripts
-*.sh
+# .nfs files are created when an open file is removed but is still being accessed
+.nfs*
 
 ### Maven ###
 target/
-pom.xml*
 dependency-reduced-pom.xml
-buildNumber.properties
 .mvn/
-
-### Current project ###
-testing/**/keys/
