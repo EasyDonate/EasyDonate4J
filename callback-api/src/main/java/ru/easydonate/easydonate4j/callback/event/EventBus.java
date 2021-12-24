@@ -32,7 +32,8 @@ public final class EventBus {
 
         Class<? extends Event> eventType = event.getClass();
         List<EventHandler<?>> eventHandlers = eventListeners.get(eventType);
-        eventHandlers.forEach(eventHandler -> fireEvent(event, eventHandler));
+        if(eventHandlers != null && !eventHandlers.isEmpty())
+            eventHandlers.forEach(eventHandler -> fireEvent(event, eventHandler));
     }
 
     @SuppressWarnings("unchecked")
@@ -64,7 +65,7 @@ public final class EventBus {
                 continue;
 
             Class<?>[] parameterTypes = method.getParameterTypes();
-            if(parameterTypes.length != 1 || Event.class.isAssignableFrom(parameterTypes[0]))
+            if(parameterTypes.length != 1 || !Event.class.isAssignableFrom(parameterTypes[0]))
                 continue;
 
             Class<? extends Event> eventType = (Class<? extends Event>) parameterTypes[0];

@@ -64,8 +64,8 @@
         <module>http-clients/jdk-legacy-http-client</module>
         <module>http-clients/jdk-modern-http-client</module>
 
-        <!-- API testing modules -->
-        <module>testing/api-v3-testing</module>
+        <!-- Testing framework -->
+        <module>testing</module>
     </modules>
 
     <properties>
@@ -84,10 +84,6 @@
         <jetbrains.annotations.version>22.0.0</jetbrains.annotations.version>
         <lombok.version>1.18.22</lombok.version>
 
-        <!-- Testing libs versions -->
-        <junit.jupiter.version>5.8.2</junit.jupiter.version>
-        <junit.platform.version>1.8.2</junit.platform.version>
-
         <!-- Maven plugins -->
         <maven.compiler.plugin.version>3.8.1</maven.compiler.plugin.version>
         <nexus.staging.maven.plugin.version>1.6.8</nexus.staging.maven.plugin.version>
@@ -95,7 +91,6 @@
         <maven.javadoc.plugin.version>3.3.1</maven.javadoc.plugin.version>
         <maven.gpg.plugin.version>3.0.1</maven.gpg.plugin.version>
         <maven.shade.plugin.version>3.2.4</maven.shade.plugin.version>
-        <maven.surefire.plugin.version>3.0.0-M5</maven.surefire.plugin.version>
     </properties>
 
     <distributionManagement>
@@ -249,28 +244,6 @@
                 <artifactId>lombok</artifactId>
                 <version>${lombok.version}</version>
                 <scope>provided</scope>
-            </dependency>
-
-            <!-- JUnit Jupiter -->
-            <dependency>
-                <groupId>org.junit.jupiter</groupId>
-                <artifactId>junit-jupiter</artifactId>
-                <version>${junit.jupiter.version}</version>
-                <scope>test</scope>
-            </dependency>
-
-            <!-- JUnit Platform -->
-            <dependency>
-                <groupId>org.junit.platform</groupId>
-                <artifactId>junit-platform-suite</artifactId>
-                <version>${junit.platform.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.junit.platform</groupId>
-                <artifactId>junit-platform-suite-engine</artifactId>
-                <version>${junit.platform.version}</version>
-                <scope>test</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -436,34 +409,6 @@
                             </goals>
                         </execution>
                     </executions>
-                </plugin>
-
-                <!-- Maven surefire plugin -->
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <version>${maven.surefire.plugin.version}</version>
-                    <configuration>
-                        <statelessTestsetReporter implementation="org.apache.maven.plugin.surefire.extensions.junit5.JUnit5Xml30StatelessReporter">
-                            <disable>false</disable>
-                            <version>3.0</version>
-                            <usePhrasedFileName>false</usePhrasedFileName>
-                            <usePhrasedTestSuiteClassName>true</usePhrasedTestSuiteClassName>
-                            <usePhrasedTestCaseClassName>true</usePhrasedTestCaseClassName>
-                            <usePhrasedTestCaseMethodName>true</usePhrasedTestCaseMethodName>
-                        </statelessTestsetReporter>
-                        <consoleOutputReporter implementation="org.apache.maven.plugin.surefire.extensions.junit5.JUnit5ConsoleOutputReporter">
-                            <disable>false</disable>
-                            <encoding>UTF-8</encoding>
-                            <usePhrasedFileName>false</usePhrasedFileName>
-                        </consoleOutputReporter>
-                        <statelessTestsetInfoReporter implementation="org.apache.maven.plugin.surefire.extensions.junit5.JUnit5StatelessTestsetInfoReporter">
-                            <disable>false</disable>
-                            <usePhrasedFileName>false</usePhrasedFileName>
-                            <usePhrasedClassNameInRunning>true</usePhrasedClassNameInRunning>
-                            <usePhrasedClassNameInTestCaseSummary>true</usePhrasedClassNameInTestCaseSummary>
-                        </statelessTestsetInfoReporter>
-                    </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>

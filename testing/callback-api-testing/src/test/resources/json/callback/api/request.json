@@ -1,0 +1,65 @@
+{
+  "payment_id": 770408,
+  "shop_id": 15599,
+  "customer": "SoKnight",
+  "email": null,
+  "server":
+  {
+    "id": 12597,
+    "name": "Выживание",
+    "ip": "127.0.0.1",
+    "port": "25565"
+  },
+  "cost": 6.2,
+  "income": 6.2,
+  "payment_type": "test",
+  "created_at": "2021-12-21 20:30:16",
+  "updated_at": "2021-12-21 20:30:16",
+  "products":
+  [
+    {
+      "id": 94647,
+      "name": "VIP",
+      "description": null,
+      "count": 1,
+      "cost": 6.2,
+      "commands":
+      [
+        "lp user SoKnight parent add vip"
+      ],
+      "custom_fields": null,
+      "image": "http://cp.easydonate.ru/storage/app/media/Diamond%20Sword-min.png",
+      "sales":
+      {
+        "massSale":
+        {
+          "value": 2.5,
+          "description": "Массовая акция \"\\{Распродажа}\"",
+          "target":
+          {
+            "id": 1252,
+            "name": "Распродажа",
+            "sale": 25,
+            "shop_id": 15599,
+            "start_at": null,
+            "expires_at": "2023-01-01 12:00:00",
+            "created_at": "2021-12-04 14:23:07",
+            "updated_at": "2021-12-04 14:23:07",
+            "pivot":
+            {
+              "product_id": 94647,
+              "mass_sale_id": 1252
+            }
+          }
+        },
+        "coupon":
+        {
+          "value": 1.3,
+          "description": "Купон",
+          "name": "EASYDONATE4J"
+        }
+      }
+    }
+  ],
+  "signature": "dadffa277b1f95a1a1b1ee84643218c8b6a2f4722732b2a82f3e33d1079f8c68"
+}
