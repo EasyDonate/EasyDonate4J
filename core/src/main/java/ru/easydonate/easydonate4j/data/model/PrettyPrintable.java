@@ -4,7 +4,7 @@ import ru.easydonate.easydonate4j.exception.JsonSerializationException;
 import ru.easydonate.easydonate4j.module.ModuleRegistrator;
 
 /**
- * An interface used to provide pretty-printing feature to all data models.
+ * The interface that used to provide pretty-printing feature to all data models.
  * @author soknight
  */
 public interface PrettyPrintable {

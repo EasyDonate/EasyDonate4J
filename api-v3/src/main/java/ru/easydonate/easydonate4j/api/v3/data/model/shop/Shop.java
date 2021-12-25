@@ -12,7 +12,7 @@ import java.util.Optional;
 import java.util.OptionalDouble;
 
 /**
- * The object that represents a shop and contains all data about it.
+ * The interface that represents a shop and contains all related data.
  * @author soknight
  */
 public interface Shop extends PrettyPrintable {

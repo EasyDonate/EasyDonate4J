@@ -8,6 +8,7 @@ import org.jetbrains.annotations.Nullable;
 
 /**
  * The enum that represents all possible and actual delivery modes.
+ * @author soknight
  */
 @Getter
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
