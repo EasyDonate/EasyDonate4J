@@ -55,8 +55,8 @@ public interface EasyDonateClient {
      * Create a new EasyDonate API client instance using a custom timeout values.
      * @param accessKey the access key of your shop on the EasyDonate site.
      * @param connectTimeout the connection establishing timeout.
-     * @param readTimeout the API response awaiting & reading timeout.
-     * @param writeTimeout the API request writing & sending timeout.
+     * @param readTimeout the API response awaiting and reading timeout.
+     * @param writeTimeout the API request writing and sending timeout.
      * @return The created API client instance.
      */
     static @NotNull EasyDonateClient create(
@@ -73,8 +73,8 @@ public interface EasyDonateClient {
      * @param accessKey the access key of your shop on the EasyDonate site.
      * @param userAgent the User-Agent header value for all further HTTP requests.
      * @param connectTimeout the connection establishing timeout.
-     * @param readTimeout the API response awaiting & reading timeout.
-     * @param writeTimeout the API request writing & sending timeout.
+     * @param readTimeout the API response awaiting and reading timeout.
+     * @param writeTimeout the API request writing and sending timeout.
      * @return The created API client instance.
      */
     static @NotNull EasyDonateClient create(
@@ -296,7 +296,7 @@ public interface EasyDonateClient {
         @NotNull Builder setResponseTimeout(long timeout, @NotNull TimeUnit timeUnit);
 
         /**
-         * Set the response awaiting & reading timeout.
+         * Set the response awaiting and reading timeout.
          * @param timeout a digital timeout value.
          * @param timeUnit the time unit of the specified value.
          * @return The builder instance for method chaining continuation.
@@ -304,7 +304,7 @@ public interface EasyDonateClient {
         @NotNull Builder setReadTimeout(long timeout, @NotNull TimeUnit timeUnit);
 
         /**
-         * Set the request writing & sending timeout.
+         * Set the request writing and sending timeout.
          * @param timeout a digital timeout value.
          * @param timeUnit the time unit of the specified value.
          * @return The builder instance for method chaining continuation.
