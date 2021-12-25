@@ -10,14 +10,16 @@
 [issuesImg]: https://img.shields.io/github/issues/SoKnight/EasyDonate4J?label=github%20issues&color=F7BF39&style=for-the-badge
 [issues]: https://github.com/SoKnight/EasyDonate4J/issues
 
+[wikiImg]: https://img.shields.io/badge/documentation%20language-russian-F7BF39?style=for-the-badge
+[wiki]: https://github.com/SoKnight/EasyDonate4J/wiki
+
 # EasyDonate4J
 The offical SDK for the [EasyDonate](https://easydonate.ru/) platform API written on Java.<br>
 Better than old revision: **feature-rich** & **modular** & **stable**!
 
 [![mavenReleaseImg]][mavenRelease] [![javadocImg]][javadoc]<br>
-[![licenseImg]][license] [![issuesImg]][issues]
-
-[Project Documentation (RU)](https://github.com/SoKnight/EasyDonate4J/wiki)
+[![licenseImg]][license] [![issuesImg]][issues]<br>
+[![wikiImg]][wiki]
 
 ## Features & TODO
 - M - its the Modularity
