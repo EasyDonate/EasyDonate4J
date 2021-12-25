@@ -1,6 +1,9 @@
 [mavenReleaseImg]: https://img.shields.io/maven-central/v/ru.easydonate.easydonate4j/parent?label=release&style=for-the-badge
 [mavenRelease]: https://search.maven.org/search?q=g:ru.easydonate.easydonate4j
 
+[javadocImg]: https://javadoc.io/badge2/ru.easydonate.easydonate4j/parent/javadoc.svg?label=javadoc&style=for-the-badge
+[javadoc]: https://javadoc.io/doc/ru.easydonate.easydonate4j
+
 [licenseImg]: https://img.shields.io/github/license/SoKnight/EasyDonate4J?style=for-the-badge
 [license]: https://github.com/SoKnight/EasyDonate4J/blob/master/LICENSE
 
@@ -11,7 +14,8 @@
 The offical SDK for the [EasyDonate](https://easydonate.ru/) platform API written on Java.<br>
 Better than old revision: **feature-rich** & **modular** & **stable**!
 
-[![mavenReleaseImg]][mavenRelease] [![licenseImg]][license] [![issuesImg]][issues]
+[![mavenReleaseImg]][mavenRelease] [![javadocImg]][javadoc]<br>
+[![licenseImg]][license] [![issuesImg]][issues]
 
 [Project Documentation (RU)](https://github.com/SoKnight/EasyDonate4J/wiki)
 
