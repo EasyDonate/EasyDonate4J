@@ -1,16 +1,16 @@
-[mavenReleaseImg]: https://img.shields.io/maven-central/v/ru.easydonate.easydonate4j/parent?label=release&color=F7BF39&style=for-the-badge
+[mavenReleaseImg]: https://img.shields.io/maven-central/v/ru.easydonate.easydonate4j/parent?label=release&color=3BAF18&style=for-the-badge
 [mavenRelease]: https://search.maven.org/search?q=g:ru.easydonate.easydonate4j
 
-[javadocImg]: https://javadoc.io/badge2/ru.easydonate.easydonate4j/parent/javadoc.svg?label=javadoc&color=F7BF39&style=for-the-badge
+[javadocImg]: https://javadoc.io/badge2/ru.easydonate.easydonate4j/parent/javadoc.svg?label=javadoc&color=3BAF18&style=for-the-badge
 [javadoc]: https://javadoc.io/doc/ru.easydonate.easydonate4j
 
-[licenseImg]: https://img.shields.io/github/license/SoKnight/EasyDonate4J?label=license&color=F7BF39&style=for-the-badge
+[licenseImg]: https://img.shields.io/github/license/SoKnight/EasyDonate4J?label=license&color=3BAF18&style=for-the-badge
 [license]: https://github.com/SoKnight/EasyDonate4J/blob/master/LICENSE
 
-[issuesImg]: https://img.shields.io/github/issues/SoKnight/EasyDonate4J?label=github%20issues&color=F7BF39&style=for-the-badge
+[issuesImg]: https://img.shields.io/github/issues/SoKnight/EasyDonate4J?label=github%20issues&color=3BAF18&style=for-the-badge
 [issues]: https://github.com/SoKnight/EasyDonate4J/issues
 
-[wikiImg]: https://img.shields.io/badge/documentation%20language-russian-F7BF39?style=for-the-badge
+[wikiImg]: https://img.shields.io/badge/documentation%20language-russian-3BAF18?style=for-the-badge
 [wiki]: https://github.com/SoKnight/EasyDonate4J/wiki
 
 # EasyDonate4J
