@@ -1,10 +1,21 @@
 package ru.easydonate.easydonate4j.api.v3.data.model.shop.purchase;
 
 import org.jetbrains.annotations.NotNull;
-import ru.easydonate.easydonate4j.data.model.PrettyPrintable;
 
-public interface CouponDiscount extends PrettyPrintable {
+/**
+ * The interface that represents a coupon related
+ * discount and used by the {@link Discounts} model.
+ * @see Discount
+ * @see Discounts
+ * @see PurchasedProduct#getDiscounts()
+ * @author soknight
+ */
+public interface CouponDiscount extends Discount {
 
+    /**
+     * Get the coupon code.
+     * @return The coupon code.
+     */
     @NotNull String getCode();
 
 }

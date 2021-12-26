@@ -9,13 +9,17 @@ import ru.easydonate.easydonate4j.http.response.HttpResponse;
 @Getter
 public class ApiResponseFailureException extends HttpResponseException {
 
+    private static final String MESSAGE_FORMAT = "The API server has returned a failure response with code #%d (%s): %s";
+
     private final ErrorResponse errorResponse;
 
     public ApiResponseFailureException(@NotNull HttpResponse httpResponse, @NotNull ErrorResponse errorResponse) {
         super(httpResponse, String.format(
-                "The API server has returned a failure response with code #%d (%s): %s",
-                errorResponse.getErrorCode(), errorResponse.getErrorDescription(), errorResponse.getContent())
-        );
+                MESSAGE_FORMAT,
+                errorResponse.getErrorCode(),
+                errorResponse.getErrorDescription(),
+                errorResponse.getContent()
+        ));
 
         this.errorResponse = errorResponse;
     }

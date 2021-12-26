@@ -5,10 +5,12 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import ru.easydonate.easydonate4j.api.v3.data.model.shop.product.Product;
 import ru.easydonate.easydonate4j.data.model.PrettyPrintable;
 
 /**
- * The interface that represents an additional fields in products.
+ * The interface that represents an additional field in product.
+ * @see Product#getAdditionalFields()
  * @author soknight
  */
 public interface AdditionalField extends PrettyPrintable {

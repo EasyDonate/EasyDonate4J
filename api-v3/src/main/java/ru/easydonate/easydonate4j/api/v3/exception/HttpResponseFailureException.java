@@ -6,11 +6,15 @@ import ru.easydonate.easydonate4j.http.response.HttpResponse;
 
 public class HttpResponseFailureException extends HttpResponseException {
 
+    private static final String MESSAGE_FORMAT = "The API server has returned an unsuccessful HTTP response with code #%d (%s): %s";
+
     public HttpResponseFailureException(@NotNull HttpResponse response) {
         super(response, String.format(
-                "The API server has returned an unsuccessful HTTP response with code #%d (%s): %s",
-                response.getCode(), response.getMessage(), response.getContent())
-        );
+                MESSAGE_FORMAT,
+                response.getCode(),
+                response.getMessage(),
+                response.getContent()
+        ));
     }
 
 }

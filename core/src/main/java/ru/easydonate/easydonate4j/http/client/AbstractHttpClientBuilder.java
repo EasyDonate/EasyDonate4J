@@ -13,31 +13,31 @@ public abstract class AbstractHttpClientBuilder implements HttpClient.Builder {
     protected long writeTimeout = Constants.WRITE_TIMEOUT;
 
     @Override
-    public HttpClient.@NotNull Builder setConnectTimeout(long connectTimeout) {
+    public @NotNull HttpClient.Builder setConnectTimeout(long connectTimeout) {
         this.connectTimeout = connectTimeout;
         return this;
     }
 
     @Override
-    public HttpClient.@NotNull Builder setResponseTimeout(long responseTimeout) {
+    public @NotNull HttpClient.Builder setResponseTimeout(long responseTimeout) {
         this.responseTimeout = responseTimeout;
         return this;
     }
 
     @Override
-    public HttpClient.@NotNull Builder setReadTimeout(long readTimeout) {
+    public @NotNull HttpClient.Builder setReadTimeout(long readTimeout) {
         this.readTimeout = readTimeout;
         return this;
     }
 
     @Override
-    public HttpClient.@NotNull Builder setWriteTimeout(long writeTimeout) {
+    public @NotNull HttpClient.Builder setWriteTimeout(long writeTimeout) {
         this.writeTimeout = writeTimeout;
         return this;
     }
 
     @Override
-    public HttpClient.@NotNull Builder setUserAgent(@NotNull String userAgent) {
+    public @NotNull HttpClient.Builder setUserAgent(@NotNull String userAgent) {
         Validate.notEmpty(userAgent, "userAgent");
         this.userAgent = userAgent;
         return this;

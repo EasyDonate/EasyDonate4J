@@ -20,6 +20,7 @@ public abstract class AbstractPlugin implements Plugin {
         Validate.notNull(client, "client");
         Validate.notNull(requestExecutor, "requestExecutor");
         Validate.notNull(pluginType, "pluginType");
+
         this.client = client;
         this.requestExecutor = requestExecutor;
         this.pluginType = pluginType;

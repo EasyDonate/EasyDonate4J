@@ -6,10 +6,12 @@ import org.jetbrains.annotations.NotNull;
 @Getter
 public final class ModuleAlreadyRegisteredException extends RuntimeException {
 
+    private static final String MESSAGE_FORMAT = "Module '%s' is already registered!";
+
     private final @NotNull ModuleType moduleType;
 
     public ModuleAlreadyRegisteredException(@NotNull ModuleType moduleType) {
-        super(String.format("Module '%s' is already registered!", moduleType.getName()));
+        super(String.format(MESSAGE_FORMAT, moduleType.getName()));
         this.moduleType = moduleType;
     }
 

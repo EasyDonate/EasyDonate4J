@@ -31,7 +31,7 @@ public interface HttpClient {
 
     @NotNull CompletableFuture<HttpResponse> requestGetAsync(@NotNull String url, @NotNull Headers headers) throws HttpRequestException;
 
-    @NotNull CompletableFuture<HttpResponse> requestGetAsync(@NotNull String url, @NotNull Headers headers, @NotNull QueryParams queryParams) throws HttpRequestException;
+    @NotNull CompletableFuture<HttpResponse> requestGetAsync(@NotNull String url, @NotNull Headers headers, @NotNull QueryParams queryParams);
 
     interface Builder {
 

@@ -22,7 +22,7 @@ Better than old revision: **feature-rich** & **modular** & **stable**!
 [![wikiImg]][wiki]
 
 ## Features & TODO
-- M - its the Modularity
+- M - it's the Modularity
 - Full support for API v3
 - Support for platform plugins (introduced with API v3)
 - HTTP client implementations (JDK Built-In, Apache HTTP Client, OkHttp)
@@ -34,11 +34,11 @@ Better than old revision: **feature-rich** & **modular** & **stable**!
 - **[WIP]** The russian only documentation on the GitHub WiKi.
 
 ### Known API versions:
-| API Version | Supported? | Documentation |
-|:---:|:---:|:---:|
-| v1 | **No** | **Deprecated** |
-| v2 | **No** | **[Russian](https://api.easydonate.ru/v/v2)** |
-| v3 | **Yes** | **[Russian](https://api.easydonate.ru/v/v3)** |
+| API Version | Supported? |                 Documentation                 |
+|:-----------:|:----------:|:---------------------------------------------:|
+|     v1      |   **No**   |                **Deprecated**                 |
+|     v2      |   **No**   | **[Russian](https://api.easydonate.ru/v/v2)** |
+|     v3      |  **Yes**   | **[Russian](https://api.easydonate.ru/v/v3)** |
 
 ## Before you start
 You should to read about any API restrictions before you start:
