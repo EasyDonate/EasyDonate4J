@@ -18,11 +18,11 @@ public final class YandexMetrikaPlugin extends AbstractPlugin {
 
     @Override
     public @NotNull YandexMetrikaPluginSettings getSettings() throws HttpRequestException, HttpResponseException {
-        return requestExecutor.executeRequest(YandexMetrikaGetSettingsResponse.class, null, null);
+        return requestExecutor.executeRequest(YandexMetrikaGetSettingsResponse.class);
     }
 
     public @NotNull String getEmbed() throws HttpRequestException, HttpResponseException {
-        return requestExecutor.executeRequest(YandexMetrikaGetEmbedResponse.class, null, null);
+        return requestExecutor.executeRequest(YandexMetrikaGetEmbedResponse.class);
     }
 
 }

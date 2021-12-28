@@ -17,7 +17,7 @@ public final class VKNewsPlugin extends AbstractPlugin {
 
     @Override
     public @NotNull VKNewsPluginSettings getSettings() throws HttpRequestException, HttpResponseException {
-        return requestExecutor.executeRequest(VKNewsGetSettingsResponse.class, null, null);
+        return requestExecutor.executeRequest(VKNewsGetSettingsResponse.class);
     }
 
 }

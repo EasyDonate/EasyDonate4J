@@ -7,11 +7,13 @@ import org.apache.hc.client5.http.async.methods.SimpleResponseConsumer;
 import org.apache.hc.client5.http.config.RequestConfig;
 import org.apache.hc.client5.http.impl.async.CloseableHttpAsyncClient;
 import org.apache.hc.client5.http.impl.async.HttpAsyncClients;
+import org.apache.hc.core5.http.ContentType;
 import org.jetbrains.annotations.NotNull;
+import ru.easydonate.easydonate4j.exception.HttpRequestException;
 import ru.easydonate.easydonate4j.http.Headers;
-import ru.easydonate.easydonate4j.http.QueryParams;
 import ru.easydonate.easydonate4j.http.client.AbstractHttpClient;
-import ru.easydonate.easydonate4j.http.response.HttpResponse;
+import ru.easydonate.easydonate4j.http.request.EasyHttpRequest;
+import ru.easydonate.easydonate4j.http.response.EasyHttpResponse;
 import ru.easydonate.easydonate4j.util.Validate;
 
 import java.util.concurrent.CompletableFuture;
@@ -39,15 +41,21 @@ public class ApacheHttpClient extends AbstractHttpClient {
     }
 
     @Override
-    public @NotNull CompletableFuture<HttpResponse> requestGetAsync(@NotNull String url, @NotNull Headers headers, @NotNull QueryParams queryParams) {
-        Validate.notNull(url, "url");
-        Validate.notNull(headers, "headers");
-        Validate.notNull(queryParams, "queryParams");
+    public @NotNull CompletableFuture<EasyHttpResponse> executeAsync(@NotNull EasyHttpRequest httpRequest) throws HttpRequestException {
+        Validate.notNull(httpRequest, "httpRequest");
 
-        SimpleHttpRequest request = new SimpleHttpRequest(Method.GET.name(), url + queryParams.getAsString());
-        headers.getAsMap().forEach(request::setHeader);
+        String url = httpRequest.resolveUrl();
+        Method method = httpRequest.getMethod();
+        Headers headers = httpRequest.getHeaders();
 
-        CompletableFuture<HttpResponse> future = new CompletableFuture<>();
+        SimpleHttpRequest request = new SimpleHttpRequest(method.getName(), url);
+        if(headers != null)
+            headers.getAsMap().forEach(request::setHeader);
+
+        if(method.isHasBody() && httpRequest.hasBody())
+            request.setBody(httpRequest.getBody(), ContentType.APPLICATION_JSON);
+
+        CompletableFuture<EasyHttpResponse> future = new CompletableFuture<>();
         client.execute(SimpleRequestProducer.create(request), SimpleResponseConsumer.create(), new FuturedCallback(future));
         return future;
     }

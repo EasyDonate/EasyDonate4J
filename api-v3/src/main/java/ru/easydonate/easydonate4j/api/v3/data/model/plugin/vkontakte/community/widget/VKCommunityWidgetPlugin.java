@@ -18,11 +18,11 @@ public final class VKCommunityWidgetPlugin extends AbstractPlugin {
 
     @Override
     public @NotNull VKCommunityWidgetPluginSettings getSettings() throws HttpRequestException, HttpResponseException {
-        return requestExecutor.executeRequest(VKCommunityWidgetGetSettingsResponse.class, null, null);
+        return requestExecutor.executeRequest(VKCommunityWidgetGetSettingsResponse.class);
     }
 
     public @NotNull String getEmbed() throws HttpRequestException, HttpResponseException {
-        return requestExecutor.executeRequest(VKCommunityWidgetGetEmbedResponse.class, null, null);
+        return requestExecutor.executeRequest(VKCommunityWidgetGetEmbedResponse.class);
     }
 
 }

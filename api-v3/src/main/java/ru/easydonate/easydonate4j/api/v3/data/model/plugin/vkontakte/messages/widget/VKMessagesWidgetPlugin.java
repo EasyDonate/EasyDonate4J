@@ -18,11 +18,11 @@ public final class VKMessagesWidgetPlugin extends AbstractPlugin {
 
     @Override
     public @NotNull VKMessagesWidgetPluginSettings getSettings() throws HttpRequestException, HttpResponseException {
-        return requestExecutor.executeRequest(VKMessagesWidgetGetSettingsResponse.class, null, null);
+        return requestExecutor.executeRequest(VKMessagesWidgetGetSettingsResponse.class);
     }
 
     public @NotNull String getEmbed() throws HttpRequestException, HttpResponseException {
-        return requestExecutor.executeRequest(VKMessagesWidgetGetEmbedResponse.class, null, null);
+        return requestExecutor.executeRequest(VKMessagesWidgetGetEmbedResponse.class);
     }
 
 }

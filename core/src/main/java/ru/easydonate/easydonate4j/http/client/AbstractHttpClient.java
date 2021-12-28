@@ -3,14 +3,11 @@ package ru.easydonate.easydonate4j.http.client;
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 import ru.easydonate.easydonate4j.exception.HttpRequestException;
-import ru.easydonate.easydonate4j.http.Headers;
-import ru.easydonate.easydonate4j.http.QueryParams;
-import ru.easydonate.easydonate4j.http.response.HttpResponse;
+import ru.easydonate.easydonate4j.http.request.EasyHttpRequest;
+import ru.easydonate.easydonate4j.http.response.EasyHttpResponse;
 import ru.easydonate.easydonate4j.util.Validate;
 
-import java.util.concurrent.CancellationException;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.CompletionException;
 
 @Getter
 public abstract class AbstractHttpClient implements HttpClient {
@@ -27,49 +24,23 @@ public abstract class AbstractHttpClient implements HttpClient {
     }
 
     @Override
-    public @NotNull HttpResponse requestGet(@NotNull String url) throws HttpRequestException {
-        return requestGet(url, Headers.EMPTY, QueryParams.EMPTY);
+    public @NotNull EasyHttpResponse execute(@NotNull EasyHttpRequest httpRequest) throws HttpRequestException {
+        return executeAsync(httpRequest).join();
     }
 
     @Override
-    public @NotNull HttpResponse requestGet(@NotNull String url, @NotNull QueryParams queryParams) throws HttpRequestException {
-        return requestGet(url, Headers.EMPTY, queryParams);
-    }
+    public @NotNull CompletableFuture<EasyHttpResponse> executeAsync(@NotNull EasyHttpRequest httpRequest) throws HttpRequestException {
+        CompletableFuture<EasyHttpResponse> future = new CompletableFuture<>();
 
-    @Override
-    public @NotNull HttpResponse requestGet(@NotNull String url, @NotNull Headers headers) throws HttpRequestException {
-        return requestGet(url, headers, QueryParams.EMPTY);
-    }
+        CompletableFuture.runAsync(() -> {
+            try {
+                future.complete(execute(httpRequest));
+            } catch (HttpRequestException ex) {
+                future.completeExceptionally(ex);
+            }
+        });
 
-    @Override
-    public @NotNull HttpResponse requestGet(@NotNull String url, @NotNull Headers headers, @NotNull QueryParams queryParams) throws HttpRequestException {
-        try {
-            return requestGetAsync(url, headers, queryParams).join();
-        } catch (CancellationException | CompletionException ex) {
-            Throwable cause = ex.getCause();
-            if(cause == null)
-                throw new HttpRequestException(ex);
-
-            if(cause instanceof HttpRequestException)
-                throw (HttpRequestException) cause;
-            else
-                throw new HttpRequestException(cause);
-        }
-    }
-
-    @Override
-    public @NotNull CompletableFuture<HttpResponse> requestGetAsync(@NotNull String url) throws HttpRequestException {
-        return requestGetAsync(url, Headers.EMPTY, QueryParams.EMPTY);
-    }
-
-    @Override
-    public @NotNull CompletableFuture<HttpResponse> requestGetAsync(@NotNull String url, @NotNull QueryParams queryParams) throws HttpRequestException {
-        return requestGetAsync(url, Headers.EMPTY, queryParams);
-    }
-
-    @Override
-    public @NotNull CompletableFuture<HttpResponse> requestGetAsync(@NotNull String url, @NotNull Headers headers) throws HttpRequestException {
-        return requestGetAsync(url, headers, QueryParams.EMPTY);
+        return future;
     }
 
 }

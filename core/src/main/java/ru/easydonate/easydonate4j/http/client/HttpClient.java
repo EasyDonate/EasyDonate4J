@@ -5,9 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 import ru.easydonate.easydonate4j.exception.HttpRequestException;
-import ru.easydonate.easydonate4j.http.Headers;
-import ru.easydonate.easydonate4j.http.QueryParams;
-import ru.easydonate.easydonate4j.http.response.HttpResponse;
+import ru.easydonate.easydonate4j.http.request.EasyHttpRequest;
+import ru.easydonate.easydonate4j.http.response.EasyHttpResponse;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -17,21 +16,9 @@ public interface HttpClient {
 
     @NotNull Timeouts getTimeouts();
 
-    @NotNull HttpResponse requestGet(@NotNull String url) throws HttpRequestException;
+    @NotNull EasyHttpResponse execute(@NotNull EasyHttpRequest httpRequest) throws HttpRequestException;
 
-    @NotNull HttpResponse requestGet(@NotNull String url, @NotNull QueryParams queryParams) throws HttpRequestException;
-
-    @NotNull HttpResponse requestGet(@NotNull String url, @NotNull Headers headers) throws HttpRequestException;
-
-    @NotNull HttpResponse requestGet(@NotNull String url, @NotNull Headers headers, @NotNull QueryParams queryParams) throws HttpRequestException;
-
-    @NotNull CompletableFuture<HttpResponse> requestGetAsync(@NotNull String url) throws HttpRequestException;
-
-    @NotNull CompletableFuture<HttpResponse> requestGetAsync(@NotNull String url, @NotNull QueryParams queryParams) throws HttpRequestException;
-
-    @NotNull CompletableFuture<HttpResponse> requestGetAsync(@NotNull String url, @NotNull Headers headers) throws HttpRequestException;
-
-    @NotNull CompletableFuture<HttpResponse> requestGetAsync(@NotNull String url, @NotNull Headers headers, @NotNull QueryParams queryParams);
+    @NotNull CompletableFuture<EasyHttpResponse> executeAsync(@NotNull EasyHttpRequest httpRequest) throws HttpRequestException;
 
     interface Builder {
 
@@ -65,10 +52,11 @@ public interface HttpClient {
     @AllArgsConstructor(access = AccessLevel.PRIVATE)
     enum Method {
 
-        GET("GET"),
-        POST("POST");
+        GET("GET", false),
+        POST("POST", true);
 
         private final String name;
+        private final boolean hasBody;
 
     }
 

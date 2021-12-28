@@ -18,11 +18,11 @@ public final class DiscordWidgetPlugin extends AbstractPlugin {
 
     @Override
     public @NotNull DiscordWidgetPluginSettings getSettings() throws HttpRequestException, HttpResponseException {
-        return requestExecutor.executeRequest(DiscordWidgetGetSettingsResponse.class, null, null);
+        return requestExecutor.executeRequest(DiscordWidgetGetSettingsResponse.class);
     }
 
     public @NotNull String getEmbed() throws HttpRequestException, HttpResponseException {
-        return requestExecutor.executeRequest(DiscordWidgetGetEmbedResponse.class, null, null);
+        return requestExecutor.executeRequest(DiscordWidgetGetEmbedResponse.class);
     }
 
 }

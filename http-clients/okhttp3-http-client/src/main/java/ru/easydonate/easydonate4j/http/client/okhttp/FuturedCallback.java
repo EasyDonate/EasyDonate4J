@@ -7,8 +7,8 @@ import okhttp3.Response;
 import okhttp3.ResponseBody;
 import org.jetbrains.annotations.NotNull;
 import ru.easydonate.easydonate4j.exception.HttpRequestException;
+import ru.easydonate.easydonate4j.http.response.SimpleEasyHttpResponse;
 import ru.easydonate.easydonate4j.http.response.EasyHttpResponse;
-import ru.easydonate.easydonate4j.http.response.HttpResponse;
 
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
@@ -16,7 +16,7 @@ import java.util.concurrent.CompletableFuture;
 @AllArgsConstructor
 public final class FuturedCallback implements Callback {
 
-    private final CompletableFuture<HttpResponse> future;
+    private final CompletableFuture<EasyHttpResponse> future;
 
     @Override
     public void onFailure(@NotNull Call call, @NotNull IOException ex) {
@@ -26,21 +26,21 @@ public final class FuturedCallback implements Callback {
     @Override
     public void onResponse(@NotNull Call call, @NotNull Response okhttpResponse) {
         try {
-            HttpResponse response = parseResponse(okhttpResponse);
+            EasyHttpResponse response = parseResponse(okhttpResponse);
             future.complete(response);
         } catch (IOException ex) {
             future.completeExceptionally(new HttpRequestException(ex));
         }
     }
 
-    private @NotNull HttpResponse parseResponse(@NotNull Response okhttpResponse) throws IOException {
+    private @NotNull EasyHttpResponse parseResponse(@NotNull Response okhttpResponse) throws IOException {
         int responseCode = okhttpResponse.code();
         String responseMessage = okhttpResponse.message();
 
         ResponseBody body = okhttpResponse.body();
         String content = body != null ? body.string() : null;
 
-        return new EasyHttpResponse(responseCode, responseMessage, content);
+        return new SimpleEasyHttpResponse(responseCode, responseMessage, content);
     }
 
 }

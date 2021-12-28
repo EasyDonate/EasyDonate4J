@@ -21,14 +21,14 @@ public final class SurchargePlugin extends AbstractPlugin {
 
     @Override
     public @NotNull SurchargePluginSettings getSettings() throws HttpRequestException, HttpResponseException {
-        return requestExecutor.executeRequest(SurchargeGetSettingsResponse.class, null, null);
+        return requestExecutor.executeRequest(SurchargeGetSettingsResponse.class);
     }
 
     public @NotNull SurchargeDiscountsList getDiscountsList(@NotNull String customer) throws HttpRequestException, HttpResponseException {
         Validate.notNull(customer, "customer");
 
         QueryParams queryParams = new QueryParams().add("username", customer);
-        return requestExecutor.executeRequest(SurchargeGetDiscountsListResponse.class, null, queryParams);
+        return requestExecutor.executeRequest(SurchargeGetDiscountsListResponse.class, queryParams);
     }
 
     public @NotNull SurchargeDiscount getDiscount(@NotNull String customer, int productId) throws HttpRequestException, HttpResponseException {
@@ -36,7 +36,7 @@ public final class SurchargePlugin extends AbstractPlugin {
         Validate.isTrue(productId > 0, "'productId' must be greater than 0!");
 
         QueryParams queryParams = new QueryParams().add("username", customer).add("product_id", productId);
-        return requestExecutor.executeRequest(SurchargeGetDiscountResponse.class, null, queryParams);
+        return requestExecutor.executeRequest(SurchargeGetDiscountResponse.class, queryParams);
     }
 
 }

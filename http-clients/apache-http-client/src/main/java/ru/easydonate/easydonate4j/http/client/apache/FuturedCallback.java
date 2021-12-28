@@ -5,15 +5,15 @@ import org.apache.hc.client5.http.async.methods.SimpleHttpResponse;
 import org.apache.hc.core5.concurrent.FutureCallback;
 import org.jetbrains.annotations.NotNull;
 import ru.easydonate.easydonate4j.exception.HttpRequestException;
+import ru.easydonate.easydonate4j.http.response.SimpleEasyHttpResponse;
 import ru.easydonate.easydonate4j.http.response.EasyHttpResponse;
-import ru.easydonate.easydonate4j.http.response.HttpResponse;
 
 import java.util.concurrent.CompletableFuture;
 
 @AllArgsConstructor
 final class FuturedCallback implements FutureCallback<SimpleHttpResponse> {
 
-    private final CompletableFuture<HttpResponse> future;
+    private final CompletableFuture<EasyHttpResponse> future;
 
     @Override
     public void completed(@NotNull SimpleHttpResponse result) {
@@ -30,11 +30,11 @@ final class FuturedCallback implements FutureCallback<SimpleHttpResponse> {
         future.cancel(true);
     }
 
-    private @NotNull HttpResponse parseResponse(@NotNull SimpleHttpResponse apacheResponse) {
+    private @NotNull EasyHttpResponse parseResponse(@NotNull SimpleHttpResponse apacheResponse) {
         int code = apacheResponse.getCode();
         String message = apacheResponse.getReasonPhrase();
         String content = apacheResponse.getBodyText();
-        return new EasyHttpResponse(code, message, content);
+        return new SimpleEasyHttpResponse(code, message, content);
     }
 
 }

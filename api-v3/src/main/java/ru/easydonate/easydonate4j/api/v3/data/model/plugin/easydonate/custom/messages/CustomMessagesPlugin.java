@@ -17,7 +17,7 @@ public final class CustomMessagesPlugin extends AbstractPlugin {
 
     @Override
     public @NotNull CustomMessagesPluginSettings getSettings() throws HttpRequestException, HttpResponseException {
-        return requestExecutor.executeRequest(CustomMessagesGetSettingsResponse.class, null, null);
+        return requestExecutor.executeRequest(CustomMessagesGetSettingsResponse.class);
     }
 
 }

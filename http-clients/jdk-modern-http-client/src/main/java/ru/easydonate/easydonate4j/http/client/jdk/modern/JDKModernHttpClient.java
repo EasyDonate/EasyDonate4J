@@ -1,17 +1,21 @@
 package ru.easydonate.easydonate4j.http.client.jdk.modern;
 
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import ru.easydonate.easydonate4j.Constants;
+import ru.easydonate.easydonate4j.exception.HttpRequestException;
 import ru.easydonate.easydonate4j.http.Headers;
-import ru.easydonate.easydonate4j.http.QueryParams;
 import ru.easydonate.easydonate4j.http.client.AbstractHttpClient;
+import ru.easydonate.easydonate4j.http.request.EasyHttpRequest;
 import ru.easydonate.easydonate4j.http.response.EasyHttpResponse;
-import ru.easydonate.easydonate4j.http.response.HttpResponse;
+import ru.easydonate.easydonate4j.http.response.SimpleEasyHttpResponse;
 import ru.easydonate.easydonate4j.util.Validate;
 
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 import java.util.concurrent.CompletableFuture;
 
@@ -33,17 +37,20 @@ public class JDKModernHttpClient extends AbstractHttpClient {
     }
 
     @Override
-    public @NotNull CompletableFuture<HttpResponse> requestGetAsync(@NotNull String url, @NotNull Headers headers, @NotNull QueryParams queryParams) {
-        Validate.notNull(url, "url");
-        Validate.notNull(headers, "headers");
-        Validate.notNull(queryParams, "queryParams");
+    public @NotNull CompletableFuture<EasyHttpResponse> executeAsync(@NotNull EasyHttpRequest httpRequest) throws HttpRequestException {
+        Validate.notNull(httpRequest, "httpRequest");
+
+        String url = httpRequest.resolveUrl();
+        Method method = httpRequest.getMethod();
+        Headers headers = httpRequest.getHeaders();
 
         HttpRequest.Builder requestBuilder = HttpRequest.newBuilder()
-                .GET()
+                .method(method.getName(), resolveBodyPublisher(method, httpRequest.getBody()))
                 .setHeader("User-Agent", Constants.USER_AGENT)
-                .uri(URI.create(url + queryParams.getAsString()));
+                .uri(URI.create(url));
 
-        headers.getAsMap().forEach(requestBuilder::setHeader);
+        if(headers != null)
+            headers.getAsMap().forEach(requestBuilder::setHeader);
 
         if(timeouts.getResponseTimeout() > 0L)
             requestBuilder.timeout(Duration.ofMillis(timeouts.getResponseTimeout()));
@@ -51,10 +58,17 @@ public class JDKModernHttpClient extends AbstractHttpClient {
         return client.sendAsync(requestBuilder.build(), new ResponseBodyHandler()).thenApply(this::parseResponse);
     }
 
-    private @NotNull HttpResponse parseResponse(@NotNull java.net.http.HttpResponse<String> httpResponse) {
+    private @NotNull HttpRequest.BodyPublisher resolveBodyPublisher(@NotNull Method method, @Nullable String body) {
+        if(method.isHasBody() && body != null)
+            return HttpRequest.BodyPublishers.ofString(body, StandardCharsets.UTF_8);
+        else
+            return HttpRequest.BodyPublishers.noBody();
+    }
+
+    private @NotNull EasyHttpResponse parseResponse(@NotNull HttpResponse<String> httpResponse) {
         int responseCode = httpResponse.statusCode();
         String content = httpResponse.body();
-        return new EasyHttpResponse(responseCode, "<not provided>", content);
+        return new SimpleEasyHttpResponse(responseCode, "<not provided>", content);
     }
 
 }

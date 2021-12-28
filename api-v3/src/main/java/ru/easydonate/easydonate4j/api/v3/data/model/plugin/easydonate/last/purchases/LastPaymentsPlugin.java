@@ -19,11 +19,11 @@ public final class LastPaymentsPlugin extends AbstractPlugin {
 
     @Override
     public @NotNull LastPaymentsPluginSettings getSettings() throws HttpRequestException, HttpResponseException {
-        return requestExecutor.executeRequest(LastPaymentsGetSettingsResponse.class, null, null);
+        return requestExecutor.executeRequest(LastPaymentsGetSettingsResponse.class);
     }
 
     public @NotNull PaymentsList getLastPaymentsList() throws HttpRequestException, HttpResponseException {
-        return requestExecutor.executeRequest(LastPaymentsGetPaymentsListResponse.class, null, null);
+        return requestExecutor.executeRequest(LastPaymentsGetPaymentsListResponse.class);
     }
 
 }

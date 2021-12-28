@@ -1,17 +1,23 @@
 package ru.easydonate.easydonate4j.http.client.okhttp;
 
+import okhttp3.MediaType;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import ru.easydonate.easydonate4j.exception.HttpRequestException;
 import ru.easydonate.easydonate4j.http.Headers;
-import ru.easydonate.easydonate4j.http.QueryParams;
 import ru.easydonate.easydonate4j.http.client.AbstractHttpClient;
-import ru.easydonate.easydonate4j.http.response.HttpResponse;
+import ru.easydonate.easydonate4j.http.request.EasyHttpRequest;
+import ru.easydonate.easydonate4j.http.response.EasyHttpResponse;
 import ru.easydonate.easydonate4j.util.Validate;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
 
 public class OkHttpClient extends AbstractHttpClient {
+
+    public static final MediaType MEDIA_TYPE = MediaType.get("application/json; charset=utf-8");
 
     private final okhttp3.OkHttpClient client;
 
@@ -26,25 +32,31 @@ public class OkHttpClient extends AbstractHttpClient {
     }
 
     @Override
-    public @NotNull CompletableFuture<HttpResponse> requestGetAsync(
-            @NotNull String url,
-            @NotNull Headers headers,
-            @NotNull QueryParams queryParams
-    ) {
-        Validate.notNull(url, "url");
-        Validate.notNull(headers, "headers");
-        Validate.notNull(queryParams, "queryParams");
+    public @NotNull CompletableFuture<EasyHttpResponse> executeAsync(@NotNull EasyHttpRequest httpRequest) throws HttpRequestException {
+        Validate.notNull(httpRequest, "httpRequest");
+
+        String url = httpRequest.resolveUrl();
+        Method method = httpRequest.getMethod();
+        Headers headers = httpRequest.getHeaders();
 
         Request.Builder requestBuilder = new Request.Builder()
-                .get()
+                .method(method.getName(), resolveRequestBody(method, httpRequest.getBody()))
                 .header("User-Agent", userAgent)
-                .url(url + queryParams.getAsString());
+                .url(url);
 
-        headers.getAsMap().forEach(requestBuilder::header);
+        if(headers != null)
+            headers.getAsMap().forEach(requestBuilder::header);
 
-        CompletableFuture<HttpResponse> future = new CompletableFuture<>();
+        CompletableFuture<EasyHttpResponse> future = new CompletableFuture<>();
         client.newCall(requestBuilder.build()).enqueue(new FuturedCallback(future));
         return future;
+    }
+
+    private @Nullable RequestBody resolveRequestBody(@NotNull Method method, @Nullable String body) {
+        if(method.isHasBody() && body != null)
+            return RequestBody.create(body, MEDIA_TYPE);
+        else
+            return null;
     }
 
 }

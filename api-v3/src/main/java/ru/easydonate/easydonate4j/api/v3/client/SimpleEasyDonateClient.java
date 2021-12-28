@@ -39,20 +39,21 @@ import ru.easydonate.easydonate4j.exception.JsonSerializationException;
 import ru.easydonate.easydonate4j.http.Headers;
 import ru.easydonate.easydonate4j.http.QueryParams;
 import ru.easydonate.easydonate4j.http.client.HttpClient;
-import ru.easydonate.easydonate4j.http.response.HttpResponse;
+import ru.easydonate.easydonate4j.http.request.EasyHttpRequest;
+import ru.easydonate.easydonate4j.http.response.EasyHttpResponse;
 import ru.easydonate.easydonate4j.json.serialization.JsonSerializationService;
 import ru.easydonate.easydonate4j.json.serialization.implementation.registry.JsonModelsGroup;
 import ru.easydonate.easydonate4j.module.ModuleRegistrator;
 import ru.easydonate.easydonate4j.util.Validate;
 
 import java.nio.charset.StandardCharsets;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
 
 @Getter
-public final class SimpleEasyDonateClient implements EasyDonateClient {
+public class SimpleEasyDonateClient implements EasyDonateClient {
 
-    private static final String API_ENDPOINT = "https://easydonate.ru/api/v3/%s";
-    private static final String PLUGIN_API_ENDPOINT = "https://easydonate.ru/api/v3/plugin/%s/%s";
+    private static final String API_ENDPOINT = "https://easydonate.ru/api/v3";
 
     private final String accessKey;
     private final PluginManager pluginManager;
@@ -102,29 +103,29 @@ public final class SimpleEasyDonateClient implements EasyDonateClient {
 
     @Override
     public @NotNull Shop getShop() throws HttpRequestException, HttpResponseException {
-        return requestGetAndParseJson(GetShopResponse.class, "shop");
+        return executeShopRequest(GetShopResponse.class, "/shop");
     }
 
     @Override
     public @NotNull Product getProduct(int productId) throws HttpRequestException, HttpResponseException {
         Validate.isTrue(productId > 0, "'productId' must be greater than 0!");
-        return requestGetAndParseJson(GetProductResponse.class, "shop/product/%d", productId);
+        return executeShopRequest(GetProductResponse.class, "/shop/product/%d", productId);
     }
 
     @Override
     public @NotNull ProductsList getProductsList() throws HttpRequestException, HttpResponseException {
-        return requestGetAndParseJson(GetProductsListResponse.class, "shop/products");
+        return executeShopRequest(GetProductsListResponse.class, "/shop/products");
     }
 
     @Override
     public @NotNull Server getServer(int serverId) throws HttpRequestException, HttpResponseException {
         Validate.isTrue(serverId > 0, "'serverId' must be greater than 0!");
-        return requestGetAndParseJson(GetServerResponse.class, "shop/server/%d", serverId);
+        return executeShopRequest(GetServerResponse.class, "/shop/server/%d", serverId);
     }
 
     @Override
     public @NotNull ServersList getServersList() throws HttpRequestException, HttpResponseException {
-        return requestGetAndParseJson(GetServersListResponse.class, "shop/servers");
+        return executeShopRequest(GetServersListResponse.class, "/shop/servers");
     }
 
     @Override
@@ -136,7 +137,7 @@ public final class SimpleEasyDonateClient implements EasyDonateClient {
     public @NotNull MassSalesList getMassSalesList(@NotNull ActivityFlag activityFlag) throws HttpRequestException, HttpResponseException {
         Validate.notNull(activityFlag, "activityFlag");
         QueryParams queryParams = activityFlag.addAsQueryParameter(new QueryParams());
-        return requestGetAndParseJson(GetMassSalesListResponse.class, "shop/massSales", queryParams);
+        return executeShopRequest(GetMassSalesListResponse.class, "/shop/massSales", queryParams);
     }
 
     @Override
@@ -148,18 +149,18 @@ public final class SimpleEasyDonateClient implements EasyDonateClient {
     public @NotNull CouponsList getCouponsList(@NotNull ActivityFlag activityFlag) throws HttpRequestException, HttpResponseException {
         Validate.notNull(activityFlag, "activityFlag");
         QueryParams queryParams = activityFlag.addAsQueryParameter(new QueryParams());
-        return requestGetAndParseJson(GetCouponsListResponse.class, "shop/coupons", queryParams);
+        return executeShopRequest(GetCouponsListResponse.class, "/shop/coupons", queryParams);
     }
 
     @Override
     public @NotNull Payment getPayment(int paymentId) throws HttpRequestException, HttpResponseException {
         Validate.isTrue(paymentId > 0, "'paymentId' must be greater than 0!");
-        return requestGetAndParseJson(GetPaymentResponse.class, "shop/payment/%d", paymentId);
+        return executeShopRequest(GetPaymentResponse.class, "/shop/payment/%d", paymentId);
     }
 
     @Override
     public @NotNull PaymentsList getPaymentsList() throws HttpRequestException, HttpResponseException {
-        return requestGetAndParseJson(GetPaymentsListResponse.class, "shop/payments");
+        return executeShopRequest(GetPaymentsListResponse.class, "/shop/payments");
     }
 
     @Override
@@ -170,17 +171,40 @@ public final class SimpleEasyDonateClient implements EasyDonateClient {
     @Override
     public @NotNull PendingPayment createPayment(@NotNull PendingPaymentBuilder paymentBuilder) throws HttpRequestException, HttpResponseException {
         Validate.notNull(paymentBuilder, "paymentBuilder");
-        return requestGetAndParseJson(CreatePaymentResponse.class, "shop/payment/create", paymentBuilder.toQueryParams());
+        return executeShopRequest(CreatePaymentResponse.class, "/shop/payment/create", paymentBuilder.toQueryParams());
     }
 
-    public <T> @NotNull T executePluginRequest(
+    private <T> @NotNull T executeShopRequest(
+            @NotNull Class<? extends ApiResponse<T>> responseType,
+            @NotNull String apiPath,
+            @Nullable Object... pathArgs
+    ) throws HttpRequestException, HttpResponseException {
+        return executeShopRequest(responseType, apiPath, null, pathArgs);
+    }
+
+    private <T> @NotNull T executeShopRequest(
+            @NotNull Class<? extends ApiResponse<T>> responseType,
+            @NotNull String apiPath,
+            @Nullable QueryParams queryParams,
+            @Nullable Object... pathArgs
+    ) throws HttpRequestException, HttpResponseException {
+        EasyHttpRequest httpRequest = EasyHttpRequest.builder(httpClient, HttpClient.Method.GET)
+                .setApiEndpoint(API_ENDPOINT)
+                .setApiPath(apiPath, pathArgs)
+                .setHeaders(defaultHeaders)
+                .setQueryParams(queryParams)
+                .build();
+        
+        return request(responseType, httpRequest);
+    }
+
+    private <T> @NotNull T executePluginRequest(
             @NotNull Class<? extends ApiResponse<T>> responseType,
             @NotNull Headers headers,
-            @NotNull QueryParams queryParams
+            @Nullable QueryParams queryParams
     ) throws HttpRequestException, HttpResponseException {
         Validate.notNull(responseType, "responseType");
         Validate.notNull(headers, "headers");
-        Validate.notNull(queryParams, "queryParams");
 
         PluginApiResponse annotation = responseType.getAnnotation(PluginApiResponse.class);
         if(annotation == null)
@@ -189,60 +213,58 @@ public final class SimpleEasyDonateClient implements EasyDonateClient {
         PluginType pluginType = annotation.pluginType();
         String apiMethod = annotation.apiMethod();
 
-        String url = getPluginApiEndpointBasedUrl(pluginType, apiMethod);
-        return requestGetAndParseJson(responseType, url, headers, queryParams);
+        EasyHttpRequest httpRequest = EasyHttpRequest.builder(httpClient, HttpClient.Method.GET)
+                .setApiEndpoint(API_ENDPOINT)
+                .setApiPath("/plugin/%s/%s", pluginType.getApiName(), apiMethod)
+                .setHeaders(headers)
+                .setQueryParams(queryParams)
+                .build();
+
+        return request(responseType, httpRequest);
     }
 
-    public <T> @NotNull T requestGetAndParseJson(
-            @NotNull Class<? extends ApiResponse<T>> responseObjectType,
-            @NotNull String path,
-            @Nullable Object... pathArgs
+    @Override
+    public <T> @NotNull T request(
+            @NotNull Class<? extends ApiResponse<T>> responseObjectType, 
+            @NotNull EasyHttpRequest httpRequest
     ) throws HttpRequestException, HttpResponseException {
-        return requestGetAndParseJson(responseObjectType, path, defaultHeaders, QueryParams.EMPTY, pathArgs);
-    }
-
-    public <T> @NotNull T requestGetAndParseJson(
-            @NotNull Class<? extends ApiResponse<T>> responseObjectType,
-            @NotNull String path,
-            @NotNull QueryParams queryParams,
-            @Nullable Object... pathArgs
-    ) throws HttpRequestException, HttpResponseException {
-        return requestGetAndParseJson(responseObjectType, path, defaultHeaders, queryParams, pathArgs);
-    }
-
-    public <T> @NotNull T requestGetAndParseJson(
-            @NotNull Class<? extends ApiResponse<T>> responseObjectType,
-            @NotNull String path,
-            @NotNull Headers headers,
-            @Nullable Object... pathArgs
-    ) throws HttpRequestException, HttpResponseException {
-        return requestGetAndParseJson(responseObjectType, path, headers, QueryParams.EMPTY, pathArgs);
-    }
-
-    public <T> @NotNull T requestGetAndParseJson(
-            @NotNull Class<? extends ApiResponse<T>> responseObjectType,
-            @NotNull String path,
-            @NotNull Headers headers,
-            @NotNull QueryParams queryParams,
-            @Nullable Object... pathArgs
-    ) throws HttpRequestException, HttpResponseException {
-        String url = getApiEndpointBasedUrl(path, pathArgs);
-        return requestGetAndParseJson(responseObjectType, url, headers, queryParams);
-    }
-
-    public <T> @NotNull T requestGetAndParseJson(
-            @NotNull Class<? extends ApiResponse<T>> responseObjectType,
-            @NotNull String url,
-            @NotNull Headers headers,
-            @NotNull QueryParams queryParams
-    ) throws HttpRequestException, HttpResponseException {
-        HttpResponse httpResponse = httpClient.requestGet(url, headers, queryParams);
-
-        if(!httpResponse.isSuccess())
+        Validate.notNull(responseObjectType, "responseObjectType");
+        Validate.notNull(httpRequest, "httpRequest");
+        
+        EasyHttpResponse httpResponse = httpClient.execute(httpRequest);
+        if(httpResponse.isSuccess())
+            return deserializeResponseContent(responseObjectType, httpResponse);
+        else
             throw new HttpResponseFailureException(httpResponse);
+    }
 
+    @Override
+    public @NotNull <T> CompletableFuture<T> requestAsync(
+            @NotNull Class<? extends ApiResponse<T>> responseObjectType, 
+            @NotNull EasyHttpRequest httpRequest
+    ) {
+        Validate.notNull(responseObjectType, "responseObjectType");
+        Validate.notNull(httpRequest, "httpRequest");
+
+        CompletableFuture<T> future = new CompletableFuture<>();
+
+        CompletableFuture.runAsync(() -> {
+            try {
+                future.complete(request(responseObjectType, httpRequest));
+            } catch (HttpRequestException | HttpResponseException ex) {
+                future.completeExceptionally(ex);
+            }
+        });
+
+        return future;
+    }
+
+    private <T> @NotNull T deserializeResponseContent(
+            @NotNull Class<? extends ApiResponse<T>> responseObjectType, 
+            @NotNull EasyHttpResponse httpResponse
+    ) throws HttpResponseException {
         String content = httpResponse.getContent();
-
+        
         // trying to parse content as normal response
         try {
             ApiResponse<T> apiResponse = jsonSerialization.deserialize(responseObjectType, content);
@@ -260,12 +282,10 @@ public final class SimpleEasyDonateClient implements EasyDonateClient {
         }
     }
 
-    public @NotNull String getApiEndpointBasedUrl(@NotNull String path, @Nullable Object... args) {
-        return String.format(API_ENDPOINT, String.format(path, args));
-    }
-
-    public @NotNull String getPluginApiEndpointBasedUrl(@NotNull PluginType pluginType, @NotNull String apiMethod) {
-        return String.format(PLUGIN_API_ENDPOINT, pluginType.getApiName(), apiMethod);
+    @Override
+    public @NotNull EasyHttpRequest.Builder requestBuilder(HttpClient.@NotNull Method method) {
+        Validate.notNull(method, "method");
+        return EasyHttpRequest.builder(httpClient, method);
     }
 
     static final class SimpleBuilder implements EasyDonateClient.Builder {
@@ -375,42 +395,11 @@ public final class SimpleEasyDonateClient implements EasyDonateClient {
             return new YandexMetrikaPlugin(client, this::executePluginRequestSafely);
         }
 
-        public <T> @NotNull T executePluginRequest(
-                @NotNull Class<? extends ApiResponse<T>> responseType
-        ) throws HttpRequestException, HttpResponseException {
-            return executePluginRequest(responseType, client.defaultHeaders, QueryParams.EMPTY);
-        }
-
-        public <T> @NotNull T executePluginRequest(
-                @NotNull Class<? extends ApiResponse<T>> responseType,
-                @NotNull Headers headers
-        ) throws HttpRequestException, HttpResponseException {
-            return executePluginRequest(responseType, headers, QueryParams.EMPTY);
-        }
-
-        public <T> @NotNull T executePluginRequest(
-                @NotNull Class<? extends ApiResponse<T>> responseType,
-                @NotNull QueryParams queryParams
-        ) throws HttpRequestException, HttpResponseException {
-            return executePluginRequest(responseType, client.defaultHeaders, queryParams);
-        }
-
-        public <T> @NotNull T executePluginRequest(
-                @NotNull Class<? extends ApiResponse<T>> responseType,
-                @NotNull Headers headers,
-                @NotNull QueryParams queryParams
-        ) throws HttpRequestException, HttpResponseException {
-            return client.executePluginRequest(responseType, headers, queryParams);
-        }
-
         public <T> @NotNull T executePluginRequestSafely(
                 @NotNull Class<? extends ApiResponse<T>> responseType,
-                @Nullable Headers headers,
                 @Nullable QueryParams queryParams
         ) throws HttpRequestException, HttpResponseException {
-            Headers actualHeaders = headers != null ? headers : client.defaultHeaders;
-            QueryParams actualQueryParams = queryParams != null ? queryParams : QueryParams.EMPTY;
-            return client.executePluginRequest(responseType, actualHeaders, actualQueryParams);
+            return client.executePluginRequest(responseType, client.defaultHeaders, queryParams);
         }
 
     }

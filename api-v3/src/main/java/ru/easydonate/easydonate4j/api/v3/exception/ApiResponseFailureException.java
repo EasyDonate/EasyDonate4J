@@ -4,7 +4,7 @@ import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 import ru.easydonate.easydonate4j.api.v3.response.ErrorResponse;
 import ru.easydonate.easydonate4j.exception.HttpResponseException;
-import ru.easydonate.easydonate4j.http.response.HttpResponse;
+import ru.easydonate.easydonate4j.http.response.EasyHttpResponse;
 
 @Getter
 public class ApiResponseFailureException extends HttpResponseException {
@@ -13,7 +13,7 @@ public class ApiResponseFailureException extends HttpResponseException {
 
     private final ErrorResponse errorResponse;
 
-    public ApiResponseFailureException(@NotNull HttpResponse httpResponse, @NotNull ErrorResponse errorResponse) {
+    public ApiResponseFailureException(@NotNull EasyHttpResponse httpResponse, @NotNull ErrorResponse errorResponse) {
         super(httpResponse, String.format(
                 MESSAGE_FORMAT,
                 errorResponse.getErrorCode(),

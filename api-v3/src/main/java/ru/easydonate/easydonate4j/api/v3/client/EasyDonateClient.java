@@ -18,11 +18,14 @@ import ru.easydonate.easydonate4j.api.v3.data.model.shop.product.Product;
 import ru.easydonate.easydonate4j.api.v3.data.model.shop.product.ProductsList;
 import ru.easydonate.easydonate4j.api.v3.data.model.shop.server.Server;
 import ru.easydonate.easydonate4j.api.v3.data.model.shop.server.ServersList;
+import ru.easydonate.easydonate4j.api.v3.response.ApiResponse;
 import ru.easydonate.easydonate4j.exception.HttpRequestException;
 import ru.easydonate.easydonate4j.exception.HttpResponseException;
 import ru.easydonate.easydonate4j.http.client.HttpClient;
+import ru.easydonate.easydonate4j.http.request.EasyHttpRequest;
 import ru.easydonate.easydonate4j.json.serialization.JsonSerializationService;
 
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -259,6 +262,44 @@ public interface EasyDonateClient {
      * @see PluginManager
      */
     @NotNull PluginManager getPluginManager();
+
+    /**
+     * Execute a raw HTTP request and deserialize a
+     * response as an object with specified type.
+     * @param responseObjectType the type of object to deserialize from.
+     * @param httpRequest the built HTTP request instance to execute.
+     * @param <T> the generic type that represents a response object type.
+     * @return The deserialized instance from response for your request.
+     * @throws HttpRequestException when any errors with request sending has occured.
+     * @throws HttpResponseException when any errors with response handling has occured.
+     * @see #requestAsync(Class, EasyHttpRequest)
+     */
+    <T> @NotNull T request(
+            @NotNull Class<? extends ApiResponse<T>> responseObjectType,
+            @NotNull EasyHttpRequest httpRequest
+    ) throws HttpRequestException, HttpResponseException;
+
+    /**
+     * Same that {@link #request(Class, EasyHttpRequest)} but asynchronous.
+     * <br>
+     * <b>Attention!</b> A returned CompletableFuture instance may be completed exceptionally!
+     * @param responseObjectType the type of object to deserialize from.
+     * @param httpRequest the built HTTP request instance to execute.
+     * @param <T> the generic type that represents a response object type.
+     * @return The future-wrapped deserialized instance from response for your request.
+     * @see #request(Class, EasyHttpRequest)
+     */
+    <T> @NotNull CompletableFuture<T> requestAsync(
+            @NotNull Class<? extends ApiResponse<T>> responseObjectType,
+            @NotNull EasyHttpRequest httpRequest
+    );
+
+    /**
+     * Get a new HTTP request builder using the API client provided HTTP client.
+     * @param method the HTTP method of a new request.
+     * @return The new HTTP request builder instance.
+     */
+    @NotNull EasyHttpRequest.Builder requestBuilder(@NotNull HttpClient.Method method);
 
     /**
      * The EasyDonate API client instance builder.

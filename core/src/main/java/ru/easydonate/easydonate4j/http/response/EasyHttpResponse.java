@@ -1,19 +1,16 @@
 package ru.easydonate.easydonate4j.http.response;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-@Getter
-@AllArgsConstructor
-public final class EasyHttpResponse implements HttpResponse {
+public interface EasyHttpResponse {
 
-    private final int code;
-    private final String message;
-    private final String content;
+    int getCode();
 
-    @Override
-    public boolean isSuccess() {
-        return code / 100 == 2;
-    }
+    @NotNull String getMessage();
+
+    @Nullable String getContent();
+
+    boolean isSuccess();
 
 }
