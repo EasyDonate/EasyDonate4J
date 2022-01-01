@@ -2,14 +2,13 @@ package ru.easydonate.easydonate4j.http.client.jdk.legacy;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import ru.easydonate.easydonate4j.Constants;
 import ru.easydonate.easydonate4j.exception.HttpRequestException;
 import ru.easydonate.easydonate4j.http.Headers;
 import ru.easydonate.easydonate4j.http.client.AbstractHttpClient;
 import ru.easydonate.easydonate4j.http.client.HttpClient;
 import ru.easydonate.easydonate4j.http.request.EasyHttpRequest;
-import ru.easydonate.easydonate4j.http.response.SimpleEasyHttpResponse;
 import ru.easydonate.easydonate4j.http.response.EasyHttpResponse;
+import ru.easydonate.easydonate4j.http.response.SimpleEasyHttpResponse;
 import ru.easydonate.easydonate4j.util.Validate;
 
 import java.io.*;
@@ -74,8 +73,8 @@ public class JDKLegacyHttpClient extends AbstractHttpClient {
         if(headers != null)
             headers.getAsMap().forEach(connection::setRequestProperty);
 
-        connection.setConnectTimeout(Constants.CONNECT_TIMEOUT);
-        connection.setReadTimeout(Constants.READ_TIMEOUT);
+        connection.setConnectTimeout((int) timeouts.getConnectTimeout());
+        connection.setReadTimeout((int) timeouts.getReadTimeout());
         return connection;
     }
 
