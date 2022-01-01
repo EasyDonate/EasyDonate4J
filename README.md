@@ -44,7 +44,7 @@ Better than old revision: **feature-rich** & **modular** & **stable**!
 You should to read about any API restrictions before you start:
 - [**[ ! ]** API request requirements (RU)](https://api.easydonate.ru/request-requirements)
 - [Project's WiKi hosted on GitHub (RU)](https://github.com/SoKnight/EasyDonate4J/wiki)
-- [Project's thread on the EasyDonate Forum (RU)](https://forum.easydonate.ru/d/65-neofitsialnoe-easydonate-sdk-dlya-java-proektov)
+- [Project's thread on the EasyDonate Forum (RU)](https://forum.easydonate.ru/d/65-easydonate4j-ofitsialnoe-sdk-dlya-java)
 
 ## License
 This project is open-source and licensed under the [MIT license](https://github.com/SoKnight/EasyDonate4J/blob/master/LICENSE).
