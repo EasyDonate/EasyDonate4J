@@ -33,6 +33,11 @@ public final class JacksonSerializationService extends AbstractJsonSerialization
         ModuleRegistrator.get().registerJsonSerializationService(new JacksonSerializationService());
     }
 
+    public static void registerIfNotRegisteredYet() {
+        if(!isRegistered())
+            ModuleRegistrator.get().registerJsonSerializationService(new JacksonSerializationService());
+    }
+
     public static boolean isRegistered() {
         return ModuleRegistrator.jsonSerializationServiceRegistered(JacksonSerializationService.class);
     }

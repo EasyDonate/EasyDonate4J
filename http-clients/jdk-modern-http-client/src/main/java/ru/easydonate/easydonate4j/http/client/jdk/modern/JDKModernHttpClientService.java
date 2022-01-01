@@ -17,6 +17,11 @@ public final class JDKModernHttpClientService implements HttpClientService {
         ModuleRegistrator.get().registerHttpClientService(new JDKModernHttpClientService());
     }
 
+    public static void registerIfNotRegisteredYet() {
+        if(!isRegistered())
+            ModuleRegistrator.get().registerHttpClientService(new JDKModernHttpClientService());
+    }
+
     public static boolean isRegistered() {
         return ModuleRegistrator.httpClientServiceRegistered(JDKModernHttpClientService.class);
     }

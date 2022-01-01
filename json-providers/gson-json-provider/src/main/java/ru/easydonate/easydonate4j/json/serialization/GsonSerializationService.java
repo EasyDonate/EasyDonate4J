@@ -42,6 +42,11 @@ public final class GsonSerializationService extends AbstractJsonSerializationSer
         ModuleRegistrator.get().registerJsonSerializationService(new GsonSerializationService());
     }
 
+    public static void registerIfNotRegisteredYet() {
+        if(!isRegistered())
+            ModuleRegistrator.get().registerJsonSerializationService(new GsonSerializationService());
+    }
+
     public static boolean isRegistered() {
         return ModuleRegistrator.jsonSerializationServiceRegistered(GsonSerializationService.class);
     }

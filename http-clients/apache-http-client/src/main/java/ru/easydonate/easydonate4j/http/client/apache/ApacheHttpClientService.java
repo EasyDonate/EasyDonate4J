@@ -17,6 +17,11 @@ public final class ApacheHttpClientService implements HttpClientService {
         ModuleRegistrator.get().registerHttpClientService(new ApacheHttpClientService());
     }
 
+    public static void registerIfNotRegisteredYet() {
+        if(!isRegistered())
+            ModuleRegistrator.get().registerHttpClientService(new ApacheHttpClientService());
+    }
+
     public static boolean isRegistered() {
         return ModuleRegistrator.httpClientServiceRegistered(ApacheHttpClientService.class);
     }

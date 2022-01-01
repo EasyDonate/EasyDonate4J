@@ -26,16 +26,13 @@ import ru.easydonate.easydonate4j.api.v3.data.model.shop.product.Product;
 import ru.easydonate.easydonate4j.api.v3.data.model.shop.product.ProductsList;
 import ru.easydonate.easydonate4j.api.v3.data.model.shop.server.Server;
 import ru.easydonate.easydonate4j.api.v3.data.model.shop.server.ServersList;
-import ru.easydonate.easydonate4j.api.v3.exception.ApiResponseFailureException;
 import ru.easydonate.easydonate4j.api.v3.exception.HttpResponseFailureException;
-import ru.easydonate.easydonate4j.api.v3.exception.UnknownApiResponseException;
 import ru.easydonate.easydonate4j.api.v3.response.ApiResponse;
-import ru.easydonate.easydonate4j.api.v3.response.ErrorResponse;
+import ru.easydonate.easydonate4j.api.v3.response.ResponseContentDeserializer;
 import ru.easydonate.easydonate4j.api.v3.response.plugin.PluginApiResponse;
 import ru.easydonate.easydonate4j.api.v3.response.shop.*;
 import ru.easydonate.easydonate4j.exception.HttpRequestException;
 import ru.easydonate.easydonate4j.exception.HttpResponseException;
-import ru.easydonate.easydonate4j.exception.JsonSerializationException;
 import ru.easydonate.easydonate4j.http.Headers;
 import ru.easydonate.easydonate4j.http.QueryParams;
 import ru.easydonate.easydonate4j.http.client.HttpClient;
@@ -233,7 +230,7 @@ public class SimpleEasyDonateClient implements EasyDonateClient {
         
         EasyHttpResponse httpResponse = httpClient.execute(httpRequest);
         if(httpResponse.isSuccess())
-            return deserializeResponseContent(responseObjectType, httpResponse);
+            return ResponseContentDeserializer.deserializeResponseContent(responseObjectType, httpResponse);
         else
             throw new HttpResponseFailureException(httpResponse);
     }
@@ -257,29 +254,6 @@ public class SimpleEasyDonateClient implements EasyDonateClient {
         });
 
         return future;
-    }
-
-    private <T> @NotNull T deserializeResponseContent(
-            @NotNull Class<? extends ApiResponse<T>> responseObjectType, 
-            @NotNull EasyHttpResponse httpResponse
-    ) throws HttpResponseException {
-        String content = httpResponse.getContent();
-        
-        // trying to parse content as normal response
-        try {
-            ApiResponse<T> apiResponse = jsonSerialization.deserialize(responseObjectType, content);
-            if(apiResponse.isSuccess())
-                return apiResponse.getContent();
-        } catch (JsonSerializationException ignored) {
-        }
-
-        // trying to parse content as error response
-        try {
-            ErrorResponse errorResponse = jsonSerialization.deserialize(ErrorResponse.class, content);
-            throw new ApiResponseFailureException(httpResponse, errorResponse);
-        } catch (JsonSerializationException ex) {
-            throw new UnknownApiResponseException(httpResponse, ex);
-        }
     }
 
     @Override

@@ -17,6 +17,11 @@ public final class JDKLegacyHttpClientService implements HttpClientService {
         ModuleRegistrator.get().registerHttpClientService(new JDKLegacyHttpClientService());
     }
 
+    public static void registerIfNotRegisteredYet() {
+        if(!isRegistered())
+            ModuleRegistrator.get().registerHttpClientService(new JDKLegacyHttpClientService());
+    }
+
     public static boolean isRegistered() {
         return ModuleRegistrator.httpClientServiceRegistered(JDKLegacyHttpClientService.class);
     }

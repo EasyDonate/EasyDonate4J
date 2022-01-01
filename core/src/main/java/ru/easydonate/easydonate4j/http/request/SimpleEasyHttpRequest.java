@@ -56,8 +56,8 @@ public final class SimpleEasyHttpRequest implements EasyHttpRequest {
 
         if(url != null) {
             resolvedUrl = url;
-        } else if(apiEndpoint != null && apiPath != null) {
-            resolvedUrl = apiEndpoint + apiPath;
+        } else if(apiEndpoint != null) {
+            resolvedUrl = apiEndpoint + (apiPath != null ? apiPath : "");
         } else {
             throw new HttpRequestException("Cannot resolve a request URL with current parameters set!");
         }
@@ -95,7 +95,7 @@ public final class SimpleEasyHttpRequest implements EasyHttpRequest {
 
         @Override
         public @NotNull Builder setApiPath(@NotNull String apiPath, @Nullable Object... args) {
-            Validate.notEmpty(apiPath, "apiPath");
+            Validate.notNull(apiPath, "apiPath");
             this.apiPath = String.format(apiPath, args);
             return this;
         }

@@ -17,6 +17,11 @@ public final class OkHttpClientService implements HttpClientService {
         ModuleRegistrator.get().registerHttpClientService(new OkHttpClientService());
     }
 
+    public static void registerIfNotRegisteredYet() {
+        if(!isRegistered())
+            ModuleRegistrator.get().registerHttpClientService(new OkHttpClientService());
+    }
+
     public static boolean isRegistered() {
         return ModuleRegistrator.httpClientServiceRegistered(OkHttpClientService.class);
     }
