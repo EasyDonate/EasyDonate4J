@@ -18,18 +18,15 @@ import ru.easydonate.easydonate4j.module.ModuleRegistrator;
 import ru.easydonate.easydonate4j.util.Validate;
 
 @Getter
-public final class SimpleCallbackApiClient implements CallbackApiClient {
+public class SimpleCallbackApiClient implements CallbackApiClient {
 
-    private static final String API_ENDPOINT = "https://easydonate.ru/api/v3/%s";
-    private static final String PLUGIN_API_ENDPOINT = "https://easydonate.ru/api/v3/plugin/%s/%s";
+    protected final String accessKey;
+    protected final boolean signatureVerificationEnabled;
+    protected final EventBus eventBus;
 
-    private final String accessKey;
-    private final boolean signatureVerificationEnabled;
-    private final EventBus eventBus;
+    protected final JsonSerializationService jsonSerialization;
 
-    private final JsonSerializationService jsonSerialization;
-
-    SimpleCallbackApiClient(@NotNull String accessKey, int eventBusAsyncThreadPoolSize, boolean signatureVerificationEnabled) {
+    protected SimpleCallbackApiClient(@NotNull String accessKey, int eventBusAsyncThreadPoolSize, boolean signatureVerificationEnabled) {
         this.accessKey = accessKey;
         this.signatureVerificationEnabled = signatureVerificationEnabled;
         this.eventBus = new EventBus(eventBusAsyncThreadPoolSize);

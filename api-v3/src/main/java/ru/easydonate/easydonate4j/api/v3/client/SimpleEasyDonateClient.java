@@ -50,16 +50,16 @@ import java.util.concurrent.TimeUnit;
 @Getter
 public class SimpleEasyDonateClient implements EasyDonateClient {
 
-    private static final String API_ENDPOINT = "https://easydonate.ru/api/v3";
+    public static final String API_ENDPOINT = "https://easydonate.ru/api/v3";
 
-    private final String accessKey;
-    private final PluginManager pluginManager;
+    protected final String accessKey;
+    protected final PluginManager pluginManager;
 
-    private final Headers defaultHeaders;
-    private final HttpClient httpClient;
-    private final JsonSerializationService jsonSerialization;
+    protected final Headers defaultHeaders;
+    protected final HttpClient httpClient;
+    protected final JsonSerializationService jsonSerialization;
 
-    SimpleEasyDonateClient(
+    protected SimpleEasyDonateClient(
             @NotNull String accessKey,
             @NotNull String userAgent,
             long connectTimeout,
@@ -171,7 +171,7 @@ public class SimpleEasyDonateClient implements EasyDonateClient {
         return executeShopRequest(CreatePaymentResponse.class, "/shop/payment/create", paymentBuilder.toQueryParams());
     }
 
-    private <T> @NotNull T executeShopRequest(
+    protected <T> @NotNull T executeShopRequest(
             @NotNull Class<? extends ApiResponse<T>> responseType,
             @NotNull String apiPath,
             @Nullable Object... pathArgs
@@ -179,7 +179,7 @@ public class SimpleEasyDonateClient implements EasyDonateClient {
         return executeShopRequest(responseType, apiPath, null, pathArgs);
     }
 
-    private <T> @NotNull T executeShopRequest(
+    protected <T> @NotNull T executeShopRequest(
             @NotNull Class<? extends ApiResponse<T>> responseType,
             @NotNull String apiPath,
             @Nullable QueryParams queryParams,
@@ -195,7 +195,7 @@ public class SimpleEasyDonateClient implements EasyDonateClient {
         return request(responseType, httpRequest);
     }
 
-    private <T> @NotNull T executePluginRequest(
+    protected <T> @NotNull T executePluginRequest(
             @NotNull Class<? extends ApiResponse<T>> responseType,
             @NotNull Headers headers,
             @Nullable QueryParams queryParams
