@@ -10,7 +10,7 @@ public class OkHttpClientBuilder extends AbstractHttpClientBuilder {
     @Override
     public @NotNull HttpClient create() {
         HttpClient.Timeouts timeouts = new SimpleTimeouts(connectTimeout, responseTimeout, readTimeout, writeTimeout);
-        return new OkHttpClient(userAgent, timeouts);
+        return new OkHttpClient(userAgent, timeouts, apiEndpoint);
     }
 
 }

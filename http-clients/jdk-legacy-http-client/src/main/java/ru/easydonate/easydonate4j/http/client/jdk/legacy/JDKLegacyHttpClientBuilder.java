@@ -10,7 +10,7 @@ public class JDKLegacyHttpClientBuilder extends AbstractHttpClientBuilder {
     @Override
     public @NotNull HttpClient create() {
         HttpClient.Timeouts timeouts = new SimpleTimeouts(connectTimeout, responseTimeout, readTimeout, writeTimeout);
-        return new JDKLegacyHttpClient(userAgent, timeouts);
+        return new JDKLegacyHttpClient(userAgent, timeouts, apiEndpoint);
     }
 
 }

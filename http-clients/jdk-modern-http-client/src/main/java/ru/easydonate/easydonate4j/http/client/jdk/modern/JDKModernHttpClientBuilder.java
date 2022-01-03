@@ -10,7 +10,7 @@ public class JDKModernHttpClientBuilder extends AbstractHttpClientBuilder {
     @Override
     public @NotNull HttpClient create() {
         HttpClient.Timeouts timeouts = new SimpleTimeouts(connectTimeout, responseTimeout, readTimeout, writeTimeout);
-        return new JDKModernHttpClient(userAgent, timeouts);
+        return new JDKModernHttpClient(userAgent, timeouts, apiEndpoint);
     }
 
 }

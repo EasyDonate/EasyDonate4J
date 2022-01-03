@@ -8,13 +8,18 @@ import ru.easydonate.easydonate4j.exception.HttpRequestException;
 import ru.easydonate.easydonate4j.http.request.EasyHttpRequest;
 import ru.easydonate.easydonate4j.http.response.EasyHttpResponse;
 
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 public interface HttpClient {
 
+    @NotNull Optional<String> getApiEndpoint();
+
     @NotNull String getUserAgent();
 
     @NotNull Timeouts getTimeouts();
+
+    @NotNull EasyHttpRequest.Builder createRequest(@NotNull Method method);
 
     @NotNull EasyHttpResponse execute(@NotNull EasyHttpRequest httpRequest) throws HttpRequestException;
 
@@ -23,6 +28,8 @@ public interface HttpClient {
     interface Builder {
 
         @NotNull HttpClient create();
+
+        @NotNull Builder setApiEndpoint(@NotNull String apiEndpoint);
 
         @NotNull Builder setConnectTimeout(long connectTimeout);
 

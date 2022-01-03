@@ -6,11 +6,19 @@ import ru.easydonate.easydonate4j.util.Validate;
 
 public abstract class AbstractHttpClientBuilder implements HttpClient.Builder {
 
+    protected String apiEndpoint = null;
     protected String userAgent = Constants.USER_AGENT;
     protected long connectTimeout = Constants.CONNECT_TIMEOUT;
     protected long responseTimeout = Constants.RESPONSE_TIMEOUT;
     protected long readTimeout = Constants.READ_TIMEOUT;
     protected long writeTimeout = Constants.WRITE_TIMEOUT;
+
+    @Override
+    public @NotNull HttpClient.Builder setApiEndpoint(@NotNull String apiEndpoint) {
+        Validate.notEmpty(apiEndpoint, "apiEndpoint");
+        this.apiEndpoint = apiEndpoint;
+        return this;
+    }
 
     @Override
     public @NotNull HttpClient.Builder setConnectTimeout(long connectTimeout) {

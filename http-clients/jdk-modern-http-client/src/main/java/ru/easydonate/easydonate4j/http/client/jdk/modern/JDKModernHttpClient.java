@@ -23,8 +23,8 @@ public class JDKModernHttpClient extends AbstractHttpClient {
 
     private final HttpClient client;
 
-    public JDKModernHttpClient(@NotNull String userAgent, @NotNull Timeouts timeouts) {
-        super(userAgent, timeouts);
+    public JDKModernHttpClient(@NotNull String userAgent, @NotNull Timeouts timeouts, @Nullable String apiEndpoint) {
+        super(userAgent, timeouts, apiEndpoint);
 
         HttpClient.Builder builder = HttpClient.newBuilder()
                 .followRedirects(HttpClient.Redirect.NORMAL)

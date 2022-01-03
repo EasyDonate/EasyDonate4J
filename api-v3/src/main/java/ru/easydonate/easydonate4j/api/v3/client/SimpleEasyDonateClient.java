@@ -79,6 +79,7 @@ public class SimpleEasyDonateClient implements EasyDonateClient {
                 .add("User-Agent", userAgent);
 
         this.httpClient = ModuleRegistrator.httpClientService().buildClient()
+                .setApiEndpoint(API_ENDPOINT)
                 .setConnectTimeout(connectTimeout)
                 .setResponseTimeout(responseTimeout)
                 .setReadTimeout(readTimeout)
@@ -185,8 +186,7 @@ public class SimpleEasyDonateClient implements EasyDonateClient {
             @Nullable QueryParams queryParams,
             @Nullable Object... pathArgs
     ) throws HttpRequestException, HttpResponseException {
-        EasyHttpRequest httpRequest = EasyHttpRequest.builder(httpClient, HttpClient.Method.GET)
-                .setApiEndpoint(API_ENDPOINT)
+        EasyHttpRequest httpRequest = createRequest(HttpClient.Method.GET)
                 .setApiPath(apiPath, pathArgs)
                 .setHeaders(defaultHeaders)
                 .setQueryParams(queryParams)
@@ -210,8 +210,7 @@ public class SimpleEasyDonateClient implements EasyDonateClient {
         PluginType pluginType = annotation.pluginType();
         String apiMethod = annotation.apiMethod();
 
-        EasyHttpRequest httpRequest = EasyHttpRequest.builder(httpClient, HttpClient.Method.GET)
-                .setApiEndpoint(API_ENDPOINT)
+        EasyHttpRequest httpRequest = createRequest(HttpClient.Method.GET)
                 .setApiPath("/plugin/%s/%s", pluginType.getApiName(), apiMethod)
                 .setHeaders(headers)
                 .setQueryParams(queryParams)
@@ -257,9 +256,9 @@ public class SimpleEasyDonateClient implements EasyDonateClient {
     }
 
     @Override
-    public @NotNull EasyHttpRequest.Builder requestBuilder(HttpClient.@NotNull Method method) {
+    public @NotNull EasyHttpRequest.Builder createRequest(@NotNull HttpClient.Method method) {
         Validate.notNull(method, "method");
-        return EasyHttpRequest.builder(httpClient, method);
+        return httpClient.createRequest(method);
     }
 
     static final class SimpleBuilder implements EasyDonateClient.Builder {

@@ -9,6 +9,7 @@ import org.apache.hc.client5.http.impl.async.CloseableHttpAsyncClient;
 import org.apache.hc.client5.http.impl.async.HttpAsyncClients;
 import org.apache.hc.core5.http.ContentType;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import ru.easydonate.easydonate4j.exception.HttpRequestException;
 import ru.easydonate.easydonate4j.http.Headers;
 import ru.easydonate.easydonate4j.http.client.AbstractHttpClient;
@@ -24,8 +25,8 @@ public class ApacheHttpClient extends AbstractHttpClient {
 
     private final CloseableHttpAsyncClient client;
 
-    public ApacheHttpClient(@NotNull String userAgent, @NotNull Timeouts timeouts) {
-        super(userAgent, timeouts);
+    public ApacheHttpClient(@NotNull String userAgent, @NotNull Timeouts timeouts, @Nullable String apiEndpoint) {
+        super(userAgent, timeouts, apiEndpoint);
 
         RequestConfig requestConfig = RequestConfig.custom()
                 .setConnectTimeout(Math.max(0L, timeouts.getConnectTimeout()), TimeUnit.MILLISECONDS)

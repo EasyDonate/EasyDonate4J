@@ -10,7 +10,7 @@ public class ApacheHttpClientBuilder extends AbstractHttpClientBuilder {
     @Override
     public @NotNull HttpClient create() {
         HttpClient.Timeouts timeouts = new SimpleTimeouts(connectTimeout, responseTimeout, readTimeout, writeTimeout);
-        return new ApacheHttpClient(userAgent, timeouts);
+        return new ApacheHttpClient(userAgent, timeouts, apiEndpoint);
     }
 
 }

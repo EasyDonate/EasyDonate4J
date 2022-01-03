@@ -299,7 +299,7 @@ public interface EasyDonateClient {
      * @param method the HTTP method of a new request.
      * @return The new HTTP request builder instance.
      */
-    @NotNull EasyHttpRequest.Builder requestBuilder(@NotNull HttpClient.Method method);
+    @NotNull EasyHttpRequest.Builder createRequest(@NotNull HttpClient.Method method);
 
     /**
      * The EasyDonate API client instance builder.

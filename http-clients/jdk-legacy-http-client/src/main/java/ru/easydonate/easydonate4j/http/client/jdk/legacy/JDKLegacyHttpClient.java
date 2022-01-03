@@ -19,8 +19,8 @@ import java.util.Scanner;
 
 public class JDKLegacyHttpClient extends AbstractHttpClient {
 
-    public JDKLegacyHttpClient(@NotNull String userAgent, @NotNull Timeouts timeouts) {
-        super(userAgent, timeouts);
+    public JDKLegacyHttpClient(@NotNull String userAgent, @NotNull Timeouts timeouts, @Nullable String apiEndpoint) {
+        super(userAgent, timeouts, apiEndpoint);
     }
 
     public @NotNull EasyHttpResponse execute(@NotNull EasyHttpRequest httpRequest) throws HttpRequestException {

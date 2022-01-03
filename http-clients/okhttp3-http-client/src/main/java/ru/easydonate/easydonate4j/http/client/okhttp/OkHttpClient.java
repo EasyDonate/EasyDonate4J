@@ -21,8 +21,8 @@ public class OkHttpClient extends AbstractHttpClient {
 
     private final okhttp3.OkHttpClient client;
 
-    public OkHttpClient(@NotNull String userAgent, @NotNull Timeouts timeouts) {
-        super(userAgent, timeouts);
+    public OkHttpClient(@NotNull String userAgent, @NotNull Timeouts timeouts, @Nullable String apiEndpoint) {
+        super(userAgent, timeouts, apiEndpoint);
 
         this.client = new okhttp3.OkHttpClient.Builder()
                 .connectTimeout(Math.max(0L, timeouts.getConnectTimeout()), TimeUnit.MILLISECONDS)
