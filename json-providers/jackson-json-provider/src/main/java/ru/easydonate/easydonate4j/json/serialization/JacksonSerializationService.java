@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import ru.easydonate.easydonate4j.exception.JsonSerializationException;
+import ru.easydonate.easydonate4j.json.serialization.failsafe.JacksonFailsafeModule;
 import ru.easydonate.easydonate4j.json.serialization.implementation.registry.JsonModelsGroup;
 import ru.easydonate.easydonate4j.json.serialization.implementation.registry.api.v3.jackson.PluginModelsRegistry;
 import ru.easydonate.easydonate4j.json.serialization.implementation.registry.api.v3.jackson.PluginResponsesRegistry;
@@ -21,9 +22,8 @@ public final class JacksonSerializationService extends AbstractJsonSerialization
     private final ObjectMapper objectMapper;
 
     public JacksonSerializationService() {
-        this.objectMapper = new ObjectMapper();
-        this.objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        this.objectMapper.registerModule(new JacksonSerializationModule(this));
+        this.objectMapper = createObjectMapper();
+        this.objectMapper.registerModule(new JacksonFailsafeModule(createObjectMapper()));
     }
 
     public static void register() throws ModuleAlreadyRegisteredException {
@@ -95,6 +95,13 @@ public final class JacksonSerializationService extends AbstractJsonSerialization
         } catch (JsonProcessingException ex) {
             throw new JsonSerializationException(ex);
         }
+    }
+
+    private @NotNull ObjectMapper createObjectMapper() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        objectMapper.registerModule(new JacksonSerializationModule(this));
+        return objectMapper;
     }
 
 }

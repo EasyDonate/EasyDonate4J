@@ -35,9 +35,9 @@ public class PurchasedProductModel implements PurchasedProduct {
     @JsonProperty("price")
     private double price;
     @JsonProperty("number")
-    private int defaultAmount;
+    private long defaultAmount;
     @JsonProperty("amount")
-    private int boughtAmount;
+    private long boughtAmount;
 
     @JsonProperty("description")
     private String description;

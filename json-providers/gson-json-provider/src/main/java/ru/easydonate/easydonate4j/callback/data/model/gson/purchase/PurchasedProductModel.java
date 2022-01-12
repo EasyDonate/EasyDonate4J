@@ -25,7 +25,7 @@ public class PurchasedProductModel implements PurchasedProduct {
     @SerializedName("cost")
     private double price;
     @SerializedName("count")
-    private int boughtAmount;
+    private long boughtAmount;
 
     @SerializedName("description")
     private String description;

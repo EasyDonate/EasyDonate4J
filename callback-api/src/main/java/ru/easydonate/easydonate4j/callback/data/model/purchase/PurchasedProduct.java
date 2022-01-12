@@ -14,7 +14,7 @@ public interface PurchasedProduct extends PrettyPrintable {
 
     double getPrice();
 
-    int getBoughtAmount();
+    long getBoughtAmount();
 
     @NotNull Optional<String> getDescription();
 

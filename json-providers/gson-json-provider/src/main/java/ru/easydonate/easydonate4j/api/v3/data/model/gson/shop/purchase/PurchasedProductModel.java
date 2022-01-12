@@ -34,9 +34,9 @@ public class PurchasedProductModel implements PurchasedProduct {
     @SerializedName("price")
     private double price;
     @SerializedName("number")
-    private int defaultAmount;
+    private long defaultAmount;
     @SerializedName("amount")
-    private int boughtAmount;
+    private long boughtAmount;
 
     @SerializedName("description")
     private String description;

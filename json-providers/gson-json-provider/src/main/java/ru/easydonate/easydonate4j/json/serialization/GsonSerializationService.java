@@ -6,8 +6,10 @@ import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import ru.easydonate.easydonate4j.api.v3.data.model.gson.shop.purchase.DiscountsModel;
 import ru.easydonate.easydonate4j.exception.JsonSerializationException;
 import ru.easydonate.easydonate4j.json.serialization.deserializer.gson.BooleanIntDeserializer;
+import ru.easydonate.easydonate4j.json.serialization.deserializer.gson.DiscountsArrayDeserializer;
 import ru.easydonate.easydonate4j.json.serialization.deserializer.gson.LocalDateTimeAdapter;
 import ru.easydonate.easydonate4j.json.serialization.exclusion.GsonDeserializationExclusionStrategy;
 import ru.easydonate.easydonate4j.json.serialization.exclusion.GsonSerializationExclusionStrategy;
@@ -31,8 +33,9 @@ public final class GsonSerializationService extends AbstractJsonSerializationSer
     public GsonSerializationService() {
         TypeAdapterFactory typeAdapterFactory = new GsonTypeAdapterResolver(this);
 
-        this.defaultGson = patchGsonBuilder(typeAdapterFactory, new GsonBuilder()).create();
-        this.prettyGson = patchGsonBuilder(typeAdapterFactory, new GsonBuilder()).setPrettyPrinting().create();
+        Gson unsafeGsonInstance = createGsonBuilder(typeAdapterFactory, null).create();
+        this.defaultGson = createGsonBuilder(typeAdapterFactory, unsafeGsonInstance).create();
+        this.prettyGson = createGsonBuilder(typeAdapterFactory, unsafeGsonInstance).setPrettyPrinting().create();
     }
 
     public static void register() throws ModuleAlreadyRegisteredException {
@@ -106,7 +109,9 @@ public final class GsonSerializationService extends AbstractJsonSerializationSer
         }
     }
 
-    private @NotNull GsonBuilder patchGsonBuilder(@NotNull TypeAdapterFactory typeAdapterFactory, @NotNull GsonBuilder gsonBuilder) {
+    private @NotNull GsonBuilder createGsonBuilder(@NotNull TypeAdapterFactory typeAdapterFactory, @Nullable Gson unsafeGsonInstance) {
+        GsonBuilder gsonBuilder = new GsonBuilder();
+
         gsonBuilder.serializeNulls();
         gsonBuilder.disableHtmlEscaping();
 
@@ -115,6 +120,11 @@ public final class GsonSerializationService extends AbstractJsonSerializationSer
 
         gsonBuilder.registerTypeAdapter(boolean.class, BooleanIntDeserializer.getSingleton());
         gsonBuilder.registerTypeAdapter(LocalDateTime.class, LocalDateTimeAdapter.getSingleton());
+
+        if(unsafeGsonInstance != null) {
+            // Bug [12.01.22]: some payment objects has an empty array instead of `null` for the `sales` field
+            gsonBuilder.registerTypeAdapter(DiscountsModel.class, new DiscountsArrayDeserializer(unsafeGsonInstance));
+        }
 
         gsonBuilder.registerTypeAdapterFactory(typeAdapterFactory);
         return gsonBuilder;

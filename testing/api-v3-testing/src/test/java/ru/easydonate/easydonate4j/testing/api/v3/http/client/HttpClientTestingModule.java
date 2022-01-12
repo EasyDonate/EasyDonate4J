@@ -36,8 +36,7 @@ public abstract class HttpClientTestingModule extends TestingModule {
 
     @BeforeAll
     public static void preInit() {
-        if(!JacksonSerializationService.isRegistered())
-            JacksonSerializationService.register();
+        JacksonSerializationService.registerIfNotRegisteredYet();
     }
 
     @Test

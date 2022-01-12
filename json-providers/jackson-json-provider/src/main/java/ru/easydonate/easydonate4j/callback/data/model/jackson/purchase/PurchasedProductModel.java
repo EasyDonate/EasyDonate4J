@@ -26,7 +26,7 @@ public class PurchasedProductModel implements PurchasedProduct {
     @JsonProperty("cost")
     private double price;
     @JsonProperty("count")
-    private int boughtAmount;
+    private long boughtAmount;
 
     @JsonProperty("description")
     private String description;

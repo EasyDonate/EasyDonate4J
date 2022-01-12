@@ -70,13 +70,13 @@ public interface PurchasedProduct extends PrettyPrintable {
      * Get the default amount of the purchased product.
      * @return The purchased product default amount.
      */
-    int getDefaultAmount();
+    long getDefaultAmount();
 
     /**
      * Get the actual bought amount of the purchased product.
      * @return The purchased product amount.
      */
-    int getBoughtAmount();
+    long getBoughtAmount();
 
     /**
      * Get the optional-wrapped description of the purchased product.
