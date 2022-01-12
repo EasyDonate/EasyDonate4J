@@ -11,7 +11,7 @@ public final class GsonSerializationTesting extends SimpleJsonSerializationTesti
 
     @BeforeAll
     public static void init() {
-        GsonSerializationService.register();
+        GsonSerializationService.registerIfNotRegisteredYet();
     }
 
 }

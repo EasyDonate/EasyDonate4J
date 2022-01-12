@@ -6,19 +6,16 @@ import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import ru.easydonate.easydonate4j.api.v3.data.model.gson.shop.purchase.DiscountsModel;
 import ru.easydonate.easydonate4j.exception.JsonSerializationException;
 import ru.easydonate.easydonate4j.json.serialization.deserializer.gson.BooleanIntDeserializer;
-import ru.easydonate.easydonate4j.json.serialization.deserializer.gson.DiscountsArrayDeserializer;
 import ru.easydonate.easydonate4j.json.serialization.deserializer.gson.LocalDateTimeAdapter;
 import ru.easydonate.easydonate4j.json.serialization.exclusion.GsonDeserializationExclusionStrategy;
 import ru.easydonate.easydonate4j.json.serialization.exclusion.GsonSerializationExclusionStrategy;
+import ru.easydonate.easydonate4j.json.serialization.failsafe.gson.ApiV3FailsafeModule;
+import ru.easydonate.easydonate4j.json.serialization.failsafe.gson.CallbackApiFailsafeModule;
 import ru.easydonate.easydonate4j.json.serialization.implementation.registry.JsonModelsGroup;
-import ru.easydonate.easydonate4j.json.serialization.implementation.registry.api.v3.gson.PluginModelsRegistry;
-import ru.easydonate.easydonate4j.json.serialization.implementation.registry.api.v3.gson.PluginResponsesRegistry;
-import ru.easydonate.easydonate4j.json.serialization.implementation.registry.api.v3.gson.ShopModelsRegistry;
-import ru.easydonate.easydonate4j.json.serialization.implementation.registry.api.v3.gson.ShopResponsesRegistry;
-import ru.easydonate.easydonate4j.json.serialization.implementation.registry.callback.gson.CallbackApiModelsRegistry;
+import ru.easydonate.easydonate4j.json.serialization.implementation.registry.gson.ApiV3ModelsRegistry;
+import ru.easydonate.easydonate4j.json.serialization.implementation.registry.gson.CallbackApiModelsRegistry;
 import ru.easydonate.easydonate4j.module.ModuleAlreadyRegisteredException;
 import ru.easydonate.easydonate4j.module.ModuleRegistrator;
 import ru.easydonate.easydonate4j.module.ModuleType;
@@ -27,15 +24,19 @@ import java.time.LocalDateTime;
 
 public final class GsonSerializationService extends AbstractJsonSerializationService {
 
-    private final Gson defaultGson;
-    private final Gson prettyGson;
+    private final GsonBuilder defaultGsonBuilder;
+    private final GsonBuilder prettyGsonBuilder;
+    private final Gson unsafeGsonInstance;
+
+    private Gson defaultGson;
+    private Gson prettyGson;
 
     public GsonSerializationService() {
         TypeAdapterFactory typeAdapterFactory = new GsonTypeAdapterResolver(this);
-
-        Gson unsafeGsonInstance = createGsonBuilder(typeAdapterFactory, null).create();
-        this.defaultGson = createGsonBuilder(typeAdapterFactory, unsafeGsonInstance).create();
-        this.prettyGson = createGsonBuilder(typeAdapterFactory, unsafeGsonInstance).setPrettyPrinting().create();
+        this.defaultGsonBuilder = createGsonBuilder(typeAdapterFactory);
+        this.prettyGsonBuilder = createGsonBuilder(typeAdapterFactory).setPrettyPrinting();
+        this.unsafeGsonInstance = createGsonBuilder(typeAdapterFactory).create();
+        updateGsonInstances();
     }
 
     public static void register() throws ModuleAlreadyRegisteredException {
@@ -62,20 +63,15 @@ public final class GsonSerializationService extends AbstractJsonSerializationSer
     @Override
     public <T> void registerImplementationAliasesGroup(@NotNull JsonModelsGroup jsonModelsGroup) {
         switch (jsonModelsGroup) {
-            case API_V3_SHOP_MODELS:
-                registerModelsGroup(jsonModelsGroup, ShopModelsRegistry.getSingleton());
-                break;
-            case API_V3_SHOP_RESPONSES:
-                registerModelsGroup(jsonModelsGroup, ShopResponsesRegistry.getSingleton());
-                break;
-            case API_V3_PLUGIN_MODELS:
-                registerModelsGroup(jsonModelsGroup, PluginModelsRegistry.getSingleton());
-                break;
-            case API_V3_PLUGIN_RESPONSES:
-                registerModelsGroup(jsonModelsGroup, PluginResponsesRegistry.getSingleton());
+            case API_V3_MODELS:
+                registerModelsGroup(jsonModelsGroup, ApiV3ModelsRegistry.getSingleton());
+                new ApiV3FailsafeModule(unsafeGsonInstance).register(defaultGsonBuilder, prettyGsonBuilder);
+                updateGsonInstances();
                 break;
             case CALLBACK_API_MODELS:
                 registerModelsGroup(jsonModelsGroup, CallbackApiModelsRegistry.getSingleton());
+                new CallbackApiFailsafeModule(unsafeGsonInstance).register(defaultGsonBuilder, prettyGsonBuilder);
+                updateGsonInstances();
                 break;
             default:
                 throw new IllegalArgumentException(String.format("An unexpected json models group received: %s!", jsonModelsGroup));
@@ -109,7 +105,12 @@ public final class GsonSerializationService extends AbstractJsonSerializationSer
         }
     }
 
-    private @NotNull GsonBuilder createGsonBuilder(@NotNull TypeAdapterFactory typeAdapterFactory, @Nullable Gson unsafeGsonInstance) {
+    private void updateGsonInstances() {
+        this.defaultGson = defaultGsonBuilder.create();
+        this.prettyGson = prettyGsonBuilder.create();
+    }
+
+    private @NotNull GsonBuilder createGsonBuilder(@NotNull TypeAdapterFactory typeAdapterFactory) {
         GsonBuilder gsonBuilder = new GsonBuilder();
 
         gsonBuilder.serializeNulls();
@@ -120,11 +121,6 @@ public final class GsonSerializationService extends AbstractJsonSerializationSer
 
         gsonBuilder.registerTypeAdapter(boolean.class, BooleanIntDeserializer.getSingleton());
         gsonBuilder.registerTypeAdapter(LocalDateTime.class, LocalDateTimeAdapter.getSingleton());
-
-        if(unsafeGsonInstance != null) {
-            // Bug [12.01.22]: some payment objects has an empty array instead of `null` for the `sales` field
-            gsonBuilder.registerTypeAdapter(DiscountsModel.class, new DiscountsArrayDeserializer(unsafeGsonInstance));
-        }
 
         gsonBuilder.registerTypeAdapterFactory(typeAdapterFactory);
         return gsonBuilder;

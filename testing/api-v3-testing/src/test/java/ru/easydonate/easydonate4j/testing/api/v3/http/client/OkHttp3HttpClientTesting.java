@@ -11,7 +11,7 @@ public final class OkHttp3HttpClientTesting extends SimpleHttpClientTestingModul
 
     @BeforeAll
     public static void init() {
-        OkHttpClientService.register();
+        OkHttpClientService.registerIfNotRegisteredYet();
     }
 
 }

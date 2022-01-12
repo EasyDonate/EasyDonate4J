@@ -11,7 +11,7 @@ public final class JacksonSerializationTesting extends SimpleJsonSerializationTe
 
     @BeforeAll
     public static void init() {
-        JacksonSerializationService.register();
+        JacksonSerializationService.registerIfNotRegisteredYet();
     }
 
 }

@@ -11,7 +11,7 @@ public final class ApacheHttpClientTesting extends SimpleHttpClientTestingModule
 
     @BeforeAll
     public static void init() {
-        ApacheHttpClientService.register();
+        ApacheHttpClientService.registerIfNotRegisteredYet();
     }
 
 }

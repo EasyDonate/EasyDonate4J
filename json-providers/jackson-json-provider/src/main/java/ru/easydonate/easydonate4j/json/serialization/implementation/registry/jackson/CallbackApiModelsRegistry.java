@@ -1,4 +1,4 @@
-package ru.easydonate.easydonate4j.json.serialization.implementation.registry.callback.jackson;
+package ru.easydonate.easydonate4j.json.serialization.implementation.registry.jackson;
 
 import org.jetbrains.annotations.NotNull;
 import ru.easydonate.easydonate4j.callback.data.model.jackson.mass.sale.MassSaleModel;

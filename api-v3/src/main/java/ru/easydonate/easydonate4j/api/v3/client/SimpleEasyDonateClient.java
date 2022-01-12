@@ -88,10 +88,7 @@ public class SimpleEasyDonateClient implements EasyDonateClient {
                 .create();
 
         this.jsonSerialization = ModuleRegistrator.jsonSerializationService();
-        this.jsonSerialization.registerImplementationAliasesGroup(JsonModelsGroup.API_V3_SHOP_MODELS);
-        this.jsonSerialization.registerImplementationAliasesGroup(JsonModelsGroup.API_V3_SHOP_RESPONSES);
-        this.jsonSerialization.registerImplementationAliasesGroup(JsonModelsGroup.API_V3_PLUGIN_MODELS);
-        this.jsonSerialization.registerImplementationAliasesGroup(JsonModelsGroup.API_V3_PLUGIN_RESPONSES);
+        this.jsonSerialization.registerImplementationAliasesGroup(JsonModelsGroup.API_V3_MODELS);
     }
 
     @Override

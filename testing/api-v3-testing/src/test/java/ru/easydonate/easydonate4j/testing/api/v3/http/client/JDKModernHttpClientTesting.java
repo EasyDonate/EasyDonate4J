@@ -11,7 +11,7 @@ public final class JDKModernHttpClientTesting extends SimpleHttpClientTestingMod
 
     @BeforeAll
     public static void init() {
-        JDKModernHttpClientService.register();
+        JDKModernHttpClientService.registerIfNotRegisteredYet();
     }
 
 }

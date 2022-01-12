@@ -11,7 +11,7 @@ public final class JDKLegacyHttpClientTesting extends SimpleHttpClientTestingMod
 
     @BeforeAll
     public static void init() {
-        JDKLegacyHttpClientService.register();
+        JDKLegacyHttpClientService.registerIfNotRegisteredYet();
     }
 
 }

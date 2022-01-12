@@ -2,13 +2,21 @@ package ru.easydonate.easydonate4j.callback.data.model.jackson.purchase;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonToken;
+import com.fasterxml.jackson.databind.DeserializationContext;
+import com.fasterxml.jackson.databind.JsonDeserializer;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.AllArgsConstructor;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import ru.easydonate.easydonate4j.callback.data.model.purchase.CouponDiscount;
 import ru.easydonate.easydonate4j.callback.data.model.purchase.Discounts;
 import ru.easydonate.easydonate4j.callback.data.model.purchase.MassSaleDiscount;
 import ru.easydonate.easydonate4j.json.serialization.Implementing;
 import ru.easydonate.easydonate4j.util.Wrapper;
 
+import java.io.IOException;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -19,6 +27,11 @@ public class DiscountsModel implements Discounts {
     private MassSaleDiscount activeMassSale;
     @JsonProperty("coupon")
     private CouponDiscount usedCoupon;
+
+    @JsonIgnore
+    public static @NotNull DiscountsArrayDeserializer getDeserializer(@NotNull ObjectMapper unsafeMapperInstance) {
+        return new DiscountsArrayDeserializer(unsafeMapperInstance);
+    }
 
     @JsonIgnore
     @Override
@@ -53,6 +66,24 @@ public class DiscountsModel implements Discounts {
                 "activeMassSale=" + activeMassSale +
                 ", usedCoupon=" + usedCoupon +
                 '}';
+    }
+
+    @AllArgsConstructor
+    private static final class DiscountsArrayDeserializer extends JsonDeserializer<DiscountsModel> {
+
+        private final ObjectMapper unsafeMapperInstance;
+
+        @Override
+        public @Nullable DiscountsModel deserialize(
+                @NotNull JsonParser parser,
+                @NotNull DeserializationContext context
+        ) throws IOException {
+            if(parser.getCurrentToken() == JsonToken.START_ARRAY)
+                return null;
+
+            return unsafeMapperInstance.readValue(parser, DiscountsModel.class);
+        }
+
     }
 
 }

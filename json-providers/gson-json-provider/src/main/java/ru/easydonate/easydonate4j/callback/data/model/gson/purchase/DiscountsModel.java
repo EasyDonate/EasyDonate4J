@@ -1,13 +1,17 @@
 package ru.easydonate.easydonate4j.callback.data.model.gson.purchase;
 
+import com.google.gson.*;
 import com.google.gson.annotations.SerializedName;
+import lombok.AllArgsConstructor;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import ru.easydonate.easydonate4j.callback.data.model.purchase.CouponDiscount;
 import ru.easydonate.easydonate4j.callback.data.model.purchase.Discounts;
 import ru.easydonate.easydonate4j.callback.data.model.purchase.MassSaleDiscount;
 import ru.easydonate.easydonate4j.json.serialization.Implementing;
 import ru.easydonate.easydonate4j.util.Wrapper;
 
+import java.lang.reflect.Type;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -18,6 +22,10 @@ public class DiscountsModel implements Discounts {
     private MassSaleDiscount activeMassSale;
     @SerializedName("coupon")
     private CouponDiscount usedCoupon;
+
+    public static @NotNull DiscountsArrayDeserializer getDeserializer(@NotNull Gson unsafeGsonInstance) {
+        return new DiscountsArrayDeserializer(unsafeGsonInstance);
+    }
 
     @Override
     public @NotNull Optional<MassSaleDiscount> getActiveMassSale() {
@@ -50,6 +58,25 @@ public class DiscountsModel implements Discounts {
                 "activeMassSale=" + activeMassSale +
                 ", usedCoupon=" + usedCoupon +
                 '}';
+    }
+
+    @AllArgsConstructor
+    private static final class DiscountsArrayDeserializer implements JsonDeserializer<DiscountsModel> {
+
+        private final Gson unsafeGsonInstance;
+
+        @Override
+        public @Nullable DiscountsModel deserialize(
+                @Nullable JsonElement json,
+                @NotNull Type type,
+                @NotNull JsonDeserializationContext context
+        ) throws JsonParseException {
+            if(json == null || json.isJsonNull() || json.isJsonArray())
+                return null;
+
+            return unsafeGsonInstance.fromJson(json, type);
+        }
+
     }
 
 }

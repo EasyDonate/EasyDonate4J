@@ -28,11 +28,7 @@ public abstract class JsonSerializationTestingModule extends TestingModule {
     @DisplayName("Serialization service initialization")
     public void printRegisteredSerializationService() {
         JsonSerializationService jsonSerializationService = ModuleRegistrator.get().getJsonSerializationService();
-
-        jsonSerializationService.registerImplementationAliasesGroup(JsonModelsGroup.API_V3_SHOP_MODELS);
-        jsonSerializationService.registerImplementationAliasesGroup(JsonModelsGroup.API_V3_SHOP_RESPONSES);
-        jsonSerializationService.registerImplementationAliasesGroup(JsonModelsGroup.API_V3_PLUGIN_MODELS);
-        jsonSerializationService.registerImplementationAliasesGroup(JsonModelsGroup.API_V3_PLUGIN_RESPONSES);
+        jsonSerializationService.registerImplementationAliasesGroup(JsonModelsGroup.API_V3_MODELS);
 
         logger.info("Registered serialization service: " + jsonSerializationService.getType());
     }

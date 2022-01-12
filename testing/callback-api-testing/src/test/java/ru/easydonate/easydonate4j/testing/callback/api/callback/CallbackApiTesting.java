@@ -39,8 +39,7 @@ public final class CallbackApiTesting extends TestingModule implements CallbackL
 
     @BeforeAll
     public static void preInit() {
-        if(!JacksonSerializationService.isRegistered())
-            JacksonSerializationService.register();
+        JacksonSerializationService.registerIfNotRegisteredYet();
     }
 
     @Test
