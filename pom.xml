@@ -9,7 +9,7 @@
 
     <name>EasyDonate4J</name>
     <description>The official SDK for the EasyDonate payments system written on Java</description>
-    <url>https://github.com/SoKnight/EasyDonate4J/</url>
+    <url>https://github.com/EasyDonate/EasyDonate4J/</url>
 
     <organization>
         <name>EasyDonate</name>
@@ -17,9 +17,9 @@
     </organization>
 
     <scm>
-        <connection>scm:git:git://github.com/SoKnight/EasyDonate4J.git</connection>
-        <developerConnection>scm:git:ssh://github.com:SoKnight/EasyDonate4J.git</developerConnection>
-        <url>http://github.com/SoKnight/EasyDonate4J/tree/master</url>
+        <connection>scm:git:git://github.com/EasyDonate/EasyDonate4J.git</connection>
+        <developerConnection>scm:git:ssh://github.com:EasyDonate/EasyDonate4J.git</developerConnection>
+        <url>http://github.com/EasyDonate/EasyDonate4J/tree/master</url>
     </scm>
 
     <licenses>
@@ -31,7 +31,7 @@
 
     <issueManagement>
         <system>GitHub</system>
-        <url>https://github.com/SoKnight/EasyDonate4J/issues</url>
+        <url>https://github.com/EasyDonate/EasyDonate4J/issues</url>
     </issueManagement>
 
     <developers>
