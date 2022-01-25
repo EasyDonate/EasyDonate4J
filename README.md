@@ -4,14 +4,14 @@
 [javadocImg]: https://javadoc.io/badge2/ru.easydonate.easydonate4j/parent/javadoc.svg?label=javadoc&color=3BAF18&style=for-the-badge
 [javadoc]: https://javadoc.io/doc/ru.easydonate.easydonate4j
 
-[licenseImg]: https://img.shields.io/github/license/SoKnight/EasyDonate4J?label=license&color=3BAF18&style=for-the-badge
-[license]: https://github.com/SoKnight/EasyDonate4J/blob/master/LICENSE
+[licenseImg]: https://img.shields.io/github/license/EasyDonate/EasyDonate4J?label=license&color=3BAF18&style=for-the-badge
+[license]: https://github.com/EasyDonate/EasyDonate4J/blob/master/LICENSE
 
-[issuesImg]: https://img.shields.io/github/issues/SoKnight/EasyDonate4J?label=github%20issues&color=3BAF18&style=for-the-badge
-[issues]: https://github.com/SoKnight/EasyDonate4J/issues
+[issuesImg]: https://img.shields.io/github/issues/EasyDonate/EasyDonate4J?label=github%20issues&color=3BAF18&style=for-the-badge
+[issues]: https://github.com/EasyDonate/EasyDonate4J/issues
 
 [wikiImg]: https://img.shields.io/badge/documentation%20language-russian-3BAF18?style=for-the-badge
-[wiki]: https://github.com/SoKnight/EasyDonate4J/wiki
+[wiki]: https://github.com/EasyDonate/EasyDonate4J/wiki
 
 # EasyDonate4J
 The offical SDK for the [EasyDonate](https://easydonate.ru/) platform API written on Java.<br>
@@ -29,7 +29,7 @@ Better than old revision: **feature-rich** & **modular** & **stable**!
 - JSON serialization provider implementations (Jackson, GSON)
 - Callback API request signature verifier
 - Callback API request event listening system
-- Over 100+ JUnit Tests for better SDK stability
+- Over 150+ JUnit Tests for better SDK stability
 - **[WIP]** The completed Javadoc for the Public API part.
 - **[WIP]** The russian only documentation on the GitHub WiKi.
 
@@ -43,8 +43,8 @@ Better than old revision: **feature-rich** & **modular** & **stable**!
 ## Before you start
 You should to read about any API restrictions before you start:
 - [**[ ! ]** API request requirements (RU)](https://api.easydonate.ru/request-requirements)
-- [Project's WiKi hosted on GitHub (RU)](https://github.com/SoKnight/EasyDonate4J/wiki)
+- [Project's WiKi hosted on GitHub (RU)](https://github.com/EasyDonate/EasyDonate4J/wiki)
 - [Project's thread on the EasyDonate Forum (RU)](https://forum.easydonate.ru/d/65-easydonate4j-ofitsialnoe-sdk-dlya-java)
 
 ## License
-This project is open-source and licensed under the [MIT license](https://github.com/SoKnight/EasyDonate4J/blob/master/LICENSE).
+This project is open-source and licensed under the [MIT license](https://github.com/EasyDonate/EasyDonate4J/blob/master/LICENSE).
