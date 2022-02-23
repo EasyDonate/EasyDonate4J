@@ -31,7 +31,6 @@ Better than old revision: **feature-rich** & **modular** & **stable**!
 - Callback API request event listening system
 - Over 150+ JUnit Tests for better SDK stability
 - **[WIP]** The completed Javadoc for the Public API part.
-- **[WIP]** The russian only documentation on the GitHub WiKi.
 
 ### Known API versions:
 | API Version | Supported? |                 Documentation                 |
